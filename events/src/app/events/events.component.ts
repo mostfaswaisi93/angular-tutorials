@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-events',
@@ -6,64 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./events.component.css']
 })
 export class EventsComponent implements OnInit {
-
-  events = [
-    {
-      title: 'Gaza Event',
-      date: '12/6/2018',
-      time: '8:00 am',
-      price: 599.99,
-      attendanceNumbers: 100,
-      location: {
-        country: 'Palestine',
-        city: 'Gaza',
-        address: 'Gaza Street'
-      }
-    },
-    {
-      title: 'Amman Event',
-      date: '12/8/2018',
-      time: '10:00 am',
-      price: 288,
-      attendanceNumbers: 1000,
-      onlineURL: 'www.google.com',
-      location: {
-        country: 'Jordan',
-        city: 'Amman',
-        address: 'Amman Street'
-      }
-    },
-    {
-      title: 'Cairo Event',
-      date: '12/9/2018',
-      time: '11:00 pm',
-      price: 568.77,
-      attendanceNumbers: 10000,
-      onlineURL: 'www.google.com',
-      location: {
-        country: 'Egypt',
-        city: 'Cairo',
-        address: 'Cairo Street'
-      }
-    },
-    {
-      title: 'Jerusalem',
-      date: '12/10/2018',
-      time: '9:00 am',
-      price: 1000.99,
-      attendanceNumbers: 100000,
-      location: {
-        country: 'Palestine',
-        city: 'Jerusalem',
-        address: 'Jerusalem Street'
-      }
-    }
-  ];
-
-  constructor() {
-
+  events;
+  constructor(data: DataService) {
+    this.events = data.getEvents();
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 }
+
