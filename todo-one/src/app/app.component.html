@@ -1,0 +1,22 @@
+<section class="todoapp">
+    <header class="header">
+        <h1>Todos</h1>
+        <input class="new-todo" placeholder="What needs to be done?" autofocus="" [(ngModel)]="newTodo.title" (keyup.enter)="add()">
+    </header>
+    <section class="main">
+        <ul class="todo-list" *ngFor="let todo of todos">
+            <li [class.completed]="todo.isDone">
+                <div class="view">
+                    <input class="toggle" type="checkbox" (click)="toggleDone(todo)" [checked]="todo.isDone">
+                    <label>{{todo.title}}</label>
+                    <button class="destroy" (click)="delete(todo.id)"></button>
+                </div>
+            </li>
+        </ul>
+    </section>
+    <footer class="footer">
+        <!-- this is show length -->
+        <span class="todo-count"><strong>{{todos.length}}</strong> Items</span>
+    </footer>
+
+</section>
