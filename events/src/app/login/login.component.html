@@ -1,0 +1,22 @@
+<h1>Login</h1>
+
+<form #loginForm="ngForm">
+    <div class="form-row">
+        <div class="form-group col-md-3">
+            <label for="inputEmail4">Email</label>
+            <input type="email" required [class.is-valid]="loginForm.controls.email?.valid" [class.is-invalid]="loginForm.controls.email?.invalid && loginForm.controls.email.touched" [(ngModel)]="email" name="email" class="form-control" placeholder="Email" />
+            <div class="valid-feedback">Looks good!</div>
+            <div class="invalid-feedback">Please email is required.</div>
+        </div>
+        <div class="form-group col-md-3">
+            <label for="inputPassword4">Password</label>
+            <input type="password" [class.is-valid]="loginForm.controls.password?.valid" [class.is-invalid]="loginForm.controls.password?.invalid && loginForm.controls.password.touched" required [(ngModel)]="password" name="password" class="form-control" placeholder="Password"
+            />
+            <div class="valid-feedback">Looks good!</div>
+            <div class="invalid-feedback">Please password is required.</div>
+        </div>
+    </div>
+    <button type="button" (click)="login(loginForm)" [disabled]="loginForm.invalid" class="btn btn-primary">
+    Sign in
+  </button>
+</form>
