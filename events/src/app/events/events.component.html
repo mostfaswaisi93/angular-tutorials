@@ -1,0 +1,24 @@
+<div class="row">
+    <div class="col-sm-3 mt-3" *ngFor="let event of events">
+        <div class="card cardFix">
+            <div class="card-body">
+                <h5 class="card-title">Event: {{ event.title | uppercase }}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Date: {{ event.date | date }}</h6>
+                <div [style.color]="event.time == '8:00 am' || event.time == '10:00 am' ? 'green' : 'red'" [ngSwitch]="event.time">
+                    <span class="card-subtitle mb-2">Time: {{ event.time }}</span>
+                    <span *ngSwitchCase="'8:00 am'"> (Early Start)</span>
+                    <span *ngSwitchCase="'11:00 pm'"> (Late Start)</span>
+                    <span *ngSwitchDefault> (Normal Start)</span>
+                </div>
+                <p class="card-text">Price : {{event.price | currency }}</p>
+                <p class="card-text">Attendance Numbers : {{event.attendanceNumbers | number }}</p>
+                <p class="card-text" *ngIf="event.location">
+                    Address: {{ event.location.address | lowercase}}, {{ event.location.city }}, {{ event.location.country }}
+                </p>
+                <p class="card-text" [hidden]="!event.onlineURL">
+                    Online URL: {{ event.onlineURL }}
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
