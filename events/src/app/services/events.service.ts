@@ -5,7 +5,6 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class EventsService {
-
   constructor(public http: HttpClient) { }
 
   getEvents(): any {
@@ -17,5 +16,12 @@ export class EventsService {
   }
   addEvent(event): any {
     return this.http.post('http://localhost:3000/events', event);
+  }
+  editEvent(event): any {
+    return this.http.put(`http://localhost:3000/events/${event.id}`, event);
+  }
+
+  deleteEvent(id): any {
+    return this.http.delete(`http://localhost:3000/events/${id}`);
   }
 }

@@ -14,7 +14,7 @@ export class EventItemComponent implements OnInit {
     private activatedRoute: ActivatedRoute
   ) {
     this.eventsService
-      .getEvent(this.activatedRoute.snapshot.params['id'])
+      .getEvent(this.activatedRoute.snapshot.params.id)
       .subscribe(data => (this.event = data));
   }
 

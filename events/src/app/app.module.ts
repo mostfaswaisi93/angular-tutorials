@@ -10,6 +10,8 @@ import { ProfileComponent } from './profile/profile.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AddEventComponent } from './add-event/add-event.component';
 import { EventItemComponent } from './event-item/event-item.component';
+import { AdminEventsComponent } from './admin-events/admin-events.component';
+import { EditEventComponent } from './edit-event/edit-event.component';
 
 const route: Route[] = [
   {
@@ -33,10 +35,17 @@ const route: Route[] = [
     component: EventItemComponent
   },
   {
+    path: 'eventEdit/:id',
+    component: EditEventComponent
+  },
+  {
+    path: 'adminEvents',
+    component: AdminEventsComponent
+  },
+  {
     path: '',
     redirectTo: '/events',
     pathMatch: 'prefix'
-
   }
 ];
 
@@ -47,7 +56,9 @@ const route: Route[] = [
     LoginComponent,
     ProfileComponent,
     AddEventComponent,
-    EventItemComponent
+    EventItemComponent,
+    AdminEventsComponent,
+    EditEventComponent
   ],
   imports: [
     BrowserModule,
