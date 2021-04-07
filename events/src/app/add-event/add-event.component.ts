@@ -27,16 +27,17 @@ export class AddEventComponent implements OnInit {
     city: this.city,
     address: this.address
   });
-  constructor(public evService: EventsService, private router: Router) {}
+  constructor(public evService: EventsService, private router: Router) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   save(): any {
-    console.log(this.addEventForm.value);
-    // this.evService.addEvent(this.addEventForm.value).subscribe(data => {
-    //   if (data) {
-    //     this.router.navigate(['']);
-    //   }
-    // });
+    // console.log(this.addEventForm.value);
+    this.evService.addEvent(this.addEventForm.value).subscribe(data => {
+      if (data) {
+        this.router.navigate(['']);
+      }
+    });
+
   }
 }
