@@ -1,0 +1,88 @@
+<br />
+<div class="card">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-12">
+                <h4>Add Event</h4>
+                <hr />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <form [formGroup]="addEventForm">
+                    <div class="form-group row">
+                        <label for="title" class="col-4 col-form-label">Title</label>
+                        <div class="col-8">
+                            <input id="title" name="title" placeholder="title" class="form-control here" type="text" [formControl]="title" [class.is-valid]="title.valid" [class.is-invalid]="title.invalid && title.touched" />
+                            <div class="valid-feedback">Looks good!</div>
+
+                            <div class="invalid-feedback" [hidden]="!title.errors?.required">
+                                Please title is required.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="name" class="col-4 col-form-label">Date</label>
+                        <div class="col-8">
+                            <input id="name" name="name" placeholder="Date" class="form-control here" type="date" [formControl]="date" [class.is-valid]="date.valid" [class.is-invalid]="date.invalid && date.touched" />
+                            <div class="valid-feedback">Looks good!</div>
+                            <div class="invalid-feedback">Please Date is required.</div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="time" class="col-4 col-form-label">Time</label>
+                        <div class="col-8">
+                            <input id="time" name="time" placeholder="time" class="form-control here" type="time" [formControl]="time" [class.is-valid]="time.valid" [class.is-invalid]="time.invalid" />
+                            <div class="valid-feedback">Looks good!</div>
+                            <div class="invalid-feedback">Please Time is required.</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="price" class="col-4 col-form-label">Price</label>
+                        <div class="col-8">
+                            <input id="price" name="price" placeholder="price" class="form-control here" type="text" [formControl]="price" [class.is-valid]="price.valid" [class.is-invalid]="price.invalid" />
+                            <div class="valid-feedback">Looks good!</div>
+                            <div class="invalid-feedback">Please Price is required.</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="price" class="col-4 col-form-label">Country</label>
+                        <div class="col-8">
+                            <input id="country" name="country" placeholder="country" class="form-control here" type="text" [formControl]="country" [class.is-valid]="country.valid" [class.is-invalid]="country.invalid" />
+                            <div class="valid-feedback">Looks good!</div>
+                            <div class="invalid-feedback">Please Country is required.</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="price" class="col-4 col-form-label">City</label>
+                        <div class="col-8">
+                            <input id="city" name="city" placeholder="city" class="form-control here" type="text" [formControl]="city" [class.is-valid]="city.valid" [class.is-invalid]="city.invalid" />
+                            <div class="valid-feedback">Looks good!</div>
+                            <div class="invalid-feedback">Please City is required.</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="price" class="col-4 col-form-label">Address</label>
+                        <div class="col-8">
+                            <input id="address" name="address" placeholder="address" class="form-control here" type="text" [formControl]="address" [class.is-valid]="address.valid" [class.is-invalid]="address.invalid" />
+                            <div class="valid-feedback">Looks good!</div>
+                            <div class="invalid-feedback">Please Address is required.</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="offset-4 col-8">
+                            <button name="submit" type="submit" [disabled]="addEventForm.invalid" class="btn btn-primary" (click)="save()">
+                Save
+              </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

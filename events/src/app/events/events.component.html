@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-sm-3 mt-3" *ngFor="let event of events">
+    <div class="col-sm-3 mt-3" (click)="goEvent(event.id)" *ngFor="let event of events">
         <div class="card cardFix">
             <div class="card-body">
                 <h5 class="card-title">Event: {{ event.title | uppercase }}</h5>

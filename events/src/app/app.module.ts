@@ -8,8 +8,14 @@ import { EventsComponent } from './events/events.component';
 import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AddEventComponent } from './add-event/add-event.component';
+import { EventItemComponent } from './event-item/event-item.component';
 
 const route: Route[] = [
+  {
+    path: 'addEvent',
+    component: AddEventComponent
+  },
   {
     path: 'login',
     component: LoginComponent
@@ -21,6 +27,16 @@ const route: Route[] = [
   {
     path: 'events',
     component: EventsComponent
+  },
+  {
+    path: 'event/:id',
+    component: EventItemComponent
+  },
+  {
+    path: '',
+    redirectTo: '/events',
+    pathMatch: 'prefix'
+
   }
 ];
 
@@ -29,7 +45,9 @@ const route: Route[] = [
     AppComponent,
     EventsComponent,
     LoginComponent,
-    ProfileComponent
+    ProfileComponent,
+    AddEventComponent,
+    EventItemComponent
   ],
   imports: [
     BrowserModule,
