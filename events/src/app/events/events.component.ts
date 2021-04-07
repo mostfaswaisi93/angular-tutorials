@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from '../services/data.service';
+import { EventsService } from '../services/events.service';
 
 @Component({
   selector: 'app-events',
@@ -8,10 +8,9 @@ import { DataService } from '../services/data.service';
 })
 export class EventsComponent implements OnInit {
   events;
-  constructor(data: DataService) {
-    this.events = data.getEvents();
+  constructor(public eventsService: EventsService) {
+    eventsService.getEvents().subscribe(data => (this.events = data));
   }
 
   ngOnInit(): void { }
 }
-
