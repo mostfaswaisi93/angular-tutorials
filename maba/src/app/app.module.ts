@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AboutComponent } from './about/about.component';
 import { AddProductComponent } from './add-product/add-product.component';
@@ -16,7 +17,10 @@ import { ProductsComponent } from './products/products.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SignupComponent } from './signup/signup.component';
 import { FirstUpperPipe } from './pipes/first-upper.pipe';
-
+import { UserService } from './services/users.service';
+import { ProductsService } from './services/products.service';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,9 +40,16 @@ import { FirstUpperPipe } from './pipes/first-upper.pipe';
     FirstUpperPipe
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    // BrowserAnimationsModule,
+    AppRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule,
+    // NgbModule,
+    // ToastrModule.forRoot()
   ],
-  providers: [],
+  providers: [UserService, ProductsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
