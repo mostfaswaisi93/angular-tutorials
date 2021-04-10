@@ -22,11 +22,12 @@ export class AppComponent {
     this.userService.isLogin = false;
     this.userService.isAdmin = false;
     localStorage.removeItem('token');
-    this.toastr.success('Logged out successfully');
+    this.toastr.success('Success', 'Logged Out Successfully');
     this.router.navigateByUrl('/login');
   }
 
   goCart(): any {
     this.router.navigateByUrl('/checkout');
   }
+
 }

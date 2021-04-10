@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { IUser } from '../models/user';
 import { UserService } from '../services/users.service';
 
 @Component({
@@ -32,4 +33,5 @@ export class ProfileComponent implements OnInit {
       this.profileForm.patchValue(data);
     });
   }
+
 }

@@ -31,7 +31,7 @@ export class ProductsComponent implements OnInit {
 
   addToCart(id): any {
     if (!this.userService.isLogin) {
-      this.toastr.error('You must be logged in first');
+      this.toastr.error('Error!', 'You must be logged in first!');
       this.router.navigateByUrl('/login');
     } else {
 
@@ -45,4 +45,5 @@ export class ProductsComponent implements OnInit {
       );
     }
   }
+
 }

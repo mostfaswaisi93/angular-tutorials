@@ -14,9 +14,10 @@ export class CheckoutComponent implements OnInit {
 
   ngOnInit(): any {
     this.productsService.getCart().subscribe(data => {
-      this.cart = data.cart;
-      this.countTotal = data.countTotal;
-      this.totalPrice = data.totalPrice;
+      this.cart = data['cart'];
+      this.countTotal = data['countTotal'];
+      this.totalPrice = data['totalPrice'];
     });
   }
+
 }

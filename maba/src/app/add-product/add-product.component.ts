@@ -31,4 +31,5 @@ export class AddProductComponent implements OnInit {
   }
 
   save(): any { }
+
 }

@@ -30,4 +30,5 @@ export class EditProductComponent implements OnInit {
   }
 
   save(): any { }
+
 }

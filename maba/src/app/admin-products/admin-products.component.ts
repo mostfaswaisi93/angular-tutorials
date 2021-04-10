@@ -10,6 +10,7 @@ import { ProductsService } from '../services/products.service';
 })
 export class AdminProductsComponent implements OnInit {
   products: IProduct[];
+
   constructor(
     private productsService: ProductsService,
     private router: Router
@@ -36,4 +37,5 @@ export class AdminProductsComponent implements OnInit {
       }
     });
   }
+
 }

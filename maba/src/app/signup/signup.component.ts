@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { IUser } from '../models/user';
 import { UserService } from '../services/users.service';
 
 @Component({
@@ -41,14 +42,14 @@ export class SignupComponent implements OnInit {
     this.userService.signUp(this.signUpForm.value).subscribe(
       data => {
         console.log('d', data);
-        this.toastr.success('SignUp Successfully');
+        this.toastr.success('Success!', 'SignUp Successfully');
         this.router.navigateByUrl('/login');
       },
       errors => {
         console.log(errors);
 
         for (const ms of errors.error.modelState['']) {
-          this.toastr.error(ms);
+          this.toastr.error('Error!', ms);
         }
       }
     );
@@ -67,4 +68,5 @@ export class SignupComponent implements OnInit {
       }
     }
   }
+
 }

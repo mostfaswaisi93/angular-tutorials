@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IProduct } from '../models/product';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { IUser } from '../models/user';
 
 // const url: string = 'http://localhost:3000';
 const url = 'http://oday9.azurewebsites.net';
@@ -55,4 +56,5 @@ export class ProductsService {
   getTotal(): any {
     return this.http.get(`${url}/api/Carts/GetTotal`, { headers: this.reqHeaderToken });
   }
+
 }

@@ -9,6 +9,7 @@ import { UserService } from '../services/users.service';
 })
 export class AdminUsersComponent implements OnInit {
   users: IUser[];
+
   constructor(private userService: UserService) { }
 
   ngOnInit(): any {
@@ -16,4 +17,5 @@ export class AdminUsersComponent implements OnInit {
       this.users = data;
     });
   }
+
 }
