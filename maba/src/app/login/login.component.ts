@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { UserService } from '../services/users.service';
 
 @Component({
@@ -12,7 +13,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private userService: UserService,
     private router: Router,
-    // private toastr: ToastrManager
+    private toastr: ToastrService
   ) { }
 
   loginForm: FormGroup;
@@ -34,17 +35,17 @@ export class LoginComponent implements OnInit {
           this.userService.isLogin = true;
           if (data.roles.includes('Admin')) {
             this.userService.isAdmin = true;
-            this.toastr.successToastr('Logged in successfully');
+            this.toastr.success('Success!', 'Logged in successfully');
             this.router.navigateByUrl('/adminProducts');
           } else {
-            this.toastr.successToastr('Logged in successfully');
+            this.toastr.success('Success!', 'Logged in successfully');
             this.router.navigateByUrl('/products');
           }
         }
       },
       error => {
         this.userService.isLogin = false;
-        this.toastr.errorToastr('Incorrect email or password');
+        this.toastr.success('Error!', 'Incorrect email or password');
       }
     );
   }

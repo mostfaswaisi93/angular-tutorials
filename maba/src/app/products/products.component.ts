@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { IProduct } from '../models/product';
 import { ProductsService } from '../services/products.service';
 import { UserService } from '../services/users.service';
@@ -14,7 +15,7 @@ export class ProductsComponent implements OnInit {
   constructor(
     private productsService: ProductsService,
     private userService: UserService,
-    // private toastr: ToastrManager,
+    private toastr: ToastrService,
     private router: Router
   ) { }
 
@@ -30,7 +31,7 @@ export class ProductsComponent implements OnInit {
 
   addToCart(id): any {
     if (!this.userService.isLogin) {
-      this.toastr.errorToastr('You must be logged in first');
+      this.toastr.error('You must be logged in first');
       this.router.navigateByUrl('/login');
     } else {
 

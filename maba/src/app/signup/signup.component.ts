@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { UserService } from '../services/users.service';
 
 @Component({
@@ -11,7 +12,7 @@ import { UserService } from '../services/users.service';
 export class SignupComponent implements OnInit {
   constructor(
     private userService: UserService,
-    // private toastr: ToastrManager,
+    private toastr: ToastrService,
     private router: Router
   ) { }
 
@@ -40,14 +41,14 @@ export class SignupComponent implements OnInit {
     this.userService.signUp(this.signUpForm.value).subscribe(
       data => {
         console.log('d', data);
-        this.toastr.successToastr('SignUp Successfully');
+        this.toastr.success('SignUp Successfully');
         this.router.navigateByUrl('/login');
       },
       errors => {
         console.log(errors);
 
         for (const ms of errors.error.modelState['']) {
-          this.toastr.errorToastr(ms);
+          this.toastr.error(ms);
         }
       }
     );
