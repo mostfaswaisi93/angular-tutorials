@@ -1,0 +1,37 @@
+<div class="panel panel-primary" *ngFor="let task of tasks">
+    <div class="panel-heading">
+        <h3 class="panel-title btn btn-primary">{{ task.name }}</h3>
+    </div>
+    <div class="panel-body">
+        <div class="col-xs-10">
+            <div class="row vertical-align">
+                <div class="col-xs-8">
+                    <div class="row">
+                        <div class="col-xs-6">
+                            Date
+                        </div>
+                        <div class="col-xs-6">
+                            : {{ task.date | date }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            Status
+                        </div>
+                        <div class="col-xs-6">
+                            : {{ task.status }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            Description
+                        </div>
+                        <div class="col-xs-6">
+                            : {{ task.description }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
