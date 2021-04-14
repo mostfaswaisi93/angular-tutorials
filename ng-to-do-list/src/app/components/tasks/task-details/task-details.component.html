@@ -1,0 +1,17 @@
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">{{ task.name }}</h5>
+        <div>Date: {{ task.date | date }}</div>
+        <div>Status:
+            <span [ngSwitch]="task.status">
+                <span *ngSwitchCase="1"> New </span>
+            <span *ngSwitchCase="2"> In Progress </span>
+            <span *ngSwitchCase="3"> Completed </span>
+            <span *ngSwitchDefault> N/A </span>
+            </span>
+        </div>
+        <div>Description: {{ task.description }}</div>
+        <hr>
+        <a class="btn btn-dark" routerLink="/tasks">Back</a>
+    </div>
+</div>

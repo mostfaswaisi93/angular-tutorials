@@ -40,7 +40,7 @@ export class CreateTaskComponent implements OnInit {
 
   saveTask(): void {
     this.taskService.save(this.task);
-    this.router.navigate(['list']);
+    this.router.navigate(['tasks']);
   }
 
 

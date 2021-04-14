@@ -13,8 +13,12 @@ export class TaskService {
   ];
   constructor() { }
 
-  getEmployees(): Task[] {
+  getTasks(): Task[] {
     return this.tasks;
+  }
+
+  getTask(id: number): Task {
+    return this.tasks.find(t => t.id === id);
   }
 
   save(task: Task): any {

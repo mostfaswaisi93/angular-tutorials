@@ -1,7 +1,7 @@
 <div class="card">
     <div class="card-body">
         <h2>Tasks List</h2>
-        <a class="btn btn-primary float-right" routerLink="create">Create Task</a>
+        <a class="btn btn-success float-right" routerLink="create">Create Task</a>
     </div>
     <table class="table table-bordered table-hover" style="width: 95%; margin-left: 20px;">
         <thead>
@@ -19,16 +19,17 @@
                 <th scope="row">{{ task.id }}</th>
                 <td>{{ task.name }}</td>
                 <td>{{ task.date | date }}</td>
-                <td> <label [ngSwitch]="task.status">
+                <td> <span [ngSwitch]="task.status">
                 <span *ngSwitchCase="1"> New </span>
-                <span *ngSwitchCase="2"> In Progress </span>
-                <span *ngSwitchCase="3"> Completed </span>
-                <span *ngSwitchDefault> N/A </span>
-              </label>
+                    <span *ngSwitchCase="2"> In Progress </span>
+                    <span *ngSwitchCase="3"> Completed </span>
+                    <span *ngSwitchDefault> N/A </span>
+                    </span>
                 </td>
                 <td>{{ task.description }}</td>
                 <td>
-                    <a class="btn btn-info">Edit</a>
+                    <a class="btn btn-primary">Edit</a>
+                    <a class="btn btn-info" (click)="onShowTask(task.id)">Show</a>
                     <a class="btn btn-danger">Delete</a>
                 </td>
             </tr>
