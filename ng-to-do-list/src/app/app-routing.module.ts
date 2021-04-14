@@ -7,8 +7,8 @@ import { CreateTaskComponent } from './components/tasks/create-task/create-task.
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'list', component: ListTasksComponent },
-  { path: 'create', component: CreateTaskComponent },
+  { path: 'tasks', component: ListTasksComponent },
+  { path: 'tasks/create', component: CreateTaskComponent },
   { path: '**', component: Page404Component }
 ];
 

@@ -8,6 +8,7 @@ import { ListTasksComponent } from './components/list-tasks/list-tasks.component
 import { CreateTaskComponent } from './components/tasks/create-task/create-task.component';
 import { Page404Component } from './components/page404/page404.component';
 import { HomeComponent } from './components/home/home.component';
+import { TaskService } from './services/task.service';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,7 @@ import { HomeComponent } from './components/home/home.component';
     AppRoutingModule,
     FormsModule
   ],
-  providers: [],
+  providers: [TaskService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,9 +1,8 @@
-.imageClass {
-    width: 200px;
-    height: 200px;
+td a {
+    color: #fff;
+    margin-right: 5px;
 }
 
-.vertical-align {
-    display: flex;
-    align-items: center;
+td a:hover {
+    color: #fff;
 }
