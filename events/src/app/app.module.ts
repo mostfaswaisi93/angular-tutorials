@@ -66,7 +66,6 @@ const route: Route[] = [
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule.forRoot(route)
-
   ],
   providers: [],
   bootstrap: [AppComponent]

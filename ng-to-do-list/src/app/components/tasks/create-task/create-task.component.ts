@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Status } from 'src/app/models/status.model';
-import { Task } from 'src/app/models/task.model';
-import { TaskService } from 'src/app/services/task.service';
+import { TasksService } from 'src/app/services/tasks.service';
 
 @Component({
   selector: 'app-create-task',
@@ -16,35 +15,34 @@ export class CreateTaskComponent implements OnInit {
   status = new FormControl('', [Validators.required]);
   description = new FormControl('', [Validators.required]);
 
-  addEventForm = new FormGroup({
+  addTaskForm = new FormGroup({
     name: this.name,
     date: this.date,
     status: this.status,
     description: this.description
   });
 
-  task: Task = {
-    id: null,
-    name: null,
-    date: null,
-    status: null,
-    description: null
-  };
-
   statusClass: Status[] = [
     { id: 1, name: 'New' },
     { id: 2, name: 'In Progress' },
     { id: 3, name: 'Completed' }
   ];
-  constructor(private taskService: TaskService, private router: Router) { }
-
-  saveTask(): void {
-    this.taskService.save(this.task);
-    this.router.navigate(['tasks']);
-  }
-
+  constructor(public tasksService: TasksService, private router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  // saveTask(): void {
+  //   this.tasksService.save(this.task);
+  //   this.router.navigate(['tasks']);
+  // }
+
+  save(): any {
+    this.tasksService.addTask(this.addTaskForm.value).subscribe(data => {
+      if (data) {
+        this.router.navigate(['tasks']);
+      }
+    });
   }
 
 }

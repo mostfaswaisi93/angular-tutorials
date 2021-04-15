@@ -1,33 +1,35 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import { AppRoutingModule } from './app-routing.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ListTasksComponent } from './components/list-tasks/list-tasks.component';
-import { CreateTaskComponent } from './components/tasks/create-task/create-task.component';
-import { Page404Component } from './components/page404/page404.component';
 import { HomeComponent } from './components/home/home.component';
-import { TaskService } from './services/task.service';
-import { TaskDetailsComponent } from './components/tasks/task-details/task-details.component';
+import { Page404Component } from './components/page404/page404.component';
+import { CreateTaskComponent } from './components/tasks/create-task/create-task.component';
+import { ShowTaskComponent } from './components/tasks/show-task/show-task.component';
 import { EditTaskComponent } from './components/tasks/edit-task/edit-task.component';
+import { TasksListComponent } from './components/tasks/tasks-list/tasks-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ListTasksComponent,
-    CreateTaskComponent,
-    Page404Component,
     HomeComponent,
-    TaskDetailsComponent,
-    EditTaskComponent
+    Page404Component,
+    CreateTaskComponent,
+    ShowTaskComponent,
+    EditTaskComponent,
+    TasksListComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
-  providers: [TaskService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
