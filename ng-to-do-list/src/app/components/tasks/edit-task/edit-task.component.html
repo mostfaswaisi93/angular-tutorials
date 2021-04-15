@@ -1,0 +1,39 @@
+<div class="card" style="width: 50%;">
+    <div class="card-body">
+        <h5 class="card-title">Edit Task</h5>
+        <form #taskForm="ngForm" ngNativeValidate (ngSubmit)="saveTask()">
+            <div class="form-group" [class.has-error]="nameControl.invalid && nameControl.touched" [class.has-success]="nameControl.valid">
+                <label for="name" class="control-label">Name:</label>
+                <input id="name" type="text" value="name" class="form-control" name="name" [(ngModel)]="task.name" required #nameControl="ngModel">
+                <span class="help-block" *ngIf="nameControl.invalid && nameControl.touched">
+          Name is required
+        </span>
+            </div>
+            <div class="form-group">
+                <label for="date" class="control-label">Date:</label>
+                <input id="date" type="date" value="date" class="form-control" name="date" [(ngModel)]="task.date" required #dateControl="ngModel">
+            </div>
+            <div class="form-group" [class.has-error]="statusControl.touched && statusControl.invalid">
+                <label for="status" class="control-label">Status:</label>
+                <select name="status" id="status" class="form-control" [(ngModel)]="task.status" required #statusControl="ngModel">
+          <option disabled [ngValue]="null">Select Status</option>
+          <option *ngFor="let st of statusClass" [value]="st.id">
+            {{ st.name }}
+          </option>
+        </select>
+                <span class="help-block" *ngIf="statusControl.touched && statusControl.errors?.required">
+          Status is required
+        </span>
+            </div>
+            <div class="form-group">
+                <label for="description" class="control-label">Description:</label>
+                <textarea class="form-control" name="description" id="description" [(ngModel)]="task.description" required #descriptionControl="ngModel"></textarea>
+            </div>
+            <div class="panel-footer">
+                <button class="btn btn-primary" type="submit" [disabled]="taskForm.invalid">Save</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{{ taskForm.value | json }}

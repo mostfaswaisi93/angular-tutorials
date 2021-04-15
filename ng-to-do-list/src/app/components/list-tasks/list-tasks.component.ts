@@ -9,7 +9,7 @@ import { TaskService } from 'src/app/services/task.service';
   styleUrls: ['./list-tasks.component.css']
 })
 export class ListTasksComponent implements OnInit {
-
+  task: Task;
   tasks: Task[];
   constructor(private taskService: TaskService, private router: Router) { }
 
@@ -17,8 +17,18 @@ export class ListTasksComponent implements OnInit {
     this.tasks = this.taskService.getTasks();
   }
 
-  onShowTask(taskId: number): any{
+  showTask(taskId: number): any {
     this.router.navigate(['/tasks', taskId]);
+  }
+
+  editTask(taskId: number): any {
+    this.router.navigate(['/tasks/edit', taskId]);
+  }
+
+  deleteTask(id: number): any {
+    if (confirm('Are you sure to delete?')) {
+      this.taskService.deleteTask(id).subscribe();
+    }
   }
 
 }
