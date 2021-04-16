@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Status } from 'src/app/models/status.model';
 import { TasksService } from 'src/app/services/tasks.service';
 
 @Component({
@@ -21,6 +22,12 @@ export class EditTaskComponent implements OnInit {
     status: this.status,
     description: this.description
   });
+
+  statusClass: Status[] = [
+    { id: 1, name: 'New' },
+    { id: 2, name: 'In Progress' },
+    { id: 3, name: 'Completed' }
+  ];
   constructor(public tasksService: TasksService, public router: Router, public activatedRoute: ActivatedRoute) {
     this.tasksService
       .getTask(this.activatedRoute.snapshot.params.id)
