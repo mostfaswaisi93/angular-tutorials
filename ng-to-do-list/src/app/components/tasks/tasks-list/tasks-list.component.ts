@@ -27,6 +27,10 @@ export class TasksListComponent implements OnInit {
     this.router.navigate(['tasks/edit', id]);
   }
 
+  showTask(id): any {
+    this.router.navigate(['tasks/show', id]);
+  }
+
   ngOnInit(): void {
   }
 

@@ -31,15 +31,13 @@ export class EditTaskComponent implements OnInit {
   constructor(public tasksService: TasksService, public router: Router, public activatedRoute: ActivatedRoute) {
     this.tasksService
       .getTask(this.activatedRoute.snapshot.params.id)
-      // .getTask(this.activatedRoute.snapshot.params['id'])
       .subscribe(data => {
         this.task = data;
+        console.log(data);
         this.name.setValue(this.task.name);
         this.date.setValue(this.task.date);
         this.status.setValue(this.task.status);
         this.description.setValue(this.task.description);
-
-        // this.editTaskForm.setValue(data);
       });
   }
 

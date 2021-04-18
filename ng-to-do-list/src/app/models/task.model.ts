@@ -3,5 +3,5 @@ export class Task {
     name: string;
     date: Date;
     status: string;
-    description?: string;
+    description: string;
 }
