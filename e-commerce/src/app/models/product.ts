@@ -14,5 +14,5 @@ export class Product {
     category: Category;
     cartQuantity: number;
     cartItem: CartItem;
-    orderItems: OrderItem[];
+    order_items: OrderItem[];
 }

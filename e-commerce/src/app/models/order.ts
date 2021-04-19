@@ -4,12 +4,12 @@ import { User } from './user';
 
 export class Order {
     id: number;
-    orderDate: Date;
+    order_date: Date;
     shipmentDate: Date;
     comments: string;
     shippedTo: string;
     status: OrderStatus;
     user: User;
-    orderItems: OrderItem[];
+    order_items: OrderItem[];
     invoiceId: number;
 }

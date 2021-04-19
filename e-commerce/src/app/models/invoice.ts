@@ -3,11 +3,11 @@ import { User } from './user';
 
 export class Invoice {
     id: number;
-    invoiceTotal: number;
-    invoiceDate: Date;
+    invoice_total: number;
+    invoice_date: Date;
     number: string;
-    dueDate: Date;
-    paymentDate: Date;
+    due_date: Date;
+    payment_date: Date;
     client: User;
     payment: Payment;
 }

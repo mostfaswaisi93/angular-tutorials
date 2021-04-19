@@ -25,6 +25,7 @@ import { AdminModule } from './admin/admin.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from './shared/material/material.module';
 import { FilesModule } from './shared/files/files.module';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 // ngxComponents
 import { AccordionModule } from 'ngx-bootstrap/accordion';
@@ -33,6 +34,8 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { PopoverModule } from 'ngx-bootstrap/popover';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { TokenInterceptorService } from './services/auth/token-interceptor.service';
+import { ErrorInterceptorService } from './services/auth/error-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -64,6 +67,7 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
     FormsModule,
     ReactiveFormsModule,
     FilesModule,
+    HttpClientModule,
     CarouselModule.forRoot(),
     TooltipModule.forRoot(),
     ModalModule.forRoot(),
@@ -71,7 +75,18 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
     AccordionModule.forRoot(),
     PaginationModule.forRoot(),
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptorService,
+      multi: true
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

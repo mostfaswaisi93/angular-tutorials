@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Task } from '../models/task.model';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -20,8 +22,8 @@ export class TasksService {
     return this.http.post('http://localhost:3000/tasks', task);
   }
 
-  editTask(task): any {
-    return this.http.put(`http://localhost:3000/tasks/${task.id}`, task);
+  editTask(task: Task): Observable<void> {
+    return this.http.put<void>(`http://localhost:3000/tasks/${task.id}`, task);
   }
 
   deleteTask(id): any {

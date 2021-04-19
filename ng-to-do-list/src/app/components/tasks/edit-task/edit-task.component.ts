@@ -42,11 +42,17 @@ export class EditTaskComponent implements OnInit {
   }
 
   save(): any {
-    this.tasksService.editTask(this.editTaskForm.value).subscribe(data => {
-      if (data) {
+    // this.tasksService.editTask(this.editTaskForm.value).subscribe(data => {
+    //   if (data) {
+    //     this.router.navigate(['tasks']);
+    //   }
+    // });
+    this.tasksService.editTask(this.task).subscribe(
+      () => {
+        // this.editTaskForm.reset();
         this.router.navigate(['tasks']);
       }
-    });
+    );
   }
 
   ngOnInit(): void {

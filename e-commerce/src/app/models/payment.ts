@@ -6,6 +6,6 @@ export class Payment {
     client: User;
     date: Date;
     amount: number;
-    paymentMethod: PaymentMethods;
+    payment_method: PaymentMethods;
     invoiceId: number;
 }
