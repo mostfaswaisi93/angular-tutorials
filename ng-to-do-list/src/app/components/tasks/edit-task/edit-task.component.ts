@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Status } from 'src/app/models/status.model';
+import { Task } from 'src/app/models/task.model';
 import { TasksService } from 'src/app/services/tasks.service';
 
 @Component({
@@ -10,17 +11,14 @@ import { TasksService } from 'src/app/services/tasks.service';
   styleUrls: ['./edit-task.component.css']
 })
 export class EditTaskComponent implements OnInit {
-  task;
-  name = new FormControl('', [Validators.required]);
-  date = new FormControl('', [Validators.required]);
-  status = new FormControl('', [Validators.required]);
-  description = new FormControl('', [Validators.required]);
+  task: Task;
 
-  editTaskForm = new FormGroup({
-    name: this.name,
-    date: this.date,
-    status: this.status,
-    description: this.description
+  editTaskForm = this.fb.group({
+    id: ['', [Validators.required]],
+    name: ['', [Validators.required]],
+    date: ['', [Validators.required]],
+    status: [1, [Validators.required]],
+    description: ['', [Validators.required]]
   });
 
   statusClass: Status[] = [
@@ -28,28 +26,23 @@ export class EditTaskComponent implements OnInit {
     { id: 2, name: 'In Progress' },
     { id: 3, name: 'Completed' }
   ];
-  constructor(public tasksService: TasksService, public router: Router, public activatedRoute: ActivatedRoute) {
+  constructor(public tasksService: TasksService, public router: Router, public activatedRoute: ActivatedRoute, private fb: FormBuilder) {
     this.tasksService
       .getTask(this.activatedRoute.snapshot.params.id)
       .subscribe(data => {
         this.task = data;
         console.log(data);
-        this.name.setValue(this.task.name);
-        this.date.setValue(this.task.date);
-        this.status.setValue(this.task.status);
-        this.description.setValue(this.task.description);
+        this.editTaskForm.controls.id.setValue(this.task.id);
+        this.editTaskForm.controls.name.setValue(this.task.name);
+        this.editTaskForm.controls.date.setValue(this.task.date);
+        this.editTaskForm.controls.status.setValue(this.task.status);
+        this.editTaskForm.controls.description.setValue(this.task.description);
       });
   }
 
   save(): any {
-    // this.tasksService.editTask(this.editTaskForm.value).subscribe(data => {
-    //   if (data) {
-    //     this.router.navigate(['tasks']);
-    //   }
-    // });
-    this.tasksService.editTask(this.task).subscribe(
+    this.tasksService.editTask(this.editTaskForm.getRawValue()).subscribe(
       () => {
-        // this.editTaskForm.reset();
         this.router.navigate(['tasks']);
       }
     );

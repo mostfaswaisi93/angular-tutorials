@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Status } from 'src/app/models/status.model';
 import { TasksService } from 'src/app/services/tasks.service';
@@ -10,16 +10,12 @@ import { TasksService } from 'src/app/services/tasks.service';
   styleUrls: ['./create-task.component.css']
 })
 export class CreateTaskComponent implements OnInit {
-  name = new FormControl('', [Validators.required]);
-  date = new FormControl('', [Validators.required]);
-  status = new FormControl('', [Validators.required]);
-  description = new FormControl('', [Validators.required]);
 
-  addTaskForm = new FormGroup({
-    name: this.name,
-    date: this.date,
-    status: this.status,
-    description: this.description
+  addTaskForm = this.fb.group({
+    name: ['', [Validators.required]],
+    date: ['', [Validators.required]],
+    status: [1, [Validators.required]],
+    description: ['', [Validators.required]]
   });
 
   statusClass: Status[] = [
@@ -27,15 +23,10 @@ export class CreateTaskComponent implements OnInit {
     { id: 2, name: 'In Progress' },
     { id: 3, name: 'Completed' }
   ];
-  constructor(public tasksService: TasksService, private router: Router) { }
+  constructor(public tasksService: TasksService, private router: Router, private fb: FormBuilder) { }
 
   ngOnInit(): void {
   }
-
-  // saveTask(): void {
-  //   this.tasksService.save(this.task);
-  //   this.router.navigate(['tasks']);
-  // }
 
   save(): any {
     this.tasksService.addTask(this.addTaskForm.value).subscribe(data => {

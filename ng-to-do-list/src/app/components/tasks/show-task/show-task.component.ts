@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Task } from 'src/app/models/task.model';
 import { TasksService } from 'src/app/services/tasks.service';
 
 @Component({
@@ -8,7 +9,7 @@ import { TasksService } from 'src/app/services/tasks.service';
   styleUrls: ['./show-task.component.css']
 })
 export class ShowTaskComponent implements OnInit {
-  task;
+  task: Task;
   constructor(
     private tasksService: TasksService,
     private activatedRoute: ActivatedRoute

@@ -12,9 +12,9 @@
                     <div class="form-group row">
                         <label for="name" class="col-4 col-form-label">Name:</label>
                         <div class="col-8">
-                            <input id="name" name="name" placeholder="Name" class="form-control here" type="text" [formControl]="name" [class.is-valid]="name.valid" [class.is-invalid]="name.invalid && name.touched" />
-                            <!-- <div class="valid-feedback">Looks good!</div> -->
-                            <div class="invalid-feedback" [hidden]="!name.errors?.required">
+                            <input id="name" name="name" placeholder="Name" class="form-control here" type="text" formControlName="name" [class.is-valid]="addTaskForm.controls.name.valid" [class.is-invalid]="addTaskForm.controls.name.invalid && addTaskForm.controls.name.touched"
+                            />
+                            <div class="invalid-feedback" [hidden]="!addTaskForm.controls.name.errors?.required">
                                 Please Name is required.
                             </div>
                         </div>
@@ -22,29 +22,26 @@
                     <div class="form-group row">
                         <label for="date" class="col-4 col-form-label">Date:</label>
                         <div class="col-8">
-                            <input id="date" name="date" placeholder="Date" class="form-control here" type="date" [formControl]="date" [class.is-valid]="date.valid" [class.is-invalid]="date.invalid && date.touched" />
-                            <!-- <div class="valid-feedback">Looks good!</div> -->
+                            <input id="date" name="date" placeholder="Date" class="form-control here" type="date" formControlName="date" [class.is-valid]="addTaskForm.controls.date.valid" [class.is-invalid]="addTaskForm.controls.date.invalid && addTaskForm.controls.date.touched"
+                            />
                             <div class="invalid-feedback">Please Date is required.</div>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="status" class="col-4 col-form-label">Status:</label>
                         <div class="col-8">
-                            <select name="status" id="status" class="form-control here" [formControl]="status" [class.is-valid]="status.valid" [class.is-invalid]="status.invalid && status.touched">
-                                <!-- <option disabled [ngValue]="1" >Select Status</option> -->
-                                <option *ngFor="let st of statusClass;" [value]="st.id">
-                                     {{ st.name }}
-                                </option>
-                              </select>
-                            <!-- <div class="valid-feedback">Looks good!</div> -->
+                            <select name="status" id="status" class="form-control here" formControlName="status" [class.is-valid]="addTaskForm.controls.status.valid" [class.is-invalid]="addTaskForm.controls.status.invalid && addTaskForm.controls.status.touched">
+                <option *ngFor="let st of statusClass;" [value]="st.id">
+                  {{ st.name }}
+                </option>
+              </select>
                             <div class="invalid-feedback">Please Status is required.</div>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="description" class="col-4 col-form-label">Description:</label>
                         <div class="col-8">
-                            <textarea class="form-control" placeholder="Description" name="description" id="description" [formControl]="description" [class.is-valid]="description.valid" [class.is-invalid]="description.invalid && description.touched"></textarea>
-                            <!-- <div class="valid-feedback">Looks good!</div> -->
+                            <textarea class="form-control" placeholder="Description" name="description" id="description" formControlName="description" [class.is-valid]="addTaskForm.controls.description.valid" [class.is-invalid]="addTaskForm.controls.description.invalid && addTaskForm.controls.description.touched"></textarea>
                             <div class="invalid-feedback">Please Description is required.</div>
                         </div>
                     </div>
