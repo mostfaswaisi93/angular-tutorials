@@ -14,5 +14,3 @@ $ json-server --watch db.json
 ```
 $ git clone https://github.com/mostfaswaisi93/ng-to-do-list
 ```
-
-[Demo](https://mostfaswaisi93.github.io/to-do-list/)
