@@ -6,7 +6,7 @@ var logger = require('morgan');
 const mongoose = require('mongoose');
 const expressHbs = require('express-handlebars');
 const session = require('express-session');
-// const flash = require('connect-flash');
+const flash = require('connect-flash');
 const passport = require('passport')
 
 
@@ -55,7 +55,7 @@ app.use(session({
     saveUninitialized: false,
     resave: true,
 }));
-// app.use(flash());
+app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));

@@ -12,6 +12,22 @@ const userSchema = mongoose.Schema({
         required: true
 
     },
+
+    userName: {
+        type: String,
+    },
+
+    contact: {
+        type: Number,
+    },
+
+    address: {
+        type: String,
+    },
+    image: {
+        type: String,
+        default: "/upload/avatar.jpg"
+    }
 })
 
 userSchema.methods.hashPassword = function(password) {
@@ -21,6 +37,5 @@ userSchema.methods.hashPassword = function(password) {
 userSchema.methods.comparePassword = function(password) {
     return bcrypt.compareSync(password, this.password);
 }
-
 
 module.exports = mongoose.model('User', userSchema);

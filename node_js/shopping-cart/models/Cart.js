@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 
-
 const cartSchema = mongoose.Schema({
 
     _id: {
@@ -29,6 +28,5 @@ const cartSchema = mongoose.Schema({
         index: { expires: '2m' }
     }
 })
-
 
 module.exports = mongoose.model('Cart', cartSchema);
