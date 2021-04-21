@@ -1,118 +1,26 @@
-<div class="row">
-    <div class="col-sm">
-        <div class="card" style="width: 18rem;">
+{{#each products }}
+    <div class="row">
+       {{#each this }}
+       <div class="col-sm">
+         <div class="card" style="width: 18rem;">
     <div class="text-center">
-        <img src="/images/Apple iPhone X with FaceTime - 64GB, 4G LTE, Space Grey.jpg" class="card-img-top" alt="...">
+        <img src="{{this.imagePath}}" class="card-img-top" alt="...">
     </div>
   <div class="card-body">
-    <h5 class="card-title">Apple iPhone X</h5>
+    <h5 class="card-title">{{this.productName}}</h5>
     <p class="card-text">
-        Stroage Capacity: 64GB <br>
-        Number Of SIM: Dual SIM <br>
-        Rear Camera Resolution: 16MP <br>
-        Display Size (Inch): 6.5 Inch</p>
+        
+        Stroage Capacity: {{this.information.storageCapacity}}GB<br>
+        Number Of SIM: {{this.information.numberOfSIM}} <br>
+        Rear Camera Resolution: {{this.information.cameraResolution}}MB<br>
+        Display Size (Inch): {{this.information.displaySize}}Inch</p>
     <div>
-        <div class="price float-left">$ 220</div>
+        <div class="price float-left">$ {{this.price}}</div>
         <a href="#" class="btn btn-success float-right">Buy</a>
     </div>
   </div>
 </div>
-    </div>
-    <div class="col-sm">
-        <div class="card" style="width: 18rem;">
-    <div class="text-center">
-        <img src="/images/Apple iPhone X with FaceTime - 64GB, 4G LTE, Space Grey.jpg" class="card-img-top" alt="...">
-    </div>
-  <div class="card-body">
-    <h5 class="card-title">Apple iPhone X</h5>
-    <p class="card-text">
-        Stroage Capacity: 64GB <br>
-        Number Of SIM: Dual SIM <br>
-        Rear Camera Resolution: 16MP <br>
-        Display Size (Inch): 6.5 Inch</p>
-    <div>
-        <div class="price float-left">$ 220</div>
-        <a href="#" class="btn btn-success float-right">Buy</a>
-    </div>
-  </div>
 </div>
+       {{/each }}
     </div>
-    <div class="col-sm">
-        <div class="card" style="width: 18rem;">
-    <div class="text-center">
-        <img src="/images/Apple iPhone X with FaceTime - 64GB, 4G LTE, Space Grey.jpg" class="card-img-top" alt="...">
-    </div>
-  <div class="card-body">
-    <h5 class="card-title">Apple iPhone X</h5>
-    <p class="card-text">
-        Stroage Capacity: 64GB <br>
-        Number Of SIM: Dual SIM <br>
-        Rear Camera Resolution: 16MP <br>
-        Display Size (Inch): 6.5 Inch</p>
-    <div>
-        <div class="price float-left">$ 220</div>
-        <a href="#" class="btn btn-success float-right">Buy</a>
-    </div>
-  </div>
-</div>
-    </div>
-</div>
-<div class="row">
-    <div class="col-sm">
-        <div class="card" style="width: 18rem;">
-    <div class="text-center">
-        <img src="/images/Apple iPhone X with FaceTime - 64GB, 4G LTE, Space Grey.jpg" class="card-img-top" alt="...">
-    </div>
-  <div class="card-body">
-    <h5 class="card-title">Apple iPhone X</h5>
-    <p class="card-text">
-        Stroage Capacity: 64GB <br>
-        Number Of SIM: Dual SIM <br>
-        Rear Camera Resolution: 16MP <br>
-        Display Size (Inch): 6.5 Inch</p>
-    <div>
-        <div class="price float-left">$ 220</div>
-        <a href="#" class="btn btn-success float-right">Buy</a>
-    </div>
-  </div>
-</div>
-    </div>
-    <div class="col-sm">
-        <div class="card" style="width: 18rem;">
-    <div class="text-center">
-        <img src="/images/Apple iPhone X with FaceTime - 64GB, 4G LTE, Space Grey.jpg" class="card-img-top" alt="...">
-    </div>
-  <div class="card-body">
-    <h5 class="card-title">Apple iPhone X</h5>
-    <p class="card-text">
-        Stroage Capacity: 64GB <br>
-        Number Of SIM: Dual SIM <br>
-        Rear Camera Resolution: 16MP <br>
-        Display Size (Inch): 6.5 Inch</p>
-    <div>
-        <div class="price float-left">$ 220</div>
-        <a href="#" class="btn btn-success float-right">Buy</a>
-    </div>
-  </div>
-</div>
-    </div>
-    <div class="col-sm">
-        <div class="card" style="width: 18rem;">
-    <div class="text-center">
-        <img src="/images/Apple iPhone X with FaceTime - 64GB, 4G LTE, Space Grey.jpg" class="card-img-top" alt="...">
-    </div>
-  <div class="card-body">
-    <h5 class="card-title">Apple iPhone X</h5>
-    <p class="card-text">
-        Stroage Capacity: 64GB <br>
-        Number Of SIM: Dual SIM <br>
-        Rear Camera Resolution: 16MP <br>
-        Display Size (Inch): 6.5 Inch</p>
-    <div>
-        <div class="price float-left">$ 220</div>
-        <a href="#" class="btn btn-success float-right">Buy</a>
-    </div>
-  </div>
-</div>
-    </div>
-</div>
+{{/each }}

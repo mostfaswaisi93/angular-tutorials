@@ -2,17 +2,18 @@ const Product = require('../models/Product');
 
 const mongoose = require('mongoose');
 
-
-mongoose.connect('mongodb://localhost/shopping-cart', { useNewUrlParser: true, useUnifiedTopology: true }, (error) => {
-    if (error) {
-        console.log(error);
+// Connect to db
+mongoose.connect('mongodb://localhost/shopping-cart', { useNewUrlParser: true, useUnifiedTopology: true }, (err) => {
+    if (err) {
+        console.log(err);
     } else {
         console.log('Connected to DB...');
     }
 });
 
 
-const products = [new Product({
+const products = [
+    new Product({
 
         imagePath: '/images/Huawei Y9 2019 Dual SIM - 64GB, 4GB RAM, 4G LTE, Arabic Blue.jpg',
 
