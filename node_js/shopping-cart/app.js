@@ -16,7 +16,7 @@ var usersRouter = require('./routes/users');
 var app = express();
 
 
-mongoose.connect('mongodb://localhost/Shopping-cart', { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true }, (error) => {
+mongoose.connect('mongodb://localhost/shopping-cart', { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true }, (error) => {
     if (error) {
         console.log(error)
     } else {
@@ -51,7 +51,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(session({
-    secret: 'Shopping-cart_?@!',
+    secret: 'shopping-cart_?@!',
     saveUninitialized: false,
     resave: true,
 }));

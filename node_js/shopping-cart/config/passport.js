@@ -3,7 +3,6 @@ const localStrategy = require('passport-local').Strategy;
 const User = require('../models/User');
 const Cart = require('../models/Cart');
 
-
 passport.serializeUser((user, done) => {
     return done(null, user.id);
 })
@@ -26,7 +25,6 @@ passport.use('local-signin', new localStrategy({
     passReqToCallback: true,
 }, (req, email, password, done) => {
 
-
     User.findOne({ email: email }, (err, user) => {
         if (err) {
             return done(err)
@@ -43,7 +41,6 @@ passport.use('local-signin', new localStrategy({
     })
 
 }))
-
 
 passport.use('local-signup', new localStrategy({
     usernameField: 'email',

@@ -16,7 +16,6 @@ const fileFilter = function(req, file, cb) {
     }
 }
 
-
 const storage = multer.diskStorage({
     destination: function(req, file, cb) {
         cb(null, './public/upload/')
@@ -152,9 +151,7 @@ router.post('/signin', [
 
         return;
     }
-
     next();
-
 
 }, passport.authenticate('local-signin', {
     successRedirect: 'profile',
@@ -216,8 +213,6 @@ router.post('/updateuser', [
                 }
             }
         })
-
-
     }
 })
 

@@ -1,19 +1,33 @@
+{{#if messageImage}}
+
+<div class="alert alert-danger">
+  <p>{{messageImage}}</p>
+</div>
+
+{{/if}}
+<input type="hidden" value="{{{hasMassagesError}}}" id="hasMassagesError">
 <div class="row">
-  <h1>user name</h1>
+  <h1>{{{user.userName}}}</h1>
 </div>
 
 <div class="row">
   <div class="col-sm-3">
     <div class="text-center">
-      <img src="http://www.nretnil.com/avatar/LawrenceEzekielAmos.png" class="img-thumbnail" id="image">
+      <img src="{{{user.image}}}" class="img-thumbnail" id="image">
 
     </div>
     <br> <br>
-    <input type="file" id="file">
-    <div class="d-none" id="actionbutton">
-      <a href="#" class="btn btn-success">Save</a>
-      <a href="/users/profile" class="btn btn-success">Cancel</a>
-    </div>
+
+    <form action="uploadfile" method="post" enctype="multipart/form-data">
+      <input type="file" id="file" name="myfile" accept="image/jpeg">
+      <div class="d-none" id="actionbutton">
+        <input type="hidden" name="_csrf" value="{{token}}">
+        <input type="submit" value="Save" class="btn btn-success">
+        <a href="/users/profile" class="btn btn-danger">Cancel</a>
+      </div>
+
+    </form>
+
   </div>
   <div class="col-sm-9">
     <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -37,17 +51,24 @@
             <div class="col-6 col-sm-3">
               <p class="font-weight-bold">User Name</p>
             </div>
-            <div class="col-6 col-sm-3">
-              <p class="font-weight-normal">Ahmed Emam</p>
+
+            {{#if   user.userName }}
+            <div class="col-6 col-sm-6">
+              <p class="font-weight-normal">{{{user.userName}}}</p>
             </div>
+            {{else}}
+            <div class="col-6 col-sm-6">
+              <p class="font-weight-normal">please update your information</p>
+            </div>
+            {{/if}}
 
             <div class="w-100"></div>
 
             <div class="col-6 col-sm-3">
               <p class="font-weight-bold">Email</p>
             </div>
-            <div class="col-6 col-sm-3">
-              <p class="font-weight-normal">test@test.com</p>
+            <div class="col-6 col-sm-6">
+              <p class="font-weight-normal">{{{user.email}}}</p>
             </div>
 
             <div class="w-100"></div>
@@ -55,18 +76,30 @@
             <div class="col-6 col-sm-3">
               <p class="font-weight-bold">Contact</p>
             </div>
-            <div class="col-6 col-sm-3">
-              <p class="font-weight-normal">123456789</p>
+            {{#if   user.contact }}
+            <div class="col-6 col-sm-6">
+              <p class="font-weight-normal">{{{user.contact}}}</p>
             </div>
+            {{else}}
+            <div class="col-6 col-sm-6">
+              <p class="font-weight-normal">please update your information</p>
+            </div>
+            {{/if}}
 
             <div class="w-100"></div>
 
             <div class="col-6 col-sm-3">
-              <p class="font-weight-bold">Adress</p>
+              <p class="font-weight-bold">Address</p>
             </div>
-            <div class="col-6 col-sm-3">
-              <p class="font-weight-normal">test_test</p>
+            {{#if   user.address }}
+            <div class="col-6 col-sm-6">
+              <p class="font-weight-normal">{{{user.address}}}</p>
             </div>
+            {{else}}
+            <div class="col-6 col-sm-6">
+              <p class="font-weight-normal">please update your information</p>
+            </div>
+            {{/if}}
 
             <div class="w-100"></div>
 
@@ -77,44 +110,47 @@
               <p class="font-weight-normal">********</p>
             </div>
             <div class="text-center">
-              <button type="button" class="btn btn-primary" id="updatedata" style="margin-top: 50px;">Update Data</button>
+              <button type="button" class="btn btn-primary" id="updatedata" style="margin-top: 50px;">Update
+                Data</button>
             </div>
           </div>
 
-          <form id="formupdate" class="d-none" method="post" action="updateuser">
+          <form id="formupdate" class="d-none" method="post" action="updateuser" style="margin-top: 30px;">
+            {{#each massages}}
+
+            <div class="alert alert-danger">
+              <p>{{this}}</p>
+            </div>
+
+            {{/each}}
             <div class="form-group">
               <label for="UserName">User Name</label>
-              <input type="text" class="form-control" 
-                placeholder="please enter your user name" name="username">
+              <input type="text" class="form-control" placeholder="please enter your user name" name="username">
             </div>
             <div class="form-group">
               <label for="email">Email</label>
-              <input type="text" class="form-control" 
-                placeholder="please enter your Email" name="email">
+              <input type="text" class="form-control" placeholder="please enter your Email" name="email">
             </div>
             <div class="form-group">
               <label for="Contact">Contact</label>
-              <input type="text" class="form-control" 
-                placeholder="please enter your Contact" name="contact">
+              <input type="text" class="form-control" placeholder="please enter your Contact" name="contact">
             </div>
             <div class="form-group">
-              <label for="Adress">Adress4</label>
-              <input type="text" class="form-control" 
-                placeholder="please enter your user adress" name="adress">
+              <label for="Adress">Address</label>
+              <input type="text" class="form-control" placeholder="please enter your user adress" name="address">
             </div>
             <div class="form-group">
               <label for="password">Password</label>
-              <input type="text" class="form-control" 
-                placeholder="please enter your Password" name="password">
+              <input type="text" class="form-control" placeholder="please enter your Password" name="password">
             </div>
             <div class="form-group">
               <label for="confirem password">Confirm Password</label>
-              <input type="text" class="form-control" 
-                placeholder="please enter your confirm password" name="confirm-password">
+              <input type="text" class="form-control" placeholder="please enter your confirm password"
+                name="confirm-password">
             </div>
-            
+
             <div class="text-center">
-              <input type="hidden" name="_csrf" value="{{token}}" >
+              <input type="hidden" name="_csrf" value="{{token}}">
               <button type="submit" class="btn btn-success">Save</button>
               <a href="/users/profile" class="btn btn-danger">Cancel</a>
             </div>
@@ -170,6 +206,11 @@
 </div>
 
 <script>
+  console.log(document.getElementById('hasMassagesError').value)
+  if (document.getElementById('hasMassagesError').value === "true") {
+    $('#rowhome').addClass('d-none');
+    $('#formupdate').removeClass('d-none')
+  }
   document.getElementById('file').onchange = function () {
     const reader = new FileReader();
     reader.onload = function () {

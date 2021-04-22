@@ -32,7 +32,7 @@ router.get('/', function(req, res, next) {
             productGrid.push(doc.slice(i, i + colGrid))
         }
         res.render('index', {
-            title: 'Shopping-cart',
+            title: 'shopping-cart',
             products: productGrid,
             checkuser: req.isAuthenticated(),
             totalProducts: totalProducts,

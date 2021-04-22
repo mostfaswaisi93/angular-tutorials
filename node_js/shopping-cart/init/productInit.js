@@ -11,7 +11,6 @@ mongoose.connect('mongodb://localhost/shopping-cart', { useNewUrlParser: true, u
     }
 });
 
-
 const products = [
     new Product({
 
@@ -29,7 +28,6 @@ const products = [
 
         price: 220,
     }),
-
 
     new Product({
 
