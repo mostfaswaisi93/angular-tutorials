@@ -15,14 +15,14 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 
-
+// Connect to db
 mongoose.connect('mongodb://localhost/shopping-cart', { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true }, (error) => {
     if (error) {
-        console.log(error)
+        console.log(error);
     } else {
-        console.log('Connecting to DB .....')
+        console.log('Connected to DB...');
     }
-})
+});
 
 require('./config/passport');
 
