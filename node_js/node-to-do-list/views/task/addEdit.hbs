@@ -1,0 +1,29 @@
+<h3>{{viewTitle}}</h3>
+
+<form action="/task" method="POST" autocomplete="off">
+    <input type="hidden" name="_id" value="{{task._id}}">
+    <div class="form-group">
+        <label>Task Name</label>
+        <input type="text" class="form-control" name="taskName" placeholder="Task Name" value="{{task.taskName}}">
+        <div class="text-danger">
+            {{task.taskNameError}}</div>
+    </div>
+    <div class="form-group">
+        <label>Date</label>
+        <input type="date" class="form-control" name="date" placeholder="Date" value="{{task.date}}">
+        <div class="text-danger">
+            {{task.dateError}}</div>
+    </div>
+        <div class="form-group">
+            <label>Status</label>
+            <input type="text" class="form-control" name="status" placeholder="Status" value="{{task.status}}">
+        </div>
+        <div class="form-group">
+            <label>Description</label>
+            <textarea class="form-control" name="description" placeholder="Description" value="{{task.description}}"></textarea>
+        </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-success"><i class="fa fa-database"></i> Submit</button>
+        <a class="btn btn-secondary" href="/task/list"><i class="fa fa-list-alt"></i> View All</a>
+    </div>
+</form>
