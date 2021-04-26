@@ -1,2 +1,34 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<div class="card">
+    <div class="card-body">
+        <h2>Tasks List</h2>
+        <a class="btn btn-success float-right" href="/tasks/create"><i class="fa fa-plus"></i> Create Task</a>
+    </div>
+    <table class="table table-bordered table-hover" style="width: 95%; margin-left: 20px;">
+        <thead>
+            <tr>
+                <th scope="col">Task Name</th>
+                <th scope="col">Date</th>
+                <th scope="col">Status</th>
+                <th scope="col">Description</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        {{#each tasks}}
+        <tbody>
+            {{#each this}}
+            <tr>
+                <td>{{this.taskName}}</td>
+                <td>{{this.date}}</td>
+                <td>{{this.status}}</td>
+                <td>{{this.description}}</td>
+                <td>
+                    <a class="btn btn-primary">Edit</a>
+                    <a class="btn btn-info">Show</a>
+                    <a class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+        {{/each}}
+    </table>
+</div>
