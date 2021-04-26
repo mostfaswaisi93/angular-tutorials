@@ -3,19 +3,19 @@ const mongoose = require('mongoose');
 const taskSchema = mongoose.Schema({
     taskName: {
         type: String,
-        required: true
+        required: 'This Filed is required'
     },
     date: {
         type: Date,
-        required: true
+        required: 'This Filed is required'
     },
     status: {
         type: String,
-        required: true
+        required: 'This Filed is required'
     },
     description: {
         type: String,
-        required: true
+        required: 'This Filed is required'
     }
 });
 
