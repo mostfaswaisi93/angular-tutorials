@@ -3,18 +3,13 @@
         <h5 class="card-title">{{this.taskName}}</h5>
         <div>Date: {{this.date}}</div>
         <div>Status:
+            {{this.status}}
                 {{#switch this.status}} 
                     <span class="badge badge-info">{{#case '1'}} New {{/case}} </span>
                     <span class="badge badge-warning">{{#case '2'}} In Progress {{/case}} </span>
                     <span class="badge badge-success">{{#case '3'}} Completed {{/case}} </span>
                     <span class="badge badge-dark">{{#default '4'}} N/A {{/default}}</span>
                 {{/switch}}
-            {{!-- <span [ngSwitch]="task?.status">
-                <span *ngSwitchCase="1" class="badge badge-info"> New </span>
-            <span *ngSwitchCase="2" class="badge badge-warning"> In Progress </span>
-            <span *ngSwitchCase="3" class="badge badge-success"> Completed </span>
-            <span *ngSwitchDefault class="badge badge-dark"> N/A </span>
-            </span> --}}
         </div>
         <div>Description: {{this.description}}</div>
         <hr>

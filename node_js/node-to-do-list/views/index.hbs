@@ -21,15 +21,11 @@
                 <td>{{this.date}}</td>
                 <td>{{this.status}}</td>
                 <td>{{this.description}}</td>
-                {{!-- <td>
-                    <a class="btn btn-primary">Edit</a>
-                    <a class="btn btn-info">Show</a>
-                    <a class="btn btn-danger">Delete</a>
-                </td> --}}
-                            <td>
-                <a href="/task/{{this._id}}"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a>
-                <a href="/task/delete/{{this._id}}" onclick="return confirm('Are you sure to delete this record?');"><i class="fa fa-trash fa-lg" aria-hidden="true"></i></a>
-            </td>
+                <td>
+                    <a href="/tasks/{{this._id}}" class="btn btn-primary"><i class="fa fa-edit" aria-hidden="true"></i></a>
+                    {{!-- <a href="/tasks/{{this._id}}" class="btn btn-info"><i class="fa fa-eye" aria-hidden="true"></i></a> --}}
+                    <a href="/tasks/delete/{{this._id}}" class="btn btn-danger" onclick="return confirm('Are you sure to delete this record?');"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                </td>
             </tr>
             {{/each}}
         </tbody>
