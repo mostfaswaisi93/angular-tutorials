@@ -17,6 +17,20 @@ const jwt = require('jsonwebtoken');
 app.use(bodyParser.json());
 
 
+// CORS HEADERS MIDDLEWARE
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Methods", "GET, POST, HEAD, OPTIONS, PUT, PATCH, DELETE");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, x-access-token, x-refresh-token, _id");
+
+    res.header(
+        'Access-Control-Expose-Headers',
+        'x-access-token, x-refresh-token'
+    );
+
+    next();
+});
+
 
 /* ROUTE HANDLERS */
 
@@ -28,9 +42,7 @@ app.use(bodyParser.json());
  */
 app.get('/lists', (req, res) => {
     // We want to return an array of all the lists that belong to the authenticated user 
-    List.find({
-        _userId: req.user_id
-    }).then((lists) => {
+    List.find({}).then((lists) => {
         res.send(lists);
     }).catch((e) => {
         res.send(e);
@@ -45,10 +57,8 @@ app.post('/lists', (req, res) => {
     // We want to create a new list and return the new list document back to the user (which includes the id)
     // The list information (fields) will be passed in via the JSON request body
     let title = req.body.title;
-
     let newList = new List({
-        title,
-        _userId: req.user_id
+        title
     });
     newList.save().then((listDoc) => {
         // the full list document is returned (incl. id)
@@ -62,10 +72,10 @@ app.post('/lists', (req, res) => {
  */
 app.patch('/lists/:id', (req, res) => {
     // We want to update the specified list (list document with id in the URL) with the new values specified in the JSON body of the request
-    List.findOneAndUpdate({ _id: req.params.id, _userId: req.user_id }, {
+    List.findOneAndUpdate({ _id: req.params.id }, {
         $set: req.body
     }).then(() => {
-        res.send({ 'message': 'updated successfully' });
+        res.sendStatus(200);
     });
 });
 
@@ -76,14 +86,108 @@ app.patch('/lists/:id', (req, res) => {
 app.delete('/lists/:id', (req, res) => {
     // We want to delete the specified list (document with id in the URL)
     List.findOneAndRemove({
-        _id: req.params.id,
-        _userId: req.user_id
+        _id: req.params.id
     }).then((removedListDoc) => {
         res.send(removedListDoc);
-
-        // delete all the tasks that are in the deleted list
-        deleteTasksFromList(removedListDoc._id);
     })
+});
+
+
+/**
+ * GET /lists/:listId/tasks
+ * Purpose: Get all tasks in a specific list
+ */
+app.get('/lists/:listId/tasks', (req, res) => {
+    // We want to return all tasks that belong to a specific list (specified by listId)
+    Task.find({
+        _listId: req.params.listId
+    }).then((tasks) => {
+        res.send(tasks);
+    })
+});
+
+
+/**
+ * POST /lists/:listId/tasks
+ * Purpose: Create a new task in a specific list
+ */
+app.post('/lists/:listId/tasks', (req, res) => {
+    // We want to create a new task in a list specified by listId
+    let newTask = new Task({
+        title: req.body.title,
+        _listId: req.params.listId
+    });
+    newTask.save().then((newTaskDoc) => {
+        // the full list document is returned (incl. id)
+        res.send(newTaskDoc);
+    });
+})
+
+/**
+ * PATCH /lists/:listId/tasks/:taskId
+ * Purpose: Update an existing task
+ */
+app.patch('/lists/:listId/tasks/:taskId', (req, res) => {
+    // We want to update an existing task (specified by taskId)
+
+    List.findOne({
+        _id: req.params.listId,
+    }).then((list) => {
+        if (list) {
+            // list object with the specified conditions was found
+            // therefore the currently authenticated user can make updates to tasks within this list
+            return true;
+        }
+
+        // else - the list object is undefined
+        return false;
+    }).then((canUpdateTasks) => {
+        if (canUpdateTasks) {
+            // the currently authenticated user can update tasks
+            Task.findOneAndUpdate({
+                _id: req.params.taskId,
+                _listId: req.params.listId
+            }, {
+                $set: req.body
+            }).then(() => {
+                res.send({ message: 'Updated successfully.' })
+            })
+        } else {
+            res.sendStatus(404);
+        }
+    })
+});
+
+/**
+ * DELETE /lists/:listId/tasks/:taskId
+ * Purpose: Delete a task
+ */
+app.delete('/lists/:listId/tasks/:taskId', (req, res) => {
+
+    List.findOne({
+        _id: req.params.listId,
+    }).then((list) => {
+        if (list) {
+            // list object with the specified conditions was found
+            // therefore the currently authenticated user can make updates to tasks within this list
+            return true;
+        }
+
+        // else - the list object is undefined
+        return false;
+    }).then((canDeleteTasks) => {
+
+        if (canDeleteTasks) {
+            Task.findOneAndRemove({
+                _id: req.params.taskId,
+                _listId: req.params.listId
+            }).then((removedTaskDoc) => {
+                res.send(removedTaskDoc);
+            })
+        } else {
+            res.sendStatus(404);
+        }
+    });
 });
 
 

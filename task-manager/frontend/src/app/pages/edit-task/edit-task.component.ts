@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import { TaskService } from 'src/app/services/task.service';
 
 @Component({
   selector: 'app-edit-task',
@@ -7,9 +9,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditTaskComponent implements OnInit {
 
-  constructor() { }
+  constructor(private route: ActivatedRoute, private taskService: TaskService, private router: Router) { }
+
+  taskId: string;
+  listId: string;
 
   ngOnInit(): void {
+    this.route.params.subscribe(
+      (params: Params) => {
+        this.taskId = params.taskId;
+        this.listId = params.listId;
+      }
+    );
+  }
+
+  updateTask(title: string): any {
+    this.taskService.updateTask(this.listId, this.taskId, title).subscribe(() => {
+      this.router.navigate(['/lists', this.listId]);
+    });
   }
 
 }
