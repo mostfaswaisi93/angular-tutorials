@@ -1,14 +1,12 @@
-# To-Do List
+# Node.js - To-Do List
 
 Content:
 
-- HTML + CSS
-- JavaScript
+- Express
+- MongoDB
 
 ## Get the Code
 
 ```
-$ git clone https://github.com/mostfaswaisi93/to-do-list
+$ git clone https://github.com/mostfaswaisi93/node-to-do-list
 ```
-
-[Demo](https://mostfaswaisi93.github.io/to-do-list/)
