@@ -11,6 +11,7 @@ import { NewListComponent } from './pages/new-list/new-list.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { EditTaskComponent } from './pages/edit-task/edit-task.component';
 import { EditListComponent } from './pages/edit-list/edit-list.component';
+import { WebReqInterceptor } from './web-req.interceptor';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,9 @@ import { EditListComponent } from './pages/edit-list/edit-list.component';
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: WebReqInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -2,6 +2,7 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { WebRequestService } from './web-request.service';
+import { shareReplay, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -12,24 +13,24 @@ export class AuthService {
 
   login(email: string, password: string): any {
     return this.webService.login(email, password).pipe(
-      // shareReplay(),
-      // tap((res: HttpResponse<any>) => {
-      //   // the auth tokens will be in the header of this response
-      //   this.setSession(res.body._id, res.headers.get('x-access-token'), res.headers.get('x-refresh-token'));
-      //   console.log('LOGGED IN!');
-      // })
+      shareReplay(),
+      tap((res: HttpResponse<any>) => {
+        // the auth tokens will be in the header of this response
+        this.setSession(res.body._id, res.headers.get('x-access-token'), res.headers.get('x-refresh-token'));
+        console.log('LOGGED IN!');
+      })
     );
   }
 
 
   signup(email: string, password: string): any {
     return this.webService.signup(email, password).pipe(
-      // shareReplay(),
-      // tap((res: HttpResponse<any>) => {
-      //   // the auth tokens will be in the header of this response
-      //   this.setSession(res.body._id, res.headers.get('x-access-token'), res.headers.get('x-refresh-token'));
-      //   console.log('Successfully signed up and now logged in!');
-      // })
+      shareReplay(),
+      tap((res: HttpResponse<any>) => {
+        // the auth tokens will be in the header of this response
+        this.setSession(res.body._id, res.headers.get('x-access-token'), res.headers.get('x-refresh-token'));
+        console.log('Successfully signed up and now logged in!');
+      })
     );
   }
 
@@ -68,17 +69,17 @@ export class AuthService {
   }
 
   getNewAccessToken(): any {
-    // return this.http.get(`${this.webService.ROOT_URL}/users/me/access-token`, {
-    //   headers: {
-    //     'x-refresh-token': this.getRefreshToken(),
-    //     '_id': this.getUserId()
-    //   },
-    //   observe: 'response'
-    // }).pipe(
-    //   tap((res: HttpResponse<any>) => {
-    //     this.setAccessToken(res.headers.get('x-access-token'));
-    //   })
-    // );
+    return this.http.get(`${this.webService.ROOT_URL}/users/me/access-token`, {
+      headers: {
+        'x-refresh-token': this.getRefreshToken(),
+        _id: this.getUserId()
+      },
+      observe: 'response'
+    }).pipe(
+      tap((res: HttpResponse<any>) => {
+        this.setAccessToken(res.headers.get('x-access-token'));
+      })
+    );
   }
 
 }
