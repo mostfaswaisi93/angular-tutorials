@@ -3,12 +3,11 @@ const Task = require('../db/models/task.model');
 const mongoose = require('mongoose');
 
 // Connect to db
-mongoose.connect('mongodb://localhost/node-to-do-list', { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true }, (error) => {
-    if (error) {
-        console.log(error);
-    } else {
-        console.log('Connected to DB...');
-    }
+mongoose.connect('mongodb://localhost:27017/to-do-list', { useNewUrlParser: true, useUnifiedTopology: true }).then(() => {
+    console.log("Connected to MongoDB successfully :)");
+}).catch((e) => {
+    console.log("Error while attempting to connect to MongoDB");
+    console.log(e);
 });
 
 const tasks = [
