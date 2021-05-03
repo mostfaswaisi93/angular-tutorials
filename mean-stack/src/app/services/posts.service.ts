@@ -10,4 +10,18 @@ export class PostsService {
   private postsUpdated = new Subject<Post[]>();
 
   constructor() { }
+
+  getPosts(): any {
+    return [...this.posts];
+  }
+
+  getPostUpdateListener(): any {
+    return this.postsUpdated.asObservable();
+  }
+
+  addPost(title: string, content: string): any {
+    const post: Post = { title, content };
+    this.posts.push(post);
+    this.postsUpdated.next([...this.posts]);
+  }
 }
