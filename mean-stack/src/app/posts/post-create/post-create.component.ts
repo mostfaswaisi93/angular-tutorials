@@ -15,12 +15,6 @@ export class PostCreateComponent implements OnInit {
 
   onAddPost(): any {
     this.newPost = this.enteredValue;
-  // onAddPost(postInput: HTMLTextAreaElement): any {
-    // console.log(postInput);
-    // console.dir(postInput);
-    // this.newPost = postInput.value;
-    // this.newPost = 'The user\'s post';
-    // alert('Post Added!');
   }
 
 }

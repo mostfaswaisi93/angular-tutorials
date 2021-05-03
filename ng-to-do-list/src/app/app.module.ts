@@ -11,6 +11,9 @@ import { CreateTaskComponent } from './components/tasks/create-task/create-task.
 import { ShowTaskComponent } from './components/tasks/show-task/show-task.component';
 import { EditTaskComponent } from './components/tasks/edit-task/edit-task.component';
 import { TasksListComponent } from './components/tasks/tasks-list/tasks-list.component';
+import { HeaderComponent } from './components/header/header.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from './shared/material/material.module';
 
 @NgModule({
   declarations: [
@@ -20,14 +23,17 @@ import { TasksListComponent } from './components/tasks/tasks-list/tasks-list.com
     CreateTaskComponent,
     ShowTaskComponent,
     EditTaskComponent,
-    TasksListComponent
+    TasksListComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]
