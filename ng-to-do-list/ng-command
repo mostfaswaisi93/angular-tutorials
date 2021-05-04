@@ -1,0 +1,13 @@
+ng g c components\Page404
+ng g c components\Header
+ng g c components\auth\Login
+ng g c components\auth\Signup
+ng g c components\tasks\TaskCreate
+ng g c components\tasks\TaskList
+
+ng g s services\Tasks
+ng g s services\Auth
+
+ng g guard guards\Auth
+
+

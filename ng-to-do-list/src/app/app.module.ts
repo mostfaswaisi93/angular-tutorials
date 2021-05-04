@@ -1,39 +1,30 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './components/home/home.component';
-import { Page404Component } from './components/page404/page404.component';
-import { CreateTaskComponent } from './components/tasks/create-task/create-task.component';
-import { ShowTaskComponent } from './components/tasks/show-task/show-task.component';
-import { EditTaskComponent } from './components/tasks/edit-task/edit-task.component';
-import { TasksListComponent } from './components/tasks/tasks-list/tasks-list.component';
-import { HeaderComponent } from './components/header/header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MaterialModule } from './shared/material/material.module';
+import { Page404Component } from './components/page404/page404.component';
+import { HeaderComponent } from './components/header/header.component';
+import { LoginComponent } from './components/auth/login/login.component';
+import { SignupComponent } from './components/auth/signup/signup.component';
+import { TaskCreateComponent } from './components/tasks/task-create/task-create.component';
+import { TaskListComponent } from './components/tasks/task-list/task-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
     Page404Component,
-    CreateTaskComponent,
-    ShowTaskComponent,
-    EditTaskComponent,
-    TasksListComponent,
-    HeaderComponent
+    HeaderComponent,
+    LoginComponent,
+    SignupComponent,
+    TaskCreateComponent,
+    TaskListComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    MaterialModule
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
