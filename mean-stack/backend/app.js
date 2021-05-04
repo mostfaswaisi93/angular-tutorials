@@ -9,7 +9,7 @@ const userRoutes = require('./routes/user');
 const app = express();
 
 mongoose
-    .connect('mongodb://localhost:27017/mean-stack', { useNewUrlParser: true, useUnifiedTopology: true })
+    .connect('mongodb://localhost:27017/mean-stack', { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
     .then(() => {
         console.log('Connected to database!');
     })
