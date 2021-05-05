@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-task-list',
@@ -6,6 +8,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./task-list.component.css']
 })
 export class TaskListComponent implements OnInit {
+  ELEMENT_DATA = [
+    {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H', actions: ''},
+    {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He', actions: ''},
+    {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li', actions: ''},
+  ];
+  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
+  dataSource = new MatTableDataSource(this.ELEMENT_DATA);
+
+  @ViewChild(MatSort) sort: MatSort;
+
+  // tslint:disable-next-line:use-lifecycle-interface
+  ngAfterViewInit(): any {
+    this.dataSource.sort = this.sort;
+  }
 
   constructor() { }
 
