@@ -1,6 +1,6 @@
 <mat-card>
     <!-- <mat-spinner></mat-spinner> -->
-    <form (submit)="onAddTask()">
+    <form (submit)="onAddTask(taskForm)" #taskForm="ngForm">
         <mat-form-field>
             <input matInput type="text" placeholder="Task Name">
             <mat-error>Please Enter a Task Name.</mat-error>

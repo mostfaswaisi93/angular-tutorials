@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Status } from 'src/app/models/status.model';
 import { Task } from 'src/app/models/task.model';
@@ -31,8 +31,13 @@ export class TaskCreateComponent implements OnInit, OnDestroy {
     public route: ActivatedRoute
   ) { }
 
-  onAddTask(): any {
 
+  onAddTask(form: NgForm): any {
+    if (form.invalid) {
+      return;
+    }
+    this.tasksService.addTask(form.value.name, form.value.date, form.value.status, form.value.description);
+    form.resetForm();
   }
 
   ngOnInit(): void {

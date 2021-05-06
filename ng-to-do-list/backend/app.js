@@ -30,13 +30,24 @@ app.post('/api/tasks', (req, res, next) => {
 app.get('/api/tasks', (req, res, next) => {
     const tasks = [{
             id: 'fadf12421l',
-            title: 'First server-side tasks',
-            content: 'This is coming from the server'
+            name: 'Task One',
+            date: '2018-12-06',
+            status: '1',
+            description: 'This is coming from the server'
         },
         {
-            id: 'ksajflaj132',
-            title: 'Second server-side tasks',
-            content: 'This is coming from the server!'
+            id: 'fadf12421l',
+            name: 'Task One',
+            date: '2018-12-06',
+            status: '2',
+            description: 'This is coming from the server'
+        },
+        {
+            id: 'fadf12421l',
+            name: 'Task One',
+            date: '2018-12-06',
+            status: '3',
+            description: 'This is coming from the server'
         }
     ];
     res.status(200).json({

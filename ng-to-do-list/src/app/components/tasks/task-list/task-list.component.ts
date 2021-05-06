@@ -1,22 +1,20 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { Subscription } from 'rxjs';
 import { Task } from 'src/app/models/task.model';
+import { TasksService } from 'src/app/services/tasks.service';
 
 @Component({
   selector: 'app-task-list',
   templateUrl: './task-list.component.html',
   styleUrls: ['./task-list.component.css']
 })
-export class TaskListComponent implements OnInit {
-  // tasks = [
-  //   { position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
-  //   { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' },
-  //   { position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li' },
-  // ];
+export class TaskListComponent implements OnInit, OnDestroy {
   tasks: Task[] = [];
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol', 'actions'];
-  dataSource = new MatTableDataSource(this.tasks);
+  private tasksSub: Subscription;
+  displayedColumns: string[] = ['name', 'date', 'status', 'actions'];
+  dataSource = new MatTableDataSource();
 
   @ViewChild(MatSort) sort: MatSort;
 
@@ -25,9 +23,19 @@ export class TaskListComponent implements OnInit {
     this.dataSource.sort = this.sort;
   }
 
-  constructor() { }
+  constructor(public tasksService: TasksService) { }
 
   ngOnInit(): void {
+    this.tasksService.getTasks();
+    this.tasksSub = this.tasksService.getTaskUpdateListener()
+      .subscribe((tasks: Task[]) => {
+        this.tasks = tasks;
+        console.log(tasks);
+      });
+  }
+
+  ngOnDestroy(): any {
+    this.tasksSub.unsubscribe();
   }
 
 }
