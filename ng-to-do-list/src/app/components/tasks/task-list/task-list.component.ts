@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { Task } from 'src/app/models/task.model';
 
 @Component({
   selector: 'app-task-list',
@@ -8,13 +9,14 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./task-list.component.css']
 })
 export class TaskListComponent implements OnInit {
-  ELEMENT_DATA = [
-    {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H', actions: ''},
-    {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He', actions: ''},
-    {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li', actions: ''},
-  ];
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = new MatTableDataSource(this.ELEMENT_DATA);
+  // tasks = [
+  //   { position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
+  //   { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' },
+  //   { position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li' },
+  // ];
+  tasks: Task[] = [];
+  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol', 'actions'];
+  dataSource = new MatTableDataSource(this.tasks);
 
   @ViewChild(MatSort) sort: MatSort;
 
