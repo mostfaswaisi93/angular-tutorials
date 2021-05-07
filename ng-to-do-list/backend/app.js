@@ -33,8 +33,10 @@ app.use((req, res, next) => {
 
 app.post('/api/tasks', (req, res, next) => {
     const task = new Task({
-        title: req.body.title,
-        content: req.body.content
+        name: req.body.name,
+        date: req.body.date,
+        status: req.body.status,
+        description: req.body.description
     });
     task.save().then(createdTask => {
         res.status(201).json({

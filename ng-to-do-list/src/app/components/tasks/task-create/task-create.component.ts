@@ -31,7 +31,6 @@ export class TaskCreateComponent implements OnInit, OnDestroy {
     public route: ActivatedRoute
   ) { }
 
-
   onAddTask(form: NgForm): any {
     if (form.invalid) {
       return;

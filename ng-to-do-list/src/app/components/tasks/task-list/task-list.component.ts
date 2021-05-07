@@ -33,6 +33,12 @@ export class TaskListComponent implements OnInit, OnDestroy {
       });
   }
 
+  onDelete(taskId: string): any {
+    if (confirm('Are you sure to delete it?')) {
+      this.tasksService.deleteTask(taskId);
+    }
+  }
+
   ngOnDestroy(): any {
     this.tasksSub.unsubscribe();
   }

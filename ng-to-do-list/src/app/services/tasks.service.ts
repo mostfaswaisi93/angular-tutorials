@@ -21,8 +21,10 @@ export class TasksService {
       .pipe(map((taskData) => {
         return taskData.tasks.map(task => {
           return {
-            title: task.title,
-            content: task.content,
+            name: task.name,
+            date: task.date,
+            status: task.status,
+            description: task.description,
             id: task._id
           };
         });

@@ -2,28 +2,23 @@
     <!-- <mat-spinner></mat-spinner> -->
     <form (submit)="onAddTask(taskForm)" #taskForm="ngForm">
         <mat-form-field>
-            <input matInput type="text" placeholder="Task Name">
-            <mat-error>Please Enter a Task Name.</mat-error>
+            <input matInput type="text" name="name" ngModel required minlength="3" placeholder="Task Name" #name="ngModel">
+            <mat-error *ngIf="name.invalid">Please Enter a Task Name.</mat-error>
         </mat-form-field>
         <mat-form-field>
-            <input matInput type="date" placeholder="Task Date">
-            <mat-error>Please Enter a Task Date.</mat-error>
+            <input matInput type="date" name="date" ngModel required placeholder="Task Date" #date="ngModel">
+            <mat-error *ngIf="date.invalid">Please Enter a Task Date.</mat-error>
         </mat-form-field>
-        <!-- <mat-form-field appearance="fill">
-            <mat-label>Choose a date</mat-label>
-            <input matInput [matDatepicker]="picker">
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-        </mat-form-field> -->
         <mat-form-field appearance="fill">
             <mat-label>Status</mat-label>
-            <mat-select>
+            <mat-select name="status" ngModel required #status="ngModel">
                 <mat-option *ngFor="let st of stClass;" [value]="st.id">{{ st.name }}</mat-option>
             </mat-select>
+            <mat-error *ngIf="status.invalid">Please Enter a Task Status.</mat-error>
         </mat-form-field>
         <mat-form-field>
-            <textarea matInput rows="4" placeholder="Task Description"></textarea>
-            <mat-error>Please Enter a Task Description.</mat-error>
+            <textarea matInput rows="4" name="description" ngModel required placeholder="Task Description" #description="ngModel"></textarea>
+            <mat-error *ngIf="description.invalid">Please Enter a Task Description.</mat-error>
         </mat-form-field>
         <button mat-raised-button color="accent" type="submit">Save Task</button>
     </form>
