@@ -7,6 +7,7 @@ ng g c components\tasks\TaskList
 
 ng g s services\Tasks
 ng g s services\Auth
+ng g s services\Error
 
 ng g guard guards\Auth
 
