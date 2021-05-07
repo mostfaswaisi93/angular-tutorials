@@ -30,7 +30,6 @@ export class TaskListComponent implements OnInit, OnDestroy {
     this.tasksSub = this.tasksService.getTaskUpdateListener()
       .subscribe((tasks: Task[]) => {
         this.tasks = tasks;
-        console.log(tasks);
       });
   }
 

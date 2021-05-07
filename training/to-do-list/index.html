@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap">
+</head>
+
+<body>
+    <div class="start">
+        <!-- Start Header -->
+        <div class="header">
+            <div class="container">
+                <h2>To-Do List</h2>
+                <button class="left toggle" title="Add"><span>+</span></button>
+                <div class="form">
+                    <form id="form" onsubmit="event.preventDefault();onFormSubmit();" autocomplete="off">
+                        <h3 id="title">Add Task</h3>
+                        <div class="left">
+                            <input type="number" placeholder="Task Id" name="task_id" id="task_id">
+                            <input type="text" placeholder="Task Name" name="task_name" id="task_name">
+                            <input type="date" name="date" id="date">
+                            <label for="status">Status:</label>
+                            <select name="status" id="status">
+                                <option selected="true" value="1">New</option>
+                                <option value="2">In Progress</option>
+                                <option value="3">Completed</option>
+                            </select>
+                        </div>
+                        <div class="right">
+                            <textarea name="description" placeholder="Description" id="description"></textarea>
+                            <input type="submit" value="Save">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- End Header -->
+
+        <!-- Start Table  -->
+        <div class="container table">
+            <table class="full-width" id="tasks-list">
+                <thead>
+                    <tr>
+                        <th>#
+                            <span class="tasks-count">
+                                Tasks Count: <span>0</span>
+                            </span>
+                        </th>
+                        <th>Task</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                        <th>Description</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        <!-- End Table  -->
+
+        <!-- Start Show Task -->
+        <div class="show-task">
+            <div class="container">
+                <div class="form-show">
+                    <button class="left back" title="Back">Back</button>
+                    <form>
+                        <h3>Show Task | <span id="show_task_id"></span></h3>
+                        <div class="left">
+                            <input type="text" placeholder="Task Name" name="task_name" id="show_task_name" disabled>
+                            <input type="date" name="date" id="show_date" disabled>
+                            <label for="status">Status:</label>
+                            <select name="status" id="show_status" disabled>
+                                <option selected="true" value="1">New</option>
+                                <option value="2">In Progress</option>
+                                <option value="3">Completed</option>
+                            </select>
+                        </div>
+                        <div class="right">
+                            <textarea name="description" placeholder="Description" id="show_description" disabled></textarea>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- End Show Task -->
+    </div>
+
+    <!-- Start Footer -->
+    <div class="footer">Created By mostfaswaisi93</div>
+    <!-- End Footer -->
+
+    <!-- JS -->
+    <script src="js/main.js"></script>
+</body>
+
+</html>

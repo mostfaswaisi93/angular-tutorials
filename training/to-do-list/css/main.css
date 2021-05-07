@@ -1,0 +1,371 @@
+/* Main CSS */
+
+:root {
+    --main-color: rgb(29, 161, 242);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Open Sans", sans-serif;
+}
+
+.start {
+    min-height: 100vh;
+}
+
+.container {
+    padding-left: 15px;
+    padding-right: 15px;
+    margin: auto;
+}
+
+
+/* Start Header */
+
+.header {
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+.header h2 {
+    font-weight: bold;
+    font-size: 30px;
+    color: var(--main-color);
+    margin: 0 0 60px;
+    text-align: center;
+}
+
+.header button {
+    float: right;
+    padding: 10px;
+    width: 3%;
+    border-color: transparent;
+    background-color: var(--main-color);
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}
+
+.header button:focus {
+    outline: unset;
+}
+
+.form {
+    display: none;
+}
+
+.header form {
+    overflow: hidden;
+    max-width: 800px;
+    margin: auto;
+}
+
+.header form .left {
+    float: left;
+    width: 49%;
+}
+
+.header form .right {
+    float: right;
+    width: 49%;
+}
+
+@media (max-width: 767px) {
+    .header form .left,
+    .header form .right {
+        float: none;
+        width: 100%;
+    }
+}
+
+.header form input:not([type="submit"]),
+.header form textarea {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    background-color: rgb(255 255 255 / 19%);
+}
+
+.header form select {
+    width: 86%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    background-color: rgb(255 255 255 / 19%);
+}
+
+.header form input:not([type="submit"]):focus,
+.header form textarea:focus {
+    outline: unset;
+}
+
+.header form input {
+    height: 40px;
+}
+
+.header form textarea {
+    height: 150px;
+}
+
+.header form input[type="submit"] {
+    padding: 10px;
+    width: 100%;
+    border-color: transparent;
+    background-color: rgb(66, 186, 150);
+    color: #fff;
+    cursor: pointer;
+}
+
+.header form input[type="submit"]:focus {
+    outline: unset;
+}
+
+.header form textarea:focus::-webkit-input-placeholder,
+.header form input:not([type="submit"]):focus::-webkit-input-placeholder {
+    opacity: 0;
+    transition: 0.3s;
+}
+
+.header form textarea:focus:-ms-input-placeholder,
+.header form input:not([type="submit"]):focus:-ms-input-placeholder {
+    opacity: 0;
+    transition: 0.3s;
+}
+
+.header form textarea:focus::placeholder,
+.header form input:not([type="submit"]):focus::placeholder {
+    opacity: 0;
+    transition: 0.3s;
+}
+
+
+/* End Header */
+
+
+/* Start Table */
+
+.full-width {
+    width: 100%;
+}
+
+table,
+p,
+ul,
+ol {
+    margin-bottom: 2.5rem;
+}
+
+th:first-child,
+td:first-child {
+    padding-left: 0;
+}
+
+th,
+td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #e1e1e1;
+}
+
+tbody a {
+    cursor: pointer;
+}
+
+.btn {
+    width: 60px;
+    height: 60px;
+    color: #fff;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    margin-right: 5px;
+    padding: 5px;
+}
+
+.btn.edit {
+    background-color: var(--main-color);
+}
+
+.btn.show {
+    background-color: turquoise;
+}
+
+.btn.delete {
+    background-color: tomato;
+}
+
+
+/* End Table */
+
+
+/* Start Show Task */
+
+.show-task {
+    padding-top: 60px;
+    padding-bottom: 60px;
+    display: none;
+}
+
+.show-task h2 {
+    font-weight: bold;
+    font-size: 30px;
+    color: var(--main-color);
+    margin: 0 0 60px;
+    text-align: center;
+}
+
+.show-task button {
+    float: right;
+    padding: 10px;
+    width: 7%;
+    border-color: transparent;
+    background-color: #000;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}
+
+.show-task button:focus {
+    outline: unset;
+}
+
+.show-task form {
+    overflow: hidden;
+    max-width: 800px;
+    margin: auto;
+}
+
+.show-task form .left {
+    float: left;
+    width: 49%;
+}
+
+.show-task form .right {
+    float: right;
+    width: 49%;
+}
+
+@media (max-width: 767px) {
+    .show-task form .left,
+    .show-task form .right {
+        float: none;
+        width: 100%;
+    }
+}
+
+.show-task form input:not([type="submit"]),
+.show-task form textarea {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    background-color: rgb(255 255 255 / 19%);
+}
+
+.show-task form select {
+    width: 86%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    background-color: rgb(255 255 255 / 19%);
+}
+
+.show-task form input:not([type="submit"]):focus,
+.show-task form textarea:focus {
+    outline: unset;
+}
+
+.show-task form input {
+    height: 40px;
+}
+
+.show-task form textarea {
+    height: 150px;
+}
+
+.show-task form textarea:focus::-webkit-input-placeholder,
+.show-task form input:not([type="submit"]):focus::-webkit-input-placeholder {
+    opacity: 0;
+    transition: 0.3s;
+}
+
+.show-task form textarea:focus:-ms-input-placeholder,
+.show-task form input:not([type="submit"]):focus:-ms-input-placeholder {
+    opacity: 0;
+    transition: 0.3s;
+}
+
+.show-task form textarea:focus::placeholder,
+.show-task form input:not([type="submit"]):focus::placeholder {
+    opacity: 0;
+    transition: 0.3s;
+}
+
+
+/* End Show Task */
+
+
+/* Start Footer */
+
+.footer {
+    background-color: #333;
+    color: #eee;
+    padding: 20px;
+    text-align: center;
+    /* position: fixed;
+    bottom: 0;
+    width: 100%; */
+}
+
+
+/* End Footer */
+
+
+/* Start Grid System */
+
+@media (min-width: 576px) {
+    /* Landscape Phones */
+    .container {
+        max-width: 540px;
+    }
+}
+
+@media (min-width: 768px) {
+    /* Tablets */
+    .container {
+        max-width: 720px;
+    }
+}
+
+@media (min-width: 992px) {
+    /* Desktops */
+    .container {
+        max-width: 960px;
+    }
+}
+
+@media (min-width: 1200px) {
+    /* Large Screens */
+    .container {
+        max-width: 1140px;
+    }
+}
+
+
+/* End Grid System */
