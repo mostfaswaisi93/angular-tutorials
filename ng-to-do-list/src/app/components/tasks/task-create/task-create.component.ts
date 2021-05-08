@@ -18,7 +18,7 @@ export class TaskCreateComponent implements OnInit, OnDestroy {
 
   task: Task;
   isLoading = false;
-  form: FormGroup;
+  // form: FormGroup;
   private mode = 'create';
   private taskId: string;
 
@@ -32,14 +32,6 @@ export class TaskCreateComponent implements OnInit, OnDestroy {
     public tasksService: TasksService,
     public route: ActivatedRoute
   ) { }
-
-  onAddTask(form: NgForm): any {
-    if (form.invalid) {
-      return;
-    }
-    this.tasksService.addTask(form.value.name, form.value.date, form.value.status, form.value.description);
-    form.resetForm();
-  }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((paramMap: ParamMap) => {

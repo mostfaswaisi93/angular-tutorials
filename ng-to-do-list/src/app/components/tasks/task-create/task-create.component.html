@@ -1,23 +1,23 @@
 <mat-card>
-    <!-- <mat-spinner></mat-spinner> -->
-    <form (submit)="onAddTask(taskForm)" #taskForm="ngForm">
+    <mat-spinner *ngIf="isLoading"></mat-spinner>
+    <form (submit)="onSaveTask(taskForm)" #taskForm="ngForm" *ngIf="!isLoading">
         <mat-form-field>
-            <input matInput type="text" name="name" ngModel required minlength="3" placeholder="Task Name" #name="ngModel">
+            <input matInput type="text" name="name" [ngModel]="task?.name" required minlength="3" placeholder="Task Name" #name="ngModel">
             <mat-error *ngIf="name.invalid">Please Enter a Task Name.</mat-error>
         </mat-form-field>
         <mat-form-field>
-            <input matInput type="date" name="date" ngModel required placeholder="Task Date" #date="ngModel">
+            <input matInput type="date" name="date" [ngModel]="task?.date" required placeholder="Task Date" #date="ngModel">
             <mat-error *ngIf="date.invalid">Please Enter a Task Date.</mat-error>
         </mat-form-field>
         <mat-form-field appearance="fill">
             <mat-label>Status</mat-label>
-            <mat-select name="status" ngModel required #status="ngModel">
+            <mat-select name="status" [ngModel]="task?.status" required #status="ngModel">
                 <mat-option *ngFor="let st of stClass;" [value]="st.id">{{ st.name }}</mat-option>
             </mat-select>
             <mat-error *ngIf="status.invalid">Please Enter a Task Status.</mat-error>
         </mat-form-field>
         <mat-form-field>
-            <textarea matInput rows="4" name="description" ngModel required placeholder="Task Description" #description="ngModel"></textarea>
+            <textarea matInput rows="4" name="description" [ngModel]="task?.description" required placeholder="Task Description" #description="ngModel"></textarea>
             <mat-error *ngIf="description.invalid">Please Enter a Task Description.</mat-error>
         </mat-form-field>
         <button mat-raised-button color="accent" type="submit">Save Task</button>

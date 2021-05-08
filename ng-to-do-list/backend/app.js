@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
-const Task = require('./models/task');
+const tasksRoutes = require('./routes/tasks');
 
 const app = express();
 
@@ -26,40 +26,11 @@ app.use((req, res, next) => {
     );
     res.setHeader(
         'Access-Control-Allow-Methods',
-        'GET, POST, PATCH, DELETE, OPTIONS'
+        'GET, POST, PATCH, PUT, DELETE, OPTIONS'
     );
     next();
 });
 
-app.post('/api/tasks', (req, res, next) => {
-    const task = new Task({
-        name: req.body.name,
-        date: req.body.date,
-        status: req.body.status,
-        description: req.body.description
-    });
-    task.save().then(createdTask => {
-        res.status(201).json({
-            message: 'Task Added Successfully!',
-            taskId: createdTask._id
-        });
-    });
-});
-
-app.get('/api/tasks', (req, res, next) => {
-    Task.find().then(documents => {
-        res.status(200).json({
-            message: 'Tasks Fetched Successfully!',
-            tasks: documents
-        });
-    });
-});
-
-app.delete('/api/tasks/:id', (req, res, next) => {
-    Task.deleteOne({ _id: req.params.id }).then(result => {
-        console.log(result);
-        res.status(200).json({ message: 'Task Deleted!' });
-    });
-});
+app.use('/api/tasks', tasksRoutes);
 
 module.exports = app;

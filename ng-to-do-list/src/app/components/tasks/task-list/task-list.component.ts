@@ -12,6 +12,7 @@ import { TasksService } from 'src/app/services/tasks.service';
 })
 export class TaskListComponent implements OnInit, OnDestroy {
   tasks: Task[] = [];
+  isLoading = false;
   private tasksSub: Subscription;
   displayedColumns: string[] = ['name', 'date', 'status', 'actions'];
   dataSource = new MatTableDataSource();
@@ -26,9 +27,11 @@ export class TaskListComponent implements OnInit, OnDestroy {
   constructor(public tasksService: TasksService) { }
 
   ngOnInit(): void {
+    this.isLoading = true;
     this.tasksService.getTasks();
     this.tasksSub = this.tasksService.getTaskUpdateListener()
       .subscribe((tasks: Task[]) => {
+        this.isLoading = false;
         this.tasks = tasks;
       });
   }
