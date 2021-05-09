@@ -14,7 +14,10 @@ router.post('', (req, res, next) => {
     task.save().then(createdTask => {
         res.status(201).json({
             message: 'Task Added Successfully!',
-            taskId: createdTask._id
+            task: {
+                ...createdTask,
+                id: createdTask._id
+            },
         });
     });
 });
@@ -27,6 +30,7 @@ router.put('/:id', (req, res, next) => {
         status: req.body.status,
         description: req.body.description
     });
+    console.log(task);
     Task.updateOne({ _id: req.params.id }, task).then(result => {
         res.status(200).json({ message: 'Update Successful!' });
     });

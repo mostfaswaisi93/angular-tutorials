@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormGroup, NgForm } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Status } from 'src/app/models/status.model';
 import { Task } from 'src/app/models/task.model';
@@ -18,7 +18,7 @@ export class TaskCreateComponent implements OnInit, OnDestroy {
 
   task: Task;
   isLoading = false;
-  // form: FormGroup;
+  form: FormGroup;
   private mode = 'create';
   private taskId: string;
 
@@ -34,6 +34,12 @@ export class TaskCreateComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
+    this.form = new FormGroup({
+      name: new FormControl(null, { validators: [Validators.required, Validators.minLength(3)] }),
+      date: new FormControl(null, { validators: [Validators.required] }),
+      status: new FormControl(null, { validators: [Validators.required] }),
+      description: new FormControl(null, { validators: [Validators.required] })
+    });
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
       if (paramMap.has('taskId')) {
         this.mode = 'edit';
@@ -41,8 +47,19 @@ export class TaskCreateComponent implements OnInit, OnDestroy {
         this.isLoading = true;
         this.tasksService.getTask(this.taskId).subscribe(taskData => {
           this.isLoading = false;
-          // tslint:disable-next-line:max-line-length
-          this.task = { id: taskData._id, name: taskData.name, date: taskData.date, status: taskData.status, description: taskData.description };
+          this.task = {
+            id: taskData._id,
+            name: taskData.name,
+            date: taskData.date,
+            status: taskData.status,
+            description: taskData.description
+          };
+          this.form.setValue({
+            name: this.task.name,
+            date: this.task.date,
+            status: this.task.status,
+            description: this.task.description
+          });
         });
       } else {
         this.mode = 'create';
@@ -51,23 +68,28 @@ export class TaskCreateComponent implements OnInit, OnDestroy {
     });
   }
 
-  onSaveTask(form: NgForm): any {
-    if (form.invalid) {
+  onSaveTask(): any {
+    if (this.form.invalid) {
       return;
     }
     this.isLoading = true;
     if (this.mode === 'create') {
-      this.tasksService.addTask(form.value.name, form.value.date, form.value.status, form.value.description);
+      this.tasksService.addTask(
+        this.form.value.name,
+        this.form.value.date,
+        this.form.value.status,
+        this.form.value.description
+      );
     } else {
       this.tasksService.updateTask(
         this.taskId,
-        form.value.name,
-        form.value.date,
-        form.value.status,
-        form.value.description
+        this.form.value.name,
+        this.form.value.date,
+        this.form.value.status,
+        this.form.value.description
       );
     }
-    form.resetForm();
+    this.form.reset();
   }
 
   ngOnDestroy(): any {

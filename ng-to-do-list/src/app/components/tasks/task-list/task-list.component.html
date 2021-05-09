@@ -46,4 +46,5 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
+<mat-paginator [length]="totalTasks" [pageSize]="tasksPerPage" [pageSizeOptions]="pageSizeOptions" (page)="onChangedPage($event)" *ngIf="tasks.length > 0"></mat-paginator>
 <p class="info-text mat-body-2" *ngIf="tasks.length <= 0 && !isLoading">No Tasks added yet!</p>
