@@ -10,9 +10,10 @@ import { LoginComponent } from './components/auth/login/login.component';
 import { SignupComponent } from './components/auth/signup/signup.component';
 import { TaskCreateComponent } from './components/tasks/task-create/task-create.component';
 import { TaskListComponent } from './components/tasks/task-list/task-list.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from './shared/material/material.module';
+import { AuthInterceptor } from './components/auth/auth-interceptor';
 
 @NgModule({
   declarations: [
@@ -28,12 +29,14 @@ import { MaterialModule } from './shared/material/material.module';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    FormsModule,
     ReactiveFormsModule,
+    FormsModule,
     MaterialModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -37,12 +37,25 @@ router.put('/:id', (req, res, next) => {
 });
 
 router.get('', (req, res, next) => {
-    Task.find().then(documents => {
-        res.status(200).json({
-            message: 'Tasks Fetched Successfully!',
-            tasks: documents
+    const pageSize = +req.query.pagesize;
+    const currentPage = +req.query.page;
+    const taskQuery = Task.find();
+    let fetchedTasks;
+    if (pageSize && currentPage) {
+        taskQuery.skip(pageSize * (currentPage - 1)).limit(pageSize);
+    }
+    taskQuery
+        .then(documents => {
+            fetchedTasks = documents;
+            return Task.countDocuments();
+        })
+        .then(count => {
+            res.status(200).json({
+                message: 'Tasks Fetched Successfully!',
+                tasks: fetchedTasks,
+                maxTasks: count
+            });
         });
-    });
 });
 
 router.get('/:id', (req, res, next) => {

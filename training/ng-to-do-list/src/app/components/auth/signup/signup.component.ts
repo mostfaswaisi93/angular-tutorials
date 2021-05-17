@@ -8,30 +8,17 @@ import { AuthService } from 'src/app/services/auth.service';
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css']
 })
-export class SignupComponent implements OnInit, OnDestroy {
+export class SignupComponent {
   isLoading = false;
-  private authStatusSub: Subscription;
 
   constructor(public authService: AuthService) { }
-
-  ngOnInit(): void {
-    // this.authStatusSub = this.authService.getAuthStatusListener().subscribe(
-    //   authStatus => {
-    //     this.isLoading = false;
-    //   }
-    // );
-  }
 
   onSignup(form: NgForm): any {
     if (form.invalid) {
       return;
     }
     this.isLoading = true;
-    // this.authService.createUser(form.value.email, form.value.password);
-  }
-
-  ngOnDestroy(): any {
-    this.authStatusSub.unsubscribe();
+    this.authService.createUser(form.value.email, form.value.password);
   }
 
 }

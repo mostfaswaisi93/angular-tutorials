@@ -54,22 +54,6 @@ export class TasksService {
     );
   }
 
-  // addTask(name: string, date: Date, status: string, description: string): any {
-  //   const taskData = new FormData();
-  //   taskData.append('name', name);
-  //   taskData.append('date', date);
-  //   taskData.append('status', status);
-  //   taskData.append('description', description);
-  //   this.http
-  //     .post<{ message: string; task: Task }>(
-  //       'http://localhost:3000/api/posts',
-  //       taskData
-  //     )
-  //     .subscribe(responseData => {
-  //       this.router.navigate(['/']);
-  //     });
-  // }
-
   addTask(name: string, date: Date, status: string, description: string): any {
     const task: Task = { id: null, name, date, status, description };
     this.http
@@ -87,11 +71,6 @@ export class TasksService {
     this.http
       .put('http://localhost:3000/api/tasks/' + id, task)
       .subscribe(response => {
-        const updatedTasks = [...this.tasks];
-        const oldTaskIndex = updatedTasks.findIndex(p => p.id === task.id);
-        updatedTasks[oldTaskIndex] = task;
-        this.tasks = updatedTasks;
-        // this.tasksUpdated.next([...this.tasks]);
         this.router.navigate(['/']);
       });
   }
