@@ -4,6 +4,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Subscription } from 'rxjs';
 import { Task } from 'src/app/models/task.model';
+import { AuthService } from 'src/app/services/auth.service';
 import { TasksService } from 'src/app/services/tasks.service';
 
 @Component({
@@ -18,7 +19,9 @@ export class TaskListComponent implements OnInit, OnDestroy {
   tasksPerPage = 5;
   currentPage = 1;
   pageSizeOptions = [5, 10, 15, 50];
+  userIsAuthenticated = false;
   private tasksSub: Subscription;
+  private authStatusSub: Subscription;
   displayedColumns: string[] = ['name', 'date', 'status', 'actions'];
   dataSource = new MatTableDataSource();
 
@@ -29,16 +32,22 @@ export class TaskListComponent implements OnInit, OnDestroy {
     this.dataSource.sort = this.sort;
   }
 
-  constructor(public tasksService: TasksService) { }
+  constructor(public tasksService: TasksService, private authService: AuthService) { }
 
   ngOnInit(): void {
     this.isLoading = true;
     this.tasksService.getTasks(this.tasksPerPage, this.currentPage);
     this.tasksSub = this.tasksService.getTaskUpdateListener()
-      .subscribe((taskData: { tasks: Task[], taskCount: number }) => {
+      .subscribe((taskData: { tasks: Task[]; taskCount: number }) => {
         this.isLoading = false;
         this.totalTasks = taskData.taskCount;
         this.tasks = taskData.tasks;
+      });
+    this.userIsAuthenticated = this.authService.getIsAuth();
+    this.authStatusSub = this.authService
+      .getAuthStatusListener()
+      .subscribe(isAuthenticated => {
+        this.userIsAuthenticated = isAuthenticated;
       });
   }
 
@@ -51,7 +60,6 @@ export class TaskListComponent implements OnInit, OnDestroy {
 
   onDelete(taskId: string): any {
     if (confirm('Are you sure to delete it?')) {
-      this.tasksService.deleteTask(taskId);
       this.isLoading = true;
       this.tasksService.deleteTask(taskId).subscribe(() => {
         this.tasksService.getTasks(this.tasksPerPage, this.currentPage);
@@ -61,6 +69,7 @@ export class TaskListComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): any {
     this.tasksSub.unsubscribe();
+    this.authStatusSub.unsubscribe();
   }
 
 }
