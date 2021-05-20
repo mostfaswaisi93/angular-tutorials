@@ -11,11 +11,6 @@ import { TasksService } from 'src/app/services/tasks.service';
   styleUrls: ['./task-create.component.css']
 })
 export class TaskCreateComponent implements OnInit, OnDestroy {
-  enteredName = '';
-  enteredDate = '';
-  enteredStatus = '';
-  enteredDescription = '';
-
   task: Task;
   isLoading = false;
   form: FormGroup;

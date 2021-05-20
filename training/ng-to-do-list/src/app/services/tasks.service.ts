@@ -28,7 +28,8 @@ export class TasksService {
                 date: task.date,
                 status: task.status,
                 description: task.description,
-                id: task._id
+                id: task._id,
+                creator: task.creator
               };
             }),
             maxTasks: taskData.maxTasks
@@ -49,13 +50,13 @@ export class TasksService {
   }
 
   getTask(id: string): any {
-    return this.http.get<{ _id: string; name: string, date: Date, status: string, description: string }>(
+    return this.http.get<{ _id: string; name: string; date: Date; status: string; description: string; creator: string; }>(
       'http://localhost:3000/api/tasks/' + id
     );
   }
 
-  addTask(name: string, date: Date, status: string, description: string): any {
-    const task: Task = { id: null, name, date, status, description };
+  addTask(name: string, date: Date, status: string, description: string, creator: string): any {
+    const task: Task = { id: null, name, date, status, description, creator };
     this.http
       .post<{ message: string; taskId: string }>(
         'http://localhost:3000/api/tasks',
@@ -66,8 +67,8 @@ export class TasksService {
       });
   }
 
-  updateTask(id: string, name: string, date: Date, status: string, description: string): any {
-    const task: Task = { id, name, date, status, description };
+  updateTask(id: string, name: string, date: Date, status: string, description: string, creator: string): any {
+    const task: Task = { id, name, date, status, description, creator };
     this.http
       .put('http://localhost:3000/api/tasks/' + id, task)
       .subscribe(response => {

@@ -1,15 +1,17 @@
 const express = require('express');
 
 const Task = require('../models/task');
+const checkAuth = require('../middleware/check-auth');
 
 const router = express.Router();
 
-router.post('', (req, res, next) => {
+router.post('', checkAuth, (req, res, next) => {
     const task = new Task({
         name: req.body.name,
         date: req.body.date,
         status: req.body.status,
-        description: req.body.description
+        description: req.body.description,
+        creator: req.userData.userId
     });
     task.save().then(createdTask => {
         res.status(201).json({
@@ -17,22 +19,28 @@ router.post('', (req, res, next) => {
             task: {
                 ...createdTask,
                 id: createdTask._id
-            },
+            }
         });
     });
 });
 
-router.put('/:id', (req, res, next) => {
+router.put('/:id', checkAuth, (req, res, next) => {
     const task = new Task({
         _id: req.body.id,
         name: req.body.name,
         date: req.body.date,
         status: req.body.status,
-        description: req.body.description
+        description: req.body.description,
+        creator: req.userData.userId
     });
-    console.log(task);
-    Task.updateOne({ _id: req.params.id }, task).then(result => {
-        res.status(200).json({ message: 'Update Successful!' });
+    Task.updateOne({ _id: req.params.id, creator: req.userData.userId },
+        task
+    ).then(result => {
+        if (result.nModified > 0) {
+            res.status(200).json({ message: 'Update Successful!' });
+        } else {
+            res.status(401).json({ message: 'Not Authorized!' });
+        }
     });
 });
 
@@ -68,11 +76,17 @@ router.get('/:id', (req, res, next) => {
     });
 });
 
-router.delete('/:id', (req, res, next) => {
-    Task.deleteOne({ _id: req.params.id }).then(result => {
-        console.log(result);
-        res.status(200).json({ message: 'Task Deleted!' });
-    });
+router.delete('/:id', checkAuth, (req, res, next) => {
+    Task.deleteOne({ _id: req.params.id, creator: req.userData.userId }).then(
+        result => {
+            console.log(result);
+            if (result.n > 0) {
+                res.status(200).json({ message: 'Deletion Successful!' });
+            } else {
+                res.status(401).json({ message: 'Not Authorized!' });
+            }
+        }
+    );
 });
 
 module.exports = router;

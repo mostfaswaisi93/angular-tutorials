@@ -4,4 +4,5 @@ export class Task {
   date: Date;
   status: string;
   description: string;
+  creator: string;
 }
