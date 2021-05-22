@@ -8,10 +8,23 @@ import { AuthService } from './services/auth.service';
 })
 export class AppComponent implements OnInit {
   title = 'ng-to-do-list';
-  constructor(private authService: AuthService) { }
+  // hasError = false;
+  // private errorSub: Subscription;
+
+  constructor(
+    private authService: AuthService,
+    // private errorService: ErrorService
+  ) { }
 
   ngOnInit(): void {
     this.authService.autoAuthUser();
+    // this.errorSub = this.errorService.getErrorListener().subscribe(
+    //   message => this.hasError = message !== null
+    // );
   }
+
+  // ngOnDestroy() {
+  //   this.errorSub.unsubscribe();
+  // }
 
 }

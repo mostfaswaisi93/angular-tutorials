@@ -14,6 +14,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from './shared/material/material.module';
 import { AuthInterceptor } from './components/auth/auth-interceptor';
+import { ErrorComponent } from './components/error/error.component';
+import { ErrorInterceptor } from './components/error/error-interceptor';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,8 @@ import { AuthInterceptor } from './components/auth/auth-interceptor';
     LoginComponent,
     SignupComponent,
     TaskCreateComponent,
-    TaskListComponent
+    TaskListComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
@@ -35,8 +38,10 @@ import { AuthInterceptor } from './components/auth/auth-interceptor';
     HttpClientModule
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [ErrorComponent]
 })
 export class AppModule { }

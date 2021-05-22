@@ -47,7 +47,8 @@ export class TaskCreateComponent implements OnInit, OnDestroy {
             name: taskData.name,
             date: taskData.date,
             status: taskData.status,
-            description: taskData.description
+            description: taskData.description,
+            creator: taskData.creator
           };
           this.form.setValue({
             name: this.task.name,
@@ -73,7 +74,8 @@ export class TaskCreateComponent implements OnInit, OnDestroy {
         this.form.value.name,
         this.form.value.date,
         this.form.value.status,
-        this.form.value.description
+        this.form.value.description,
+        this.form.value.creator
       );
     } else {
       this.tasksService.updateTask(
@@ -81,7 +83,8 @@ export class TaskCreateComponent implements OnInit, OnDestroy {
         this.form.value.name,
         this.form.value.date,
         this.form.value.status,
-        this.form.value.description
+        this.form.value.description,
+        this.form.value.creator
       );
     }
     this.form.reset();

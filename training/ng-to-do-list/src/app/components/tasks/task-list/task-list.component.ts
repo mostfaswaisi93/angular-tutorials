@@ -20,6 +20,7 @@ export class TaskListComponent implements OnInit, OnDestroy {
   currentPage = 1;
   pageSizeOptions = [5, 10, 15, 50];
   userIsAuthenticated = false;
+  userId: string;
   private tasksSub: Subscription;
   private authStatusSub: Subscription;
   displayedColumns: string[] = ['name', 'date', 'status', 'actions'];
@@ -37,6 +38,7 @@ export class TaskListComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.isLoading = true;
     this.tasksService.getTasks(this.tasksPerPage, this.currentPage);
+    this.userId = this.authService.getUserId();
     this.tasksSub = this.tasksService.getTaskUpdateListener()
       .subscribe((taskData: { tasks: Task[]; taskCount: number }) => {
         this.isLoading = false;
@@ -48,6 +50,7 @@ export class TaskListComponent implements OnInit, OnDestroy {
       .getAuthStatusListener()
       .subscribe(isAuthenticated => {
         this.userIsAuthenticated = isAuthenticated;
+        this.userId = this.authService.getUserId();
       });
   }
 
