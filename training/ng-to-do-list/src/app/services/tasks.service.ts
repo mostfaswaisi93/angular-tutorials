@@ -5,6 +5,7 @@ import { Task } from '../models/task.model';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
+const BACKEND_URL = 'http://localhost:3000/api/tasks/';
 @Injectable({
   providedIn: 'root'
 })
@@ -18,7 +19,7 @@ export class TasksService {
     const queryParams = `?pagesize=${tasksPerPage}&page=${currentPage}`;
     this.http
       .get<{ message: string; tasks: any; maxTasks: number }>
-      ('http://localhost:3000/api/tasks' + queryParams)
+      (BACKEND_URL + queryParams)
       .pipe(
         map(taskData => {
           return {
@@ -51,7 +52,7 @@ export class TasksService {
 
   getTask(id: string): any {
     return this.http.get<{ _id: string; name: string; date: Date; status: string; description: string; creator: string; }>(
-      'http://localhost:3000/api/tasks/' + id
+      BACKEND_URL + id
     );
   }
 
@@ -59,7 +60,7 @@ export class TasksService {
     const task: Task = { id: null, name, date, status, description, creator };
     this.http
       .post<{ message: string; taskId: string }>(
-        'http://localhost:3000/api/tasks',
+        BACKEND_URL,
         task
       )
       .subscribe(responseData => {
@@ -70,7 +71,7 @@ export class TasksService {
   updateTask(id: string, name: string, date: Date, status: string, description: string, creator: string): any {
     const task: Task = { id, name, date, status, description, creator };
     this.http
-      .put('http://localhost:3000/api/tasks/' + id, task)
+      .put(BACKEND_URL + id, task)
       .subscribe(response => {
         this.router.navigate(['/']);
       });
@@ -78,7 +79,7 @@ export class TasksService {
 
   deleteTask(taskId: string): any {
     return this.http
-      .delete('http://localhost:3000/api/tasks/' + taskId);
+      .delete(BACKEND_URL + taskId);
   }
 
 }

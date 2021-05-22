@@ -6,12 +6,10 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Page404Component } from './components/page404/page404.component';
 import { HeaderComponent } from './components/header/header.component';
-import { LoginComponent } from './components/auth/login/login.component';
-import { SignupComponent } from './components/auth/signup/signup.component';
 import { TaskCreateComponent } from './components/tasks/task-create/task-create.component';
 import { TaskListComponent } from './components/tasks/task-list/task-list.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from './shared/material/material.module';
 import { AuthInterceptor } from './components/auth/auth-interceptor';
 import { ErrorComponent } from './components/error/error.component';
@@ -22,8 +20,6 @@ import { ErrorInterceptor } from './components/error/error-interceptor';
     AppComponent,
     Page404Component,
     HeaderComponent,
-    LoginComponent,
-    SignupComponent,
     TaskCreateComponent,
     TaskListComponent,
     ErrorComponent
@@ -33,7 +29,6 @@ import { ErrorInterceptor } from './components/error/error-interceptor';
     AppRoutingModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    FormsModule,
     MaterialModule,
     HttpClientModule
   ],
