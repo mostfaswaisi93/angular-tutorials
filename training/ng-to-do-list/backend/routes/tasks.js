@@ -21,6 +21,10 @@ router.post('', checkAuth, (req, res, next) => {
                 id: createdTask._id
             }
         });
+    }).catch(error => {
+        res.status(500).json({
+            message: 'Creating a Task Failed!'
+        });
     });
 });
 
@@ -41,6 +45,10 @@ router.put('/:id', checkAuth, (req, res, next) => {
         } else {
             res.status(401).json({ message: 'Not Authorized!' });
         }
+    }).catch(error => {
+        res.status(500).json({
+            message: "Couldn't Udpate Task!"
+        });
     });
 });
 
@@ -63,6 +71,10 @@ router.get('', (req, res, next) => {
                 tasks: fetchedTasks,
                 maxTasks: count
             });
+        }).catch(error => {
+            res.status(500).json({
+                message: 'Fetching Tasks Failed!'
+            });
         });
 });
 
@@ -73,20 +85,28 @@ router.get('/:id', (req, res, next) => {
         } else {
             res.status(404).json({ message: 'Task Not Found!' });
         }
+    }).catch(error => {
+        res.status(500).json({
+            message: 'Fetching Task Failed!'
+        });
     });
 });
 
 router.delete('/:id', checkAuth, (req, res, next) => {
-    Task.deleteOne({ _id: req.params.id, creator: req.userData.userId }).then(
-        result => {
+    Task.deleteOne({ _id: req.params.id, creator: req.userData.userId })
+        .then(result => {
             console.log(result);
             if (result.n > 0) {
                 res.status(200).json({ message: 'Deletion Successful!' });
             } else {
                 res.status(401).json({ message: 'Not Authorized!' });
             }
-        }
-    );
+        })
+        .catch(error => {
+            res.status(500).json({
+                message: 'Deleting Tasks Failed!'
+            });
+        });
 });
 
 module.exports = router;

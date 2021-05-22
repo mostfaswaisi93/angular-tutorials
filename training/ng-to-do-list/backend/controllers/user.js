@@ -13,17 +13,17 @@ exports.createUser = (req, res, next) => {
             .save()
             .then(result => {
                 res.status(201).json({
-                    message: 'User created!',
+                    message: 'User Created!',
                     result: result
                 });
             })
             .catch(err => {
                 res.status(500).json({
-                    message: 'Invalid authentication credentials!'
+                    message: 'Invalid Authentication Credentials!'
                 });
             });
     });
-}
+};
 
 exports.userLogin = (req, res, next) => {
     let fetchedUser;
@@ -31,7 +31,7 @@ exports.userLogin = (req, res, next) => {
         .then(user => {
             if (!user) {
                 return res.status(401).json({
-                    message: 'Auth failed'
+                    message: 'Auth Failed!'
                 });
             }
             fetchedUser = user;
@@ -40,11 +40,11 @@ exports.userLogin = (req, res, next) => {
         .then(result => {
             if (!result) {
                 return res.status(401).json({
-                    message: 'Auth failed'
+                    message: 'Auth Failed!'
                 });
             }
             const token = jwt.sign({ email: fetchedUser.email, userId: fetchedUser._id },
-                process.env.JWT_KEY, { expiresIn: '1h' }
+                'secret_this_should_be_longer', { expiresIn: '1h' }
             );
             res.status(200).json({
                 token: token,
@@ -54,7 +54,7 @@ exports.userLogin = (req, res, next) => {
         })
         .catch(err => {
             return res.status(401).json({
-                message: 'Invalid authentication credentials!'
+                message: 'Invalid Authentication Credentials!'
             });
         });
-}
+};

@@ -1,8 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, ParamMap } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { Status } from 'src/app/models/status.model';
 import { Task } from 'src/app/models/task.model';
+import { AuthService } from 'src/app/services/auth.service';
 import { TasksService } from 'src/app/services/tasks.service';
 
 @Component({
@@ -16,6 +18,7 @@ export class TaskCreateComponent implements OnInit, OnDestroy {
   form: FormGroup;
   private mode = 'create';
   private taskId: string;
+  private authStatusSub: Subscription;
 
   stClass: Status[] = [
     { id: 1, name: 'New' },
@@ -25,10 +28,16 @@ export class TaskCreateComponent implements OnInit, OnDestroy {
 
   constructor(
     public tasksService: TasksService,
-    public route: ActivatedRoute
+    public route: ActivatedRoute,
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
+    this.authStatusSub = this.authService
+      .getAuthStatusListener()
+      .subscribe(authStatus => {
+        this.isLoading = false;
+      });
     this.form = new FormGroup({
       name: new FormControl(null, { validators: [Validators.required, Validators.minLength(3)] }),
       date: new FormControl(null, { validators: [Validators.required] }),
@@ -91,6 +100,7 @@ export class TaskCreateComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): any {
+    this.authStatusSub.unsubscribe();
   }
 
 }
