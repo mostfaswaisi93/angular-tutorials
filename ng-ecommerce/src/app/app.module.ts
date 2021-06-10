@@ -40,23 +40,23 @@ import { ErrorInterceptorService } from './services/auth/error-interceptor.servi
 @NgModule({
   declarations: [
     AppComponent,
-    CartComponent,
+    HomeComponent,
     LoginComponent,
     RegisterComponent,
-    CategoryDetailsComponent,
+    CartComponent,
     CategoryListComponent,
+    CategoryDetailsComponent,
     ContactComponent,
-    HomeComponent,
     OrderComponent,
-    ProductDetailsComponent,
     ProductListComponent,
-    ProfileComponent,
+    ProductDetailsComponent,
     ProductFilterPipe,
-    AddToCartComponent,
     AlertComponent,
     ApplicationErrorComponent,
     PageNotFoundComponent,
-    ResourceNotFoundComponent
+    ResourceNotFoundComponent,
+    ProfileComponent,
+    AddToCartComponent
   ],
   imports: [
     BrowserModule,

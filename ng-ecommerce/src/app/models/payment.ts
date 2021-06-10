@@ -6,6 +6,7 @@ export class Payment {
   client: User;
   date: Date;
   amount: number;
+  // tslint:disable-next-line:variable-name
   payment_method: PaymentMethod;
   invoiceId: number;
 }

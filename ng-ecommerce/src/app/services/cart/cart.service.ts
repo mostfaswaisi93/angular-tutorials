@@ -12,7 +12,9 @@ export class CartService {
 
   constructor(private http: HttpClient) { }
 
+  // tslint:disable-next-line:variable-name
   private _cartUrl = `http://localhost:3000/cart`;
+  // tslint:disable-next-line:variable-name
   private _cartItemUrl = `http://localhost:3000/cart_items`;
   private errorHandler: ErrorHandler = new ErrorHandler();
 

@@ -14,5 +14,6 @@ export class Product {
   category: Category;
   cartQuantity: number;
   cartItem: CartItem;
+  // tslint:disable-next-line:variable-name
   order_items: OrderItem[];
 }

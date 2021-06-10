@@ -16,11 +16,17 @@ import { CartService } from '../cart/cart.service';
 export class AuthService {
   constructor(private http: HttpClient, private router: Router, private cartService: CartService) { }
 
+  // tslint:disable-next-line:variable-name
   _registerUrl = `http://localhost:3000/auth/register`;
+  // tslint:disable-next-line:variable-name
   _loginUrl = `http://localhost:3000/auth/login`;
+  // tslint:disable-next-line:variable-name
   _userUrl = `http://localhost:3000/auth/current-user`;
+  // tslint:disable-next-line:variable-name
   _profileUrl = `http://localhost:3000/profile`;
+  // tslint:disable-next-line:variable-name
   private _usersURL = `http://localhost:3000/auth/system-users`;
+  // tslint:disable-next-line:variable-name
   private _userDataURL = `http://localhost:3000/auth/user-main-data`;
 
   private imageChangeUrl = `http://localhost:3000/profile/userprofile/changeprofileimage`;
@@ -32,6 +38,10 @@ export class AuthService {
   public cartItem: CartItem;
   public profile: Profile;
   public currentUser: User;
+
+  getSystemUsers(): Observable<User[]> {
+    throw new Error('Method not implemented.');
+  }
 
   registerUser(registrationInfo): Observable<void> {
     return this.http.post<void>(this._registerUrl, registrationInfo);

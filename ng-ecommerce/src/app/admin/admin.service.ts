@@ -8,7 +8,9 @@ import { ErrorHandler } from '../shared/error-handler';
   providedIn: 'root'
 })
 export class AdminService {
+  // tslint:disable-next-line:variable-name
   private _usersUrl = 'http://localhost:3000/auth/system-users';
+  // tslint:disable-next-line:variable-name
   private _existDataUrl = 'http://localhost:3000/auth/exist-data';
   errorsHandler = new ErrorHandler();
 

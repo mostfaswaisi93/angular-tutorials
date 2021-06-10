@@ -59,6 +59,7 @@ export class ManageCategoriesComponent implements OnInit {
     private route: ActivatedRoute,
     private modalService: BsModalService,
     private productService: ProductService,
+    // tslint:disable-next-line:variable-name
     private _snackBar: MatSnackBar
   ) {
     this.categories = this.route.snapshot.data.categories;
