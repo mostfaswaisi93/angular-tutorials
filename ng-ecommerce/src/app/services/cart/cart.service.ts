@@ -10,8 +10,7 @@ import { ErrorHandler } from 'src/app/shared/error-handler';
 })
 export class CartService {
 
-  constructor(private http: HttpClient) {
-  }
+  constructor(private http: HttpClient) { }
 
   private _cartUrl = `http://localhost:3000/cart`;
   private _cartItemUrl = `http://localhost:3000/cart_items`;
@@ -44,8 +43,7 @@ export class CartService {
     }
   }
 
-  placeOrder(cartItemId: number, productId: number,
-    createOrderDto: any): Observable<void> {
+  placeOrder(cartItemId: number, productId: number, createOrderDto: any): Observable<void> {
     try {
       const orderUrl = `${this._cartItemUrl}/${cartItemId}/products/${productId}/placeorder`;
       return this.http.post<void>(orderUrl, createOrderDto);

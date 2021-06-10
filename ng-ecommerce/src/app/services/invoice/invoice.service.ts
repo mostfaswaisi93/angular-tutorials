@@ -11,8 +11,7 @@ export class InvoiceService {
   private invoiceUrl = `http://localhost:3000/invoices`;
   private errorHandler: ErrorHandler = new ErrorHandler();
 
-  constructor(private http: HttpClient) {
-  }
+  constructor(private http: HttpClient) { }
 
   getUserInvoice(id: number): Observable<Invoice> {
     try {

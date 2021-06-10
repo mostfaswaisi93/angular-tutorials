@@ -11,8 +11,7 @@ import { ErrorHandler } from 'src/app/shared/error-handler';
 export class CategoryService {
   private categoryUrl = `http://localhost:3000/categories`;
 
-  constructor(private http: HttpClient) {
-  }
+  constructor(private http: HttpClient) { }
 
   private errorHandler: ErrorHandler = new ErrorHandler();
 

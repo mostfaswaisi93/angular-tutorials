@@ -14,11 +14,7 @@ import { CartService } from '../cart/cart.service';
   providedIn: 'root'
 })
 export class AuthService {
-  constructor(
-    private http: HttpClient,
-    private router: Router,
-    private cartService: CartService
-  ) { }
+  constructor(private http: HttpClient, private router: Router, private cartService: CartService) { }
 
   _registerUrl = `http://localhost:3000/auth/register`;
   _loginUrl = `http://localhost:3000/auth/login`;

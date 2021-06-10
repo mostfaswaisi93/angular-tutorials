@@ -11,8 +11,7 @@ export class OrderService {
   private errorHandler: ErrorHandler = new ErrorHandler();
   private orderUrl = 'http://localhost:3000/orders/user-orders';
 
-  constructor(private http: HttpClient) {
-  }
+  constructor(private http: HttpClient) { }
 
   // for admin staff
   getOrders(): Observable<Order[]> {

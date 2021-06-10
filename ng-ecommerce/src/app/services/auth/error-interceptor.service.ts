@@ -1,4 +1,4 @@
-import { HttpErrorResponse, HttpEvent, HttpHandler, HttpRequest } from '@angular/common/http';
+import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, throwError } from 'rxjs';
@@ -9,8 +9,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 @Injectable({
   providedIn: 'root'
 })
-export class ErrorInterceptorService {
-
+export class ErrorInterceptorService implements HttpInterceptor {
   intercept(
     request: HttpRequest<any>,
     next: HttpHandler
@@ -50,6 +49,7 @@ export class ErrorInterceptorService {
       duration: 2000
     });
   }
+
   constructor(private authService: AuthService, private router: Router, private snackBar: MatSnackBar) { }
 
 }
