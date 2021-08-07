@@ -1,1 +1,0 @@
-# Angular - MEAN Stack (Real world Application)
