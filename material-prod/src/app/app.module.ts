@@ -5,10 +5,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './shared/material.module';
+import { MainContentComponent } from './components/main-content/main-content.component';
+import { SideNavComponent } from './components/side-nav/side-nav.component';
+import { ToolbarComponent } from './components/toolbar/toolbar.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MainContentComponent,
+    SideNavComponent,
+    ToolbarComponent
   ],
   imports: [
     BrowserModule,
