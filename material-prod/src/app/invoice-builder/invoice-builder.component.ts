@@ -2,16 +2,14 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-invoice-builder',
-  template: `
-   <app-side-nav></app-side-nav>
-  `,
-  styles: []
+  templateUrl: './invoice-builder.component.html',
+  styleUrls: ['./invoice-builder.component.scss']
 })
 export class InvoiceBuilderComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
 }
