@@ -1,0 +1,102 @@
+.shado:hover {
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24) !important;
+  }
+  .mat-radio-button ~ .mat-radio-button {
+    margin-left: 35px;
+  }
+  .mat-radio-button {
+       color:black !important;
+       font-weight: bold !important; 
+  }
+  ::ng-deep {
+    .mat-radio-label {margin-bottom: 0px !important;}
+  }
+  .total {
+    position: absolute;
+    right: 20px;
+  }
+  
+  ::ng-deep {
+    .mat-radio-group:not(:last-of-type) .border-btm {
+         padding-bottom: 15px;
+         border-bottom: 1px solid #d4d1d1;
+         margin-bottom: 15px;
+    }
+    .accordion-toggle[aria-expanded="true"]:after {
+         font-family: "Font Awesome 5 Free";
+  content: "\f078";
+  display: inline-block;
+  padding-left: 3px;
+  vertical-align: middle;
+  font-weight: 900;
+  position: absolute;
+  color:#ff4081;
+  right: 42px;
+  top: 9px;
+       
+     }
+     .card {
+          background-color: transparent;
+          border: none;
+     }
+     .card-header{border-bottom:none;background-color: transparent;padding: 0;}
+     .card-body{padding:0}
+     .accordion-toggle[aria-expanded="false"]:after {
+         font-family: "Font Awesome 5 Free";
+         content: "\f078";
+         color:#ff4081;
+         display: inline-block;
+         padding-left: 3px;
+         vertical-align: middle;
+         font-weight: 900;
+         position: absolute;
+         right: 42px;
+         top: 9px;
+         
+         
+     }
+    .btn-link {
+         font-weight: 500;
+         color: black ;
+         text-decoration: none;
+    }
+    .btn.focus, .btn:focus{box-shadow: none;}
+     .btn-link:hover {
+        color:black;
+        text-decoration: none;
+     }
+  @media  (max-width: 768px) {
+  
+         .mat-radio-button{
+              margin: 15px 0 !important;
+         }
+       }
+      
+  
+  }
+  
+  /* width */
+  ::-webkit-scrollbar {
+       width: 5px;
+     }
+     
+     /* Track */
+     ::-webkit-scrollbar-track {
+       background: rgb(218, 217, 217); 
+     }
+      
+     /* Handle */
+     ::-webkit-scrollbar-thumb {
+       background: #28a745;
+     }
+     
+     /* Handle on hover */
+     ::-webkit-scrollbar-thumb:hover {
+       background: #555; 
+     }
+     .circl {
+      border: 1px solid green;
+      border-radius: 50%;
+      padding: 13px;
+      font-weight: bold;
+     }

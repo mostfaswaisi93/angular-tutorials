@@ -1,0 +1,10 @@
+<div  style="background-color: #EBEBEB;min-height: 100vh;" class="py-5">
+    <div class="authLayout p-2 p-md-5 bg-white" >
+        <img width="50" src="assets/pizzahutLogo-en.png" alt=""> <br>
+        <div class="d-flex  my-3">
+            <p [routerLinkActiveOptions]="{exact:true}" routerLinkActive="active" routerLink="../auth/login"   class="mr-4 font-weight-bold text-secondary"> Sign In</p>
+            <p [routerLinkActiveOptions]="{exact:true}" routerLink="../auth/register" routerLinkActive="active" class=" font-weight-bold text-secondary">Create Acount</p> 
+        </div>
+     <router-outlet></router-outlet>
+    </div>
+</div>

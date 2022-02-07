@@ -1,0 +1,84 @@
+<div [class.preventScroll]="preventScroll" >
+    <nav> 
+        <div class="container">
+            <div  
+            [style.borderBottom]="dashboard.showNavBar ? ' 2px solid transparent' : ' 2px solid black'"
+            class="upper-nav d-flex  justify-content-between align-items-center py-2">
+                <ul class="list-unstyled d-flex align-items-center">
+                    <li routerLink='/home' > <img src="assets/pizzahutLogo-en.png" class="hesdImg" style="width: 70px;" alt=""></li>
+                    <li class="d-flex align-items-center" 
+                    mat-button [matMenuTriggerFor]="menu"
+                     *ngIf="authService.userProfile; else notUser "> 
+                        <i class="mr-2 far fa-user-circle"></i>
+                        <span class="redOnHover"> Hi {{authService.userProfile?.profile.firstName}}</span>
+                          <i style="margin-top: -7px;" class="ml-2 fas fa-sort-down"></i>
+                        </li>
+                    <mat-menu #menu="matMenu">
+                        <button *ngIf="authService.userProfile?.profile?.role == 'admin'" mat-menu-item routerLink="/dashboard/add"><i class="fas fa-database mr-2"></i> Dashboard</button>
+                        <button mat-menu-item routerLink="/profile"><i class="mr-2 far fa-user-circle"></i> My Profile</button>
+                        <button *ngIf="authService.userProfile?.profile?.role == 'user'" mat-menu-item routerLink="/profile/orders"><i class="mr-2 fas fa-pizza-slice"></i> My Orders</button>
+                        <button mat-menu-item (click)="authService.signout()"><i class="mr-2 fas fa-sign-out-alt"></i> LogOut</button>
+                    </mat-menu>
+                    <ng-template #notUser>
+                        <li class="d-none d-md-block " [routerLinkActiveOptions]="{exact:true}" routerLinkActive="authActive"
+                            routerLink="auth/login"><i class="fas fa-arrow-alt-circle-right mr-1"></i> <span>Sign
+                                in</span> </li>
+                        <li [routerLinkActiveOptions]="{exact:true}" routerLinkActive="authActive"
+                            routerLink="auth/register"><i class="far mr-1 fa-user-circle"></i> <span>Create
+                                account</span></li>
+                    </ng-template>
+                </ul>
+                <p class="font-weight-bold d-none d-md-block"><i class="fas fa-phone-alt"></i> call us - 19999</p>
+            </div>
+
+        </div>
+            <div class="bg-dark" *ngIf="dashboard.showNavBar">
+                <div class="container">
+                    <div class="lower-nav  d-flex  justify-content-between align-items-center ">
+                        <i class="fas fa-bars d-md-none text-white" (click)="sideNav=!sideNav;preventScroll=true"></i>
+                        <ul class="list-unstyled sideNav d-md-flex sideNav" [class.movSideNAv]="sideNav">
+                            <div  class="red mb-3 py-3 d-md-none">
+                                <img   src="assets/logo.PNG" class="mb-2 mr-2" alt="">
+                                   <ng-container *ngIf="!authService.userProfile">
+                                    <p class="my-3">Login to add to cart</p>
+                                    <button routerLink="auth/login"
+                                        (click)="sideNav = false ? true : false;preventScroll=false">sign in </button>
+                                   </ng-container>
+                                   
+                            </div>
+                            <li *ngIf="!dashboard.categoriesNames?.length">there are no categories yet</li>
+                   
+                            
+                            <li 
+                           
+                            (click)="sideNav = false ? true : false;preventScroll=false"
+                             routerLinkActive="active"
+                                [routerLinkActiveOptions]="{exact:true}"
+                                 [routerLink]="['products',name]"
+                                *ngFor="let name of dashboard.categoriesNames"> {{name}}</li>
+                        </ul>
+                        <img src="assets/pizzahutLogo-en.png" width="50" class=" d-md-none" alt="">
+                        <p (click)="yourCartISEmpty()" routerLink="products/cart" style="cursor: pointer;"
+                            class="font-weight-bold text-white">
+                            <i *ngIf="cartservice.cartData.length==0" class="mr-2 fas fa-lock"></i>
+                            <span *ngIf="cartservice.cartData.length>0" class="bg-danger p-1 px-2 mr-2 rounded">
+                                {{cartservice.totalAmount}}</span>
+                            <span class="d-none d-md-inline"> Cart</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        
+    </nav>
+    <div class="over" [class]="{'d-none':!sideNav,'d-block':sideNav}" (click)="sideNav=!sideNav;preventScroll=false">
+    </div>
+
+   
+    <router-outlet></router-outlet>
+   
+
+</div>
+
+
+
+

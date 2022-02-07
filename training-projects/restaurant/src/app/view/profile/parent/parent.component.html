@@ -1,0 +1,30 @@
+<div style="background-color: #EBEBEB;min-height: 77vh;overflow: hidden;" >
+   
+    <div class="container bg-white my-5">
+        <div class="row">
+            <div class="col-md-3">
+                 <div  style="background-color: #f7f7f7" class="h-100">
+                     <h4 
+                     [routerLinkActiveOptions]="{exact:true}" 
+                     routerLinkActive="active"
+                     class="font-weight-bold" routerLink="/profile">
+                        <i class="mr-1 far fa-user-circle"></i> 
+                        My Profile</h4>
+                     <h4
+                     *ngIf="authservice.userProfile?.profile?.role!='admin'" 
+                     class="font-weight-bold" 
+                     [routerLinkActiveOptions]="{exact:true}"
+                      routerLinkActive="active"
+                     routerLink="/profile/orders">
+                        <i class="mr-1 fas fa-pizza-slice"></i> 
+                        My Orders</h4>
+                 </div>
+            </div>
+            <div class="col-md-9">
+                  <div>
+                      <router-outlet></router-outlet>
+                  </div>
+            </div>
+        </div>
+    </div>
+</div>

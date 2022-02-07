@@ -1,0 +1,95 @@
+<div class="frm">
+    <form [formGroup]="createAcountForm" (ngSubmit)="createAcount(createAcountForm)">
+        <div class="form-group" >
+           <input [class]="{'is-valid': firstName.errors==null && firstName.dirty,
+           'is-invalid': firstName.errors!=null && firstName.touched
+           }" 
+            formControlName="firstName"
+            class="form-control"
+            type="text"
+            placeholder="First Name*">   
+            <small class="pt-2 d-block" style="color:#dc3545" *ngIf="firstName.errors!=null && firstName.touched">
+              Please enter your first name.
+            </small> 
+            
+        </div>
+        <div class="form-group" >
+          <input formControlName="lastName" 
+          [class]="{'is-valid': lastName.errors==null && lastName.dirty,
+          'is-invalid': lastName.errors!=null && lastName.touched
+          }" class="form-control" type="text" placeholder="Last Name*">
+          <small class="pt-2 d-block" style="color:#dc3545" *ngIf="lastName.errors!=null && lastName.touched">
+            Please enter your last name.
+          </small>
+       </div>
+  
+  
+       <div class="form-group" >
+       <div class="d-flex">
+         <p class="bg-secondary m-0 p-2 text-white">0</p>
+        <input
+        [class]="{'is-valid': phoneNumber.errors==null && phoneNumber.dirty,
+       'is-invalid': phoneNumber.errors!=null && phoneNumber.touched
+       }"
+        class="form-control"
+        formControlName="phoneNumber"
+        type="number"
+        min="1"
+        oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+        maxlength="10"
+        placeholder="Mobile Number*">
+       </div>
+        <small class="pt-2 d-block" style="color:#dc3545"  *ngIf="phoneNumber.touched &&phoneNumber.errors?.required  ">Please Provide your mobile number</small>
+        <small class="pt-2 d-block" style="color:#dc3545"  *ngIf="phoneNumber.touched &&phoneNumber.errors?.pattern  ">
+         mobile should consist of 10 digits and start with 1
+        </small>
+     </div>
+     <div class="form-group" >
+      <input [class]="{'is-valid': email.errors==null && email.dirty,
+      'is-invalid': email.errors!=null && email.touched
+      }" class="form-control" type="email" formControlName="email" placeholder="Email*">
+      <small class="pt-2 d-block" style="color:#dc3545" *ngIf="email.errors?.required && email.touched">
+        Please enter an email.
+      </small> 
+      <small class="pt-2 d-block" style="color:#dc3545" *ngIf="email.errors?.email && email.touched">
+        Please enter a valid email.
+      </small>
+   </div>
+   <div class="form-group position-relative" >
+    <input [class]="{'is-valid': password.errors==null && password.dirty,
+    'is-invalid': password.errors!=null && password.touched
+    }" class="form-control"  [attr.type]="  passwordInputIcon ? 'password' : 'text'" formControlName="password" placeholder="Password*">
+    <i class="fas" (click)="passwordInputIcon=!passwordInputIcon" [class]="{'fa-eye':passwordInputIcon,'fa-eye-slash':!passwordInputIcon}" ></i>
+    <small class="pt-2 d-block" style="color:#dc3545" *ngIf="password.errors?.required && password.touched">
+      Please enter your password.
+    </small> 
+    <small class="pt-2 d-block" style="color:#dc3545" *ngIf="password.errors?.minlength && password.touched">
+     min length 6
+    </small>
+  </div>
+  <div class="form-group position-relative" >
+    <input [class]="{'is-valid':  confirmPassword.dirty && password.value == confirmPassword.value && confirmPassword.value.length > 0,
+    'is-invalid': (confirmPassword.touched && password.value !== confirmPassword.value) || (confirmPassword.errors?.required && confirmPassword.touched)
+    }" formControlName="confirmPassword" class="form-control" 
+    [attr.type]="  confirmPasswordInputIcon ? 'password' : 'text'" placeholder="Confirm Password*">
+    <i  (click)="confirmPasswordInputIcon=!confirmPasswordInputIcon" [class]="{'fa-eye':confirmPasswordInputIcon,'fa-eye-slash':!confirmPasswordInputIcon}" class="fas fa-eye"></i>
+    <small class="pt-2 d-block" style="color:#dc3545" *ngIf="password.value !== confirmPassword.value && confirmPassword.touched">
+      Password don't match
+     </small>
+     <small class="pt-2 d-block" style="color:#dc3545" *ngIf=" confirmPassword.errors?.required && confirmPassword.touched">
+       required
+     </small>
+   
+  </div>
+  <button [disabled]=" password.value !== confirmPassword.value || createAcountForm.invalid  " class="btn btn-success w-100 " type="submit">
+    
+    CREATE</button>
+  <div class="text-center" *ngIf='signupLoading'>
+    <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+  </div>
+  <p *ngIf="error" class="my-3 alert alert-danger">
+      {{error}}
+  </p>
+    </form>
+  </div>
+  

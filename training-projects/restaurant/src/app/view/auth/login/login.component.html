@@ -1,0 +1,33 @@
+<div class="frm" >
+    <form [formGroup]="loginForm" (ngSubmit)="login(loginForm)">
+       <div class="form-group">
+           <input placeholder="Email*"
+            [class]="{'is-valid': email.errors==null && email.dirty,
+           'is-invalid': email.errors!=null && email.touched
+           }" type="text" formControlName="email" class="form-control">
+           <small class="pt-2 d-block" style="color:#dc3545" *ngIf="email.errors?.required && email.touched">
+            Please enter an email.
+          </small>
+       </div>
+       <div class="form-group position-relative">
+        <input placeholder="Password*" [attr.type]="  passwordInputIcon ? 'text' : 'password'"  [class]="{'is-valid': password.errors==null && password.dirty,
+        'is-invalid': password.errors!=null && password.touched
+        }"  formControlName="password" class="form-control">
+        <i class="fas" (click)="passwordInputIcon=!passwordInputIcon" [class]="{'fa-eye':passwordInputIcon,'fa-eye-slash':!passwordInputIcon}" ></i>
+        <small class="pt-2 d-block" style="color:#dc3545" *ngIf="password.errors?.required && password.touched">
+         Please enter the password.
+       </small>
+    </div>
+    <button [disabled]="loginForm.invalid  " class="btn btn-success w-100" type="submit">SIGN IN </button>
+    <div class="text-center" *ngIf='signinLoading'>
+      <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+    </div>
+    <div class="my-3">
+      <p class="font-weight-bold">Dashboard Email : admin@admin.com</p>
+      <p class="font-weight-bold">Dashboard Password : adminadmin</p>
+    </div>
+    <p *ngIf="error" class="my-3 alert alert-danger">
+        {{error}}
+    </p>
+    </form>
+  </div>

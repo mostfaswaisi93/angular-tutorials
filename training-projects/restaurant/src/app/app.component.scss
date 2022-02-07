@@ -1,0 +1,105 @@
+
+nav {
+    ul,p {
+        margin:0
+    }
+    li{   font-weight: bold;outline: none;transition: .5s;}
+    .upper-nav{
+        i{
+            font-size:20px
+        }
+        li {
+            font-weight: bold;
+            margin-right:30px; 
+            cursor: pointer;
+            span{transition: .5s;}
+            &:hover {
+                span{color:red}
+                
+            }
+           
+            
+        }
+    }
+   .lower-nav  {
+    text-transform: uppercase;
+    
+       li {
+           &:hover {
+               background-color: #f93c3c;;
+           }
+           color:white;
+           font-size: 18px;
+           padding: 20px;
+           cursor: pointer;
+           
+       }
+   }
+.movSideNAv{
+left:0  !important
+}
+.active {background-color: #f93c3c;}
+.authActive{color: red;}
+}
+.over {
+    position: absolute;
+top:0;
+left: 0;
+right: 0;
+bottom: 0;
+background-color: rgba(0,0,0,.9);
+z-index: 1111;
+}
+
+@media  (max-width: 768px) {
+    .hesdImg{width: 50px !important;}
+    .sideNav{
+        background: white;
+        position: absolute;
+        top: 0;
+        left: -90%;
+        transition: .5s;
+        z-index: 11111;
+        width: 90%;
+        height: 100%; 
+        li {
+            padding: 7px !important;
+        }
+       }
+
+      
+      nav {
+        li {color:gray !important;
+          text-transform: capitalize !important;
+        }
+      }
+      .lower-nav {
+          padding:7px
+      }
+      .red {
+          background-color: #f93c3c;
+          padding: 10px;
+          button {
+            background: transparent;
+            border: 1px solid white;
+            color: white;
+            border-radius: 6px;
+            padding: 5px 75px;
+            font-weight: bold;
+        }
+        p {
+            color:white;
+            font-size: 15px;
+            text-transform: lowercase !important;
+        }
+          
+      }
+}
+.preventScroll{
+    overflow:hidden;
+    height: 100vh;
+}
+.redOnHover:hover{color:red}
+
+
+

@@ -1,0 +1,224 @@
+
+<div 
+*ngIf="dataLoading"
+class="d-flex justify-content-center align-items-center loadinggg"
+ >
+    <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+</div>
+<div class="container pb-5">
+    <mat-form-field class="scroll w-100" appearance="fill" >
+       <mat-label>Select Category</mat-label>
+       <mat-select [(value)]="selected" (selectionChange)="onSelectedChange($event.value,fileParent)" class="scroll"  >
+         <mat-option value="pizza">pizza</mat-option>
+         <mat-option value="pasta">pasta</mat-option>
+         <mat-option value="desert">desert</mat-option>
+         <mat-option value="salads">salads</mat-option>
+         <mat-option value="starters">starters</mat-option>
+         <mat-option value="drinks">drinks</mat-option>
+       </mat-select>
+     </mat-form-field>
+    <div class="parent m-auto">
+   <h2> {{selected | uppercase}}</h2>
+   <div *ngIf="isUpdate">
+       <button (click)="openModal(template);inputFilePlaceholder='choose product image'"  class="btn btn-primary w-100 my-3">
+           update image
+       </button>
+       <p class="my-3 alert alert-danger" *ngIf="updateImageError">{{updateImageError}}</p>
+   </div>
+   <ng-template #template>
+      
+       <div class="modal-body text-center">
+               <h3 class="modal-title pull-left m-0 ">choose new image</h3>
+               <div class="customFile my-3 overflow-hidden" #parent>
+                   <span>{{inputFilePlaceholder}}</span>
+                   <input type="file"  class=" form-control"  (blur)="onBlurInputFile($event,parent)" 
+                   (change)="updatedImageOnChange($event); imageFile($event,parent)">
+                   </div>
+   
+         
+           <button class="btn btn-success mr-3" (click)="updateImage(productId)">done</button>
+           <button class="btn btn-secondary" (click)="modalRef.hide()">cancel</button>
+           <div class="text-center" *ngIf='updateImageLoading'>
+            <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+          </div>
+       </div>
+     </ng-template>
+   <form [formGroup]="addProductForm" (ngSubmit)="submit()">
+       <div class="row">
+           <div class="col-md-6">
+               <div class="form-group">
+                   <input type="text" [ngClass]="{
+                       'is-invalid':getName.errors?.required &&  getName.touched,
+                       'is-valid': getName.errors ==null && getName.dirty
+                   }" placeholder="product name" class="form-control" formControlName="name">
+           
+               </div>
+           </div>
+           <div class="col-md-6">
+            
+                   <p  *ngIf="isUpdate" class="pt-2" style="overflow: hidden;">
+                      <span class="font-weight-bold"> image name: </span>
+                       {{fileName | slice :23}}
+                      
+                   </p>
+              
+               
+               <div class="form-group" [hidden]="isUpdate">
+                   <div class="customFile overflow-hidden" #fileParent>
+                       <span>{{inputFilePlaceholder}}</span>
+                   <input 
+   
+                   type="file" [ngClass]="{
+                       'is-invalid':getImage.errors?.required &&  getImage.touched,
+                       'is-valid': getImage.errors ==null && getImage.dirty
+                   }" class="form-control"   formControlName="image" (focus)="onfocus(fileParent)"  (blur)="onBlurInputFile($event,fileParent)" (change)="imageFile($event,fileParent)" >
+                  </div>
+               </div>
+           </div>
+       </div>
+       <div class="brdr mb-3" *ngIf="getSizes().controls.length"  formArrayName="sizes">
+           <h2 style="text-transform: uppercase;">ADD {{selected}}
+                {{selected == 'starters' ? 'pieces' : 'sizes' }}</h2>
+           <ng-container *ngFor="let piece of getSizes().controls;let i = index">
+               <div class="my-2  p-3" [formGroupName]="i">
+   
+             <div class="row position-relative" style="    border-bottom: 1px solid #d6d5d5;">
+               <i (click)="deleteSizes(i)" class="fas fa-times ss"></i>
+                 <div class="col-md-6">
+                   <div class="form-group">
+                       <input [ngClass]="{
+                              'is-invalid':getSizesForValidation(i,'size').errors?.required && getSizesForValidation(i,'size').touched ,
+                              'is-valid':getSizesForValidation(i,'size').errors==null && getSizesForValidation(i,'size').dirty
+                           }" formControlName="size" type='text' class="form-control"
+                           placeholder="{{selected == 'starters' ? 'pieces count' : 'size name'}}">
+                   </div>
+                 </div>
+                 <div class="col-md-6">
+                   <div class="form-group">
+                       <input type="number"
+                       
+                       [ngClass]="{
+                               'is-invalid':getSizesForValidation(i,'price').errors!==null && getSizesForValidation(i,'price').touched ,
+                               'is-valid':getSizesForValidation(i,'price').errors==null && getSizesForValidation(i,'price').dirty
+                            }" formControlName="price" class="form-control" placeholder="Price">
+                   </div>
+               </div>           
+             </div>
+               </div>
+           </ng-container>
+           <div><button class="btn btn-success" type="button" (click)="addSizes()">
+                   add {{selected == 'starters' ? 'pieces ' : 'size '}}</button> </div>
+       </div>
+   
+    
+       <div *ngIf="getToppings().controls.length"  class="brdr mb-3" 
+       formArrayName="toppings">
+       <h2 style="text-transform: uppercase;">add topping</h2> 
+    
+       <ng-container *ngFor="let toping of getToppings().controls;let i = index">
+         
+           <div class="my-4 px-3  position-relative" style="border-bottom: 1px solid #d6d5d5;padding-top: 20px;padding-bottom: 20px;" [formGroupName]="i">
+               <i (click)="deleteToppings(i)" class="fas fa-times s"></i>
+           
+                   <div class="form-group">
+                     
+                       <input 
+                       [ngClass]="{
+                           'is-invalid':getToppingsForVAlidation(i,'topping').errors?.required &&  getToppingsForVAlidation(i,'topping').touched,
+                           'is-valid':getToppingsForVAlidation(i,'topping').errors==null && getToppingsForVAlidation(i,'topping').dirty
+                       }"
+                       formControlName="topping" type="text" class="form-control" placeholder="topping name">
+                
+               </div>
+                   <div formArrayName="sizes" *ngIf="getToppingsSizes(i).controls.length">
+                       <ng-container *ngFor="let topping of getToppingsSizes(i).controls;let ii = index">
+       
+                           <div [formGroupName]="ii" class="d-flex align-items-center">
+                          
+                               <div class="form-group w-100">
+                                   <input 
+                                   [ngClass]="{
+                                       'is-invalid':getToppingSizesForValidation(i).errors!==null && getToppingSizesForValidation(i).touched,
+                                       'is-valid':getToppingSizesForValidation(i).errors==null && getToppingSizesForValidation(i).dirty
+                                   }" 
+                                   type="number" formControlName="price" placeholder="extra price" class="form-control" >
+                               </div>
+                           </div>
+         
+                       </ng-container>
+       
+                   </div>
+               
+          <!--         -->
+             
+           </div>
+       </ng-container>
+       <button type="button" (click)="addToppings()" class="mt-3 btn btn-success">add topping</button>
+   </div>
+      
+       <div *ngIf="getSpecialAdditions().controls.length"  class="brdr mb-3" 
+           formArrayName="specialsAdditions">
+           <h2 style="text-transform: uppercase;">add Special Addition (optional)</h2> 
+           <ng-container *ngFor="let addition of getSpecialAdditions().controls;let i = index">
+               <div class="my-4 px-3 position-relative" style="border-bottom: 1px solid #d6d5d5;padding-top: 20px;padding-bottom: 20px;" [formGroupName]="i">
+                   <i (click)="deleteSpecialAdditions(i)" class="fas fa-times s"></i>
+                   <div class="form-group">
+                       <input [ngClass]="{
+                           'is-invalid':getSpecialAdditionForVAlidation(i,'addition').errors?.required && getSpecialAdditionForVAlidation(i,'addition').touched ,
+                           'is-valid':getSpecialAdditionForVAlidation(i,'addition').errors==null && getSpecialAdditionForVAlidation(i,'addition').dirty
+                        }" formControlName="addition" type="text" class="form-control" placeholder="addition name">
+                   </div>
+                   <div formArrayName="sizes" *ngIf="getSpecialAdditionsSizes(i).controls.length">
+                       <ng-container *ngFor="let addition of getSpecialAdditionsSizes(i).controls;let ii = index">
+   
+                           <div [formGroupName]="ii" class="d-flex align-items-center">
+                               <div class="form-group">
+                                   <input type="text"  formControlName="size" 
+                                   [attr.disabled]="true" 
+                                  style="border:none;width:80px;font-weight: bold;background-color: white;">
+                               </div>
+                               <div class="form-group">
+                                   <input 
+                                  
+                                   type="number"   (blur)="validationForSpecialAdditionPrice($event)" formControlName="price" class="form-control" >
+                               </div>
+                           </div>
+         
+                       </ng-container>
+   
+                   </div>
+               </div>
+           </ng-container>
+           <button type="button" (click)="addSpecialAdditions()" class="mt-3 btn btn-success">add special addition</button>
+       </div>
+      
+           <button  *ngIf="selected=='pizza' && getSpecialAdditions().controls.length==0" type="button" class="my-3 btn btn-success" (click)="addSpecialAdditions()">add special addition</button>
+    <div class="form-group" [hidden]="selected =='pizza' || selected =='drinks' || selected =='starters'">
+        <input  
+        [ngClass]="{
+           'is-invalid':getPrice.errors!==null && getPrice.touched,
+           'is-valid':getPrice.errors==null && getPrice.dirty
+       }" 
+        type="number" formControlName="price"  placeholder="product price" class="form-control">
+    </div>
+       <div class="form-group">
+           <textarea name="" id="" [ngClass]="{
+           'is-invalid':addProductForm.controls.descripition.errors?.required &&  addProductForm.controls.descripition.touched,
+           'is-valid': addProductForm.controls.descripition.errors ==null && addProductForm.controls.descripition.dirty
+       }" placeholder="descripition" formControlName="descripition" cols="30" rows="5" class="form-control"></textarea>
+       </div> 
+       <div class="text-center" *ngIf='addOrUpdateLoading'>
+        <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+      </div>
+       <button *ngIf="!isUpdate ; else updateProduct"  [disabled]="addProductForm.invalid" type="submit" class="w-100 btn btn-primary">FINISH</button>
+
+       <ng-template #updateProduct>
+           <button class="btn btn-primary w-100" [disabled]="addProductForm.invalid" type="button" (click)="updatProduct()">update product</button>
+       </ng-template>
+    
+       <p class="my-3 alert alert-danger" *ngIf="addOrUpdateProductError">{{addOrUpdateProductError}}</p>
+       
+   </form>
+   </div> 
+   
+   </div>

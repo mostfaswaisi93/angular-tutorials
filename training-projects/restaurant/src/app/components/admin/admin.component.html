@@ -1,0 +1,11 @@
+<div>
+    <div class="authLayout container" >
+        <button (click)="navigate()" class="btn btn-primary mt-4">home <i class="fas fa-home"></i></button>
+        <div class="d-md-flex justify-content-center py-5">
+            <p  routerLinkActive="active" routerLink="../dashboard/add"   class="mr-4 mb-3 font-weight-bold text-secondary "> ADD PRODUCT</p>
+            <p [routerLinkActiveOptions]="{exact:true}" routerLink="../dashboard/modify" routerLinkActive="active" class="mr-4 mb-3 font-weight-bold text-secondary">MODIFY PRODUCT</p> 
+            <p [routerLinkActiveOptions]="{exact:true}" routerLink="../dashboard/orders" routerLinkActive="active" class=" font-weight-bold mb-3 text-secondary">GET ORDERS</p> 
+        </div>
+     <router-outlet></router-outlet>
+    </div>
+</div>

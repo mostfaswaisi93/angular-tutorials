@@ -1,0 +1,16 @@
+<div *ngIf="authservice.userProfile?.orders?.length; else empty" >
+    <h4 class="font-weight-bold">Order List </h4>
+    <div
+    class="brdr"
+     *ngFor="let order of authservice.userProfile?.orders"
+   >
+   <p><i class="fas fa-home"></i> {{order?.adress?.city}}, {{ order?.adress?.zone}}, {{ order?.adress?.house}}</p>
+   <p>{{order?.price | currency}}</p>
+</div>
+  
+</div>
+<ng-template #empty>
+   <div class="text-center ordersImage">
+    <img src="assets/noOrders.PNG" alt="">
+   </div>
+</ng-template>

@@ -1,0 +1,236 @@
+<div 
+*ngIf="categoriesLoading"
+class="d-flex justify-content-center align-items-center loadinggg"
+ style="background-color: #EBEBEB">
+    <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+</div>
+<div
+*ngIf="products.length" style="min-height: 100vh;background-color: #EBEBEB;">
+    <div class="container py-5">
+        <div class="position-relative">
+            <div class="row">
+                <div class=" col-lg-9 " >
+                    <div class="row">
+                       
+                        <div class="col-sm-6 col-md-4   mb-5 " style="cursor: pointer !important;"
+                            *ngFor="let product of products;let i = index">
+                
+                            <div class="d-flex d-sm-block bg-white shado p-3 rounded " style="cursor: pointer !important;transition: .5s;"
+                                (click)="openModal(template,product)">
+                                <div class="text-center mb-0 mb-sm-4 mr-2 mr-sm-0">
+                                    <img style="cursor: pointer !important" class="img-fluid" 
+                                        [src]="product.image" alt="">
+                                </div>
+                                <div>
+                                    <h3 class="font-weight-bold m-0">{{product.name}}</h3>
+                                    <p  class="my-2"
+                                    
+                                        style="color:#8a8a8a;font-size:14px">
+                                        {{product.descripition | text : seeMoreIndex : i}}
+                                        <span 
+                                        *ngIf="product.descripition.length > 3"
+                                        style="cursor:pointer" class="text-danger"
+                                            (click)="seeMoreIndex = seeMoreIndex == i ? -1 : i;stpPropagation($event)">{{seeMoreIndex
+                                            == i ? "less"
+                                            : "more...."}}</span>
+                                            
+                                    </p>
+    
+                                    <span class="mb-2 d-block"
+                                        *ngIf="product.toppings.length">{{product.sizes[0].size}}</span>
+                                    <div 
+                                     class="d-flex justify-content-between align-items-center">
+                                        <h4 class="m-0 font-weight-bold"> {{ product.price || product.sizes[0].price |
+                                            currency : " EGP " }}</h4>
+                                        <button class="btn btn-success"> Add</button>
+                                    </div>
+                                </div>
+                    
+                            </div>
+                            <ng-template #template>
+
+                                <div class="modal-header">
+
+                                    <div class="d-flex ">
+                                        <img class="mr-3" [src]="product.image" width="80" height="80"
+                                            alt="">
+                                        <div>
+                                            <h2 class="mb-2">{{product.name}}</h2>
+                                            <p *ngIf="product.sizes.length">{{size}}</p>
+                                            <p class="text-secondary d-none d-md-block"> {{product.descripition}}</p>
+
+                                        </div>
+                                    </div>
+                                    <button type="button" class="close pull-right" aria-label="Close"
+                                        (click)="modalRef.hide()">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body" style="background-color: #EBEBEB;">
+                                    <div class="scrll" [style.height]="product.toppings.length ? '200px' : 'auto'" style="overflow: auto;margin-bottom:20px;">
+                                     
+                                        <div class="m-auto w-75">
+                                            <div id="sizes"  *ngIf="product.sizes.length">
+                                                <h2 class="mb-1 pl-3">size</h2>
+                                                <div class="bg-white p-3 ">
+                                                    <mat-radio-group class="d-flex flex-column d-md-block example-radio-group "
+                                                        [(ngModel)]="price">
+                                                        <mat-radio-button class="" (change)="size=siz.size"
+                                                            *ngFor="let siz of product.sizes" [value]="siz.price">
+                                                            {{siz.size}}
+                                                        </mat-radio-button>
+                                                    </mat-radio-group>
+                                                </div>
+                                            </div>
+                                            <accordion
+                                            *ngIf="product.toppings.length"
+                                            [isAnimated]="true" class="my-3">
+                                                <accordion-group heading="Your Toppings">
+                                                    <div id="toppings" class=" bg-white px-3 py-4 " >
+                                                        <div>
+                                                            <mat-radio-group class="example-radio-group "
+                                                                [(ngModel)]="choosenToppings[toppingIndx].quantity"
+                                                                *ngFor="let topping of product.toppings;let toppingIndx = index">
+                                                                <div class="border-btm">
+
+                                                                
+                                                                <div class="d-flex justify-content-between align-items-center">
+                                                                    <h3 class="mb-1">{{topping.topping }}</h3>
+                                                                    <h3 
+                                                                    class=" mb-1"
+                                                                    style="font-size: 10px;"
+                                                                        [class.d-none]="!choosenToppings[toppingIndx].showToppingPrice">
+                                                                        +{{topping.sizes[0].price | currency : " EGP "}}</h3>
+            
+                                                                </div>
+                                                                <div class="d-flex flex-column d-md-block ">
+            
+                                                                    <mat-radio-button
+                                                                        (change)="removeExtraToppingPrice(topping.sizes[0].price,toppingIndx,$event)"
+                                                                         value="without">
+                                                                        without
+                                                                    </mat-radio-button>
+                                                                    <mat-radio-button
+                                                                        (change)="removeExtraToppingPrice(topping.sizes[0].price,toppingIndx,$event)"
+                                                                        value="with">
+                                                                        with
+                                                                    </mat-radio-button>
+                                                                    <mat-radio-button
+                                                                        (change)="addExtraToppingPrice(topping.sizes[0].price,toppingIndx)"
+                                                                        value="plus">
+                                                                        extra
+                                                                    </mat-radio-button>
+                                                                </div>
+                                                            </div>
+                                                            </mat-radio-group>
+            
+                                                        </div>
+                                                    </div>
+                                                </accordion-group>
+                                              </accordion>
+                                              <accordion 
+                                              *ngIf="product.specialsAdditions.length"
+                                              [isAnimated]="true" class="my-3">
+                                                <accordion-group heading="Additions">
+                                                    <div id="additions" class=" bg-white px-3 py-4 "
+                                                    >
+                                                    <div>
+                                                        <mat-radio-group class="example-radio-group "
+                                                            [(ngModel)]="chosenSpeciialAdditions[additionIndex].quantity"
+                                                            *ngFor="let addition of product.specialsAdditions;let additionIndex = index">
+                                                            <div class="border-btm">
+
+                                                           
+                                                            <div class="d-flex justify-content-between align-items-center">
+                                                                <h3  class=" mb-1">{{addition.addition }}</h3>
+                                                                <h3
+                                                                class=" mb-1"
+                                                                style="font-size: 10px;"
+                                                                    [class.d-none]="!chosenSpeciialAdditions[additionIndex].withOrExtra.with">
+                                                                    +{{addition.sizes[0].price | currency : " EGP "}}</h3>
+                                                                <h3
+                                                                class=" mb-1"
+                                                                style="font-size: 10px;"
+                                                                    [class.d-none]="!chosenSpeciialAdditions[additionIndex].withOrExtra.extra">
+                                                                    +{{addition.sizes[1].price | currency : " EGP "}}</h3>
+                                                            </div>
+                                                            <div class="d-flex flex-column d-md-block ">
+        
+                                                                <mat-radio-button
+                                                                    (change)="removeExtraAdditionPrice(addition.sizes,additionIndex)"
+                                                                    value="without">
+                                                                    without
+                                                                </mat-radio-button>
+                                                                <mat-radio-button
+                                                                    (change)="addAddtionPrice(addition.sizes,additionIndex,$event)"
+                                                                    value="with">
+                                                                    with
+                                                                </mat-radio-button>
+                                                                <mat-radio-button
+                                                                    (change)="addAddtionPrice(addition.sizes,additionIndex,$event)"
+                                                                    value="plus">
+                                                                    extra
+                                                                </mat-radio-button>
+                                                            </div>
+                                                        </div>
+                                                        </mat-radio-group>
+        
+                                                    </div>
+        
+                                                </div>
+                                                </accordion-group>
+                                            </accordion>
+                                        </div>
+                                      
+                                       
+                                      
+                                        <div
+                                        class="px-3 py-2 d-md-flex m-auto w-75 justify-content-between align-items-center">
+                                        <p><span class="font-weight-bold">Price: </span>
+                                            <span>{{price | currency : " EGP "}}</span>
+                                        </p>
+                                        <p class="d-flex align-items-center">
+                                            <i [class.d-none]="amount==1" (click)="amount=amount-1"
+                                                style="font-size: 25px;color:green" class="fas fa-minus-square"></i>
+                                            <span class="mx-2 font-weight-bold">{{amount}}</span>
+                                            <i (click)="amount = amount + 1" style="font-size: 25px;color:green"
+                                                class="fas fa-plus-square"></i>
+                                        </p>
+
+                                    </div>
+                                    </div>
+                                    <button
+                                    *ngIf="authservice.userProfile?.profile?.role != 'admin'"
+                                        class="d-flex d-md-block justify-content-between align-items-center position-relative btn btn-success w-100"
+                                        (click)="addToCart(product._id,amount,size,product.category,product.price
+                             )">
+                                        <span>add to cart </span>
+                                        <span class="total">total: {{(price*amount) + (extraToppingPrice*amount) +
+                                            (additionPrice*amount) | currency : " EGP "}}</span>
+                                    </button>
+                                </div>
+                            </ng-template>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class=" d-none d-lg-block col-lg-3">
+                    <div class=" bg-white sticky-top text-center py-2"
+                        style="border-top: 4px solid green;border-radius: 15px;">
+
+                        <div>
+                            <app-cart-details [cartDataFomParent]="cartData"></app-cart-details>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+<div *ngIf="!products.length" class="text-center p-5">
+    <h1>there are no products yet</h1>
+</div>
