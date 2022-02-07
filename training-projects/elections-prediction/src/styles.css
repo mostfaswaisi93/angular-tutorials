@@ -1,0 +1,15 @@
+@import url('app/app.component');
+html
+{
+    overflow: hidden ;
+}
+::-webkit-scrollbar
+{
+    width: 12px;
+    background: #051024;
+}
+::-webkit-scrollbar-thumb
+{
+    background:#084936 ;
+    border-radius: 5px;
+}

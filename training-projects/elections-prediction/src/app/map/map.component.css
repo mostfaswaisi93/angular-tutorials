@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Dela+Gothic+One&display=swap');
+
+*
+{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+section
+{
+        background: #051024;
+        padding: 100px 20px;
+}
+.map-gis
+{
+    height: 500px;
+    margin-bottom: 50px;
+}
+.card
+{
+    border: 10px solid #051024;
+    border-radius: 30px;
+    background-color: #f1f1f1;
+}
+img
+{
+    border-radius: 10px;
+}
+h2
+{
+    background-color: #f1f1f1;
+    width: max-content;
+    padding: 20px;
+    border-radius: 20px;
+    font-weight: 500;
+    font-size: 35px;
+    font-family: 'Dela Gothic One', cursive;
+    box-shadow: #666666 1px 1px 5px;
+    text-shadow: 2px 14px 13px #051019;
+}
+h3
+{
+    font-family: 'Dela Gothic One', cursive;
+}
+.button-up
+{
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    background-color: #084936;
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+    cursor: pointer;
+    display: none;
+    z-index: 1000;
+}
+.button-up:hover
+{
+    box-shadow: #0ca042 1px 1px 5px;
+}
+.fa-chevron-up
+{
+    transform: translate(40%,30%);    
+}

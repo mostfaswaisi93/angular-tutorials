@@ -1,0 +1,48 @@
+<section class="col-md-12">
+  <div class="map-gis col-md-12 d-flex justify-content-center">
+    <iframe class="col-md-10 h-100" src="https://learngis2.maps.arcgis.com/apps/Embed/index.html?webmap=c8ba7c9e52e749f3a7199f3cd8e01731&extent=-137.9041%2C23.7254%2C-31.0291%2C51.9445&zoom=true&previewImage=false&scale=true&disable_scroll=true&theme=light&fbclid=IwAR1pvO_-TNLAf3KMIwCoD0drZD3N9pJ-h1pDZhXx_87cHehjY6nwCxmYy8k" frameborder="0"></iframe>
+  </div>
+  <div class="col-md-12 d-flex justify-content-center mb-5">
+    <h2>All states results</h2>
+  </div>
+  <div class="col-md-12 d-flex justify-content-center row">
+    <div class="card col-md-3 col-sm-4 col-10" *ngFor="let twitte of twittes">
+      <div class="col-md-12 col-sm-12 p-3 col-12">
+        <h3 class="w-100 text-center">{{ twitte.state }}</h3>
+        <div class="trump-check col-md-12 col-sm-12 col-12 d-flex align-items-center mb-2">
+          <img class="col-md-3 col-sm-4 col-3" src="../../assets/TRUMP.jpg" alt="" />
+          <progress-bar
+            class="col-md-8 col-sm-7 col-8"
+            [progress]="
+              (twitte.trump_score / (twitte.trump_score + twitte.biden_score)) *
+              100
+            "
+            [color-degraded]="{
+              '0': '#a91010',
+              '49.999': '#080874',
+              '50.001': '#077007'
+            }"
+          ></progress-bar>
+        </div>
+        <div class="div-progress col-md-12 col-sm-12 col-12 d-flex align-items-center mb-2">
+          <img class="col-md-3 col-sm-4 col-3" src="../../assets/PIDEN.jpg" alt="" />
+          <progress-bar
+            class="col-md-8 col-sm-7 col-8"
+            [progress]="
+              (twitte.biden_score / (twitte.trump_score + twitte.biden_score)) *
+              100
+            "
+            [color-degraded]="{
+              '0': '#a91010',
+              '49.999': '#080874',
+              '50.001': '#077007'
+            }"
+          ></progress-bar>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="button-up">
+    <i class="fas fa-2x fa-chevron-up"></i>
+  </div> 
+</section>

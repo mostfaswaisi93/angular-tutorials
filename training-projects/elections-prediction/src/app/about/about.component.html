@@ -1,0 +1,379 @@
+<section id="About" class="">
+  <div class="img-usa">
+    <div class="rgba"></div>
+  </div>
+</section>
+<div class="button-up">
+  <i class="fas fa-2x fa-chevron-up"></i>
+</div>
+<section>
+  <div class="div-arrow">
+    <div class="d-flex justify-content-between">
+      <p>DOCUMENTATION</p>
+      <i class="fas fa-arrow-down" ></i>
+    </div>
+  </div>
+  <div class="about-grid">
+    <div class="slidebar">
+      <ul>
+        <li class="active LI" (click)="inView(Acknowledgment)">
+          <a>Acknowledgment</a>
+        </li>
+        <li class="LI" (click)="inView(Abstract)"><a>Abstract</a></li>
+        <li class="LI" (click)="inView(Glossary)"><a>Glossary</a></li>
+        <li class="LI">
+          <a class="chapter"><i class="fas fa-angle-right"></i> Chapter 1</a>
+        </li>
+        <div class="dnone">
+          <ul>
+            <li class="li" (click)="inView(Introduction)">
+              <a>Introduction</a>
+            </li>
+              <li class="li" (click)="inView(Summary)"><a>Summary</a></li>
+              <li class="li" (click)="inView(Problem_definition)">
+                <a>Problem definition</a>
+              </li>
+              <li class="li" (click)="inView(Objective)"><a>Objective</a></li>
+              <li class="li" (click)="inView(purpose)"><a>purpose</a></li>
+              <li class="li" (click)="inView(Scope)"><a>Scope</a></li>
+          </ul>
+        </div>
+        <li class="LI">
+          <a class="chapter"><i class="fas fa-angle-right"></i> Chapter 2</a>
+        </li>
+        <div class="dnone">
+          <ul>
+            <li class="li" (click)="inView(Literature_Review)">
+              <a>Literature Review</a>
+            </li>>
+          </ul>
+        </div>
+        <li class="LI">
+          <a class="chapter"><i class="fas fa-angle-right"></i> Chapter 3</a>
+        </li>
+        <div class="dnone">
+          <ul>
+            <li class="li" (click)="inView(Conclution)"><a>Conclution</a></li>
+            <li class="li" (click)="inView(References)"><a>References</a></li>
+          </ul>
+        </div>
+      </ul>
+    </div>
+    <div class="cont">
+      <h2 #Acknowledgment>Acknowledgment</h2>
+      <p>
+        We have taken efforts in this project. However, it would not have been
+        possible without the kind support and help of many individuals and
+        organizations. We would like to extend our sincere thanks to all of
+        them. We highly indebted to (Dr. Mahmoud Abdel Hamid Wahdan for his
+        guidance and constant supervision as well as for providing necessary
+        information regarding the project &amp; also for their support in
+        completing the project. We highly indebted to (Dr. Shrieen Tayee) for
+        her guidance and constant supervision as well as for providing necessary
+        information regarding the project &amp; also for their support in
+        completing the project. 4 We would like to express our thanks and
+        gratitude to Eng. Ahmed Abdel Hafiz and Eng. Raghda Ahmed Farouq for
+        their continuous effort and support and for providing us with the
+        necessary information to complete the project. We would like to express
+        our gratitude towards our parents &amp; member of (October 6 university)
+        for their kind co-operation and encouragement which help us in
+        completion of this project. Finally, we would like to express my special
+        gratitude and thanks to industry persons for giving us such attention
+        and time. Our thanks and appreciations also go to my colleague in
+        developing the project and people who have willingly helped us out with
+        their abilities.
+      </p>
+      <h2 #Abstract>Abstract</h2>
+      <p>
+        The primary objective of this project is to obtain forecasting model for
+        the presidential elections. This is done by collecting data from the
+        social media on the opinion of the people on each one of the elected
+        candidates using the API of the social media website we are going to use
+        (e.g. Twitter), then we are going to use a sentiment analysis (natural
+        language processing) tool which uses the machine learning to give score
+        to each word in the query received where positive words get a high score
+        and negative words get a low score, then it returns a score for the
+        whole query which we could use monitor the peoples’ opinion on the
+        elected candidates in each state, we will then collect the scores and
+        present it on a map using Geographic Information Systems (GIS) as graphs
+        on each state showing the percentage of positivity of peoples’ opinion
+        on each of the elected candidates, The program will then predict the
+        candidate that might win by using a summation tool to see which of the
+        elected candidates has got the highest score. In brief, this project is
+        being developed to predict the scores of the presidential elections
+        based on using the natural language processing on the peoples’ blogs on
+        social media.
+      </p>
+      <h2 #Glossary>Glossary</h2>
+
+      <table class=" table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">Term</th>
+            <th scope="col">Definitions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">API</th>
+            <td>API is the acronym for Application Programming Interface, which is a software intermediary that allows two applications to talk to each other.
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">NLP</th>
+            <td>is broadly defined as the automatic manipulation of natural language, like speech and text, by software.
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">GIS</th>
+            <td>A Geographic Information System (GIS) is a computer system that analyzes and displays geographically referenced information
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">GDP</th>
+            <td>
+              Gross domestic product (GDP) is the total monetary or market value of all the finished goods and services produced within a country’s borders in a specific time period.
+              </td>
+          </tr>
+          <tr>
+            <th scope="row">GNP</th>
+            <td>
+              Gross national product (GNP) is an estimate of total value of all the final products and services turned out in a given period by the means of production owned by a country's residents
+              </td>
+          </tr>
+          <tr>
+            <th scope="row">UI</th>
+            <td>
+              User interface (UI) design is the process designers use to build interfaces in software or computerized devices, focusing on looks or style.
+              </td>
+          </tr>
+          <tr>
+            <th scope="row">UX</th>
+            <td>
+              User experience (UX) design is the process design teams use to create products that provide meaningful and relevant experiences to users.
+              </td>
+          </tr>
+          <tr>
+            <th scope="row">OLS</th>
+            <td>
+              ordinary least squares (OLS) is a type of linear least squares method for estimating the unknown parameters in a linear regression model.
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">ERD</th>
+            <td>
+              An Entity Relationship (ER) Diagram is a type of flowchart that illustrates how “entities” such as people, objects or concepts relate to each other within a system.
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">DFD</th>
+            <td>
+              Also known as DFD, Data flow diagrams are used to graphically represent the flow of data in a business information system.                          </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h1 #Chapter1>Chapter 1</h1>
+      <h2 #Introduction>Introduction</h2>
+      <h3 #Summary>Summary</h3>
+      <p>
+        The United States presidential election is among influential factors on
+        not only the local market but also the global economy. Researchers must
+        pay more attention to political events and how they influence the
+        development of competitive local markets alongside their influence on
+        the global economy. Given the significance of the US Presidential
+        Election and how it is capable of influencing the global economy. So, it
+        is not surprising that election forecasting has garnered increasing
+        attention. Over the past several election cycles, scholars have churned
+        out a dizzying array of models that purport to capture the underlying
+        structure of past presidential elections and, on that basis, to predict
+        the outcome of the election that lies some months in the future, a bulk
+        of scholars and politicians in the US have attempted to predict the
+        outcome of the elections to formulate policies based on the obtained
+        forecasts.
+      </p>
+      <h3 #Problem_definition>Problem definition</h3>
+      <p>
+        Modeling a complex phenomenon such as an election is neither a simple
+        nor easy task. In some elections, the mechanism of the election is
+        complicated, and in others, the candidates present further complexities
+        in modeling the event. However, the US presidential election presents a
+        slightly less difficult challenge. The bipartisanship of the political
+        system in the United States presents a simple situation in which the
+        failure of the incumbent party can be considered as the success of
+        another party. Most forecasts have chosen the incumbent votes as the
+        dependent variable in their models primarily due to this reason. This
+        choice is based on the theory that the US presidential election is a
+        referendum on the policies of the incumbent party. This theory states
+        that people who are satisfied with the incumbent party are inclined to
+        vote for their party’s candidate, and people who are not satisfied are
+        enthusiastic to vote for the opposing party’s candidate.
+      </p>
+      <h3 #Objective>Objective</h3>
+      <p>
+        The primary objective of this project is to model and forecast the
+        United States presidential election via the usage of natural language
+        processing (NLP). Political and economic variables are utilized in the
+        model, and significant variables are identified through further analysis
+        and statistical procedures. The dependent variable is defined as the
+        electoral votes of the incumbent party. The incumbent party is
+        considered as the dependent variable, because it presents further
+        related variables such the incumbent president’s approval rate and gross
+        domestic product (GDP). Increasing the accuracy of the obtained
+        forecasts is another research objective. Moreover, analytical
+        parsimonious models are desired to provide forecasts and different
+        utilized learning algorithms are further compared based on some
+        specified performance measures. Investigating the impacts of data mining
+        techniques in increasing forecasting accuracy is another objective of
+        this research.
+      </p>
+      <h3 #purpose>Purpose</h3>
+      <p>
+        The purpose of this project is to model and forecast the presidential
+        elections in a new way via using a natural language processing (NLP)
+        sentiment analysis tool on the blogs that people made on social media,
+        so we can measure a score of likability and acceptability of each one of
+        the elected candidates from the peoples’ opinion. As a user of the
+        system, you will be able to search for the score of some of the elected
+        candidates in a specific area and display them so you can compare which
+        of the elected candidates is more likely to win in that specific are.
+        This project was implemented for better user experience. This system is
+        very easy to access. Also, for establish real time communication, using
+        modern and updated technology. So, user can see the update without
+        reload or refresh and can communication with the system. This system
+        will compatible with user’s android devices such as mobile or tablets.
+        Also, so user can easily access the system anytime anywhere. This system
+        is very simple and user friendly so, any user can use this system
+        easily.
+      </p>
+      <h3 #Scope>Scope</h3>
+      <p>
+        Scope definition is the process of analyzing, prioritizing, agreeing on
+        and documenting the scope of the project while managing a consistent
+        stream of communication to the stakeholders. While this usually is a
+        continuous process throughout a project, a definite foundation on which
+        the scope is built on will define the project (product or service)
+        outcome. This process draws out the functionality the business is
+        looking to get and also identifies any constraints and potential risks
+        avoiding surprises at a later time. The process touches all the teams
+        and departments that would be involved creating a collaborative and
+        transparent environment and reducing friction. We use a domain specific
+        approach to define the scope of the project. We have domain expertise in
+        several areas of: Identify all the stakeholders who will need to be
+        involved in the process <br />
+        • Admins of the system <br />
+        • Users<br />
+
+        Identify all the platforms which will need to be involved in the process
+        The project will be developed on a web-based platform, the application
+        will run on Web Application and a GIS web map. This web platform will
+        offer all the services for the user to be able to perform all actions
+        from web browser using the web application. Deliverables:<br />
+        By the end of project below should be delivered:<br />
+        • Responsive administration backend. <br />
+        • Responsive web application for admin and users.<br />
+        • Web services with presentable API document.<br />
+      </p>
+      <h1 #Chapter2>Chapter 2</h1>
+      <h2 #Literature_Review>Literature Review</h2>
+      <p>
+        Although forecasting has been used many times in numerous fields, it has
+        a brief history in political science. Forecasting political events
+        started in the late 1970s when Fair (1978) investigated the effect of
+        the economic condition in the election year as well the incumbent
+        parties in a forecasting model. Sigelman (1979) examined the relation
+        between the results of an election with the previous ones. Lewis-Beck
+        and Rice (1982) developed a model using the president’s job approval and
+        an economic factor as independent variables. Abramowitz (1988) added a
+        time-dependent variable to improve the performance of the forecasting
+        model. The dependent variable of the model was the percentage of the
+        incumbent party votes, and the independent variables were GDP growth,
+        the incumbent president’s job approval rating in June of the election
+        year, and the consecutive terms that the incumbent party governs the
+        country. He used the ordinary least-squares (OLS) method to estimate the
+        parameters of the linear regression model. Later, Abramowitz (2016)
+        utilized his model, which is called ‘‘Time for change forecasting
+        model’’, to forecast 2016 election. Some years later, Lewis-Beck and
+        Rice (1992) reformed their model by adding two new variables: the result
+        of the previous congress election and the previous presidential
+        election. Holbrook and DeSart (1999) used the percentage of voters and
+        the last votes of parties, as variables in their forecasting model. They
+        employed the OLS method to estimate the parameters of their regression
+        model. Wlezien and Erikson (2004) introduced a model using economic
+        indices and the percentage of the incumbent party votes as variables.
+        They used the R2 (coefficient of multiple determination) and the
+        adjusted R2 to evaluate the accuracy of their forecasting model. Later,
+        Erikson and Wlezien (2016) employed their model to forecast 2016
+        presidential election by adding the polls to their model. An important
+        research on forecasting the United States presidential election was
+        conducted by Berg and Rietz (2014). These individuals who were political
+        science professors in the University of Iowa proposed a method to
+        predict the presidential election which is known as the Iowa prediction
+        market. Lewis-Beck and Tien (2014) addressed the issue of forecasting
+        from statistical models, and the way they might be improved. They used a
+        real-world example on the US presidential elections in their work. They
+        provided a summary of various leading US presidential election models
+        that use various independent variables such as presidential popularity,
+        GNP growth, primary support, house party advantage, peace and
+        prosperity, and incumbency. Fair (2011) allocated a chapter of his book
+        to predicting the result of the US presidential election. The variables
+        in his model were GNP, inflation rate, and the consecutive terms that
+        the incumbent party governs the country and the percentage of the
+        incumbent party votes. De Neve (2014) used data from the 1920
+        presidential election to the 2008 presidential election to forecast the
+        result of the US presidential elections. The independent variables in
+        his model were personal income growth rate, taxes, GNP, inflation rate,
+        and unemployment rate. Interested readers are referred to Lewis-Beck
+        (2005) on the principles and the practices of election forecasting.
+        Serious efforts have been undertaken to develop election forecasting in
+        other countries. Ford et al. (2016) developed a three-stage method to
+        forecast parliamentary election results from vote preferences in British
+        opinion polls. Rallings et al. (2016) introduced a model using local
+        government election results to estimate a national equivalent vote in
+        the UK parliamentary election. An important research on forecasting the
+        2013 German Bundestag Election was conducted by Munzert (2017). He used
+        a time-series method to forecast 2013 German election based on many
+        polls and historical election results. Charles and Reid (2016) also used
+        election results and macroeconomic variables from 1962 to 2015 to
+        develop a time-series model to forecast the 2016 General Election in
+        Jamaica
+      </p>
+      <h1 #Chapter3>Chapter3</h1>
+      <h2 #Conclution>Conclution</h2>
+      <p>
+        The result of the project is the ability to predict the outcome of the
+        US presidential elections by getting each candidate a record number of
+        positive posts for each candidate on social media platforms. We used
+        Natural Language Processing (NLP) sentiment analysis on the tweets
+        created by the people to see the positivity of each candidate in
+        peoples’ opinion and predict which candidate might win the elections
+        based on the score of positivity.  The user choose for a specific
+        candidate.  The program use the tweets to detect the winning
+        probability for candidate in any state.  The tweets are then organized
+        by each candidate name.  The sentiment analysis algorithm gives a score
+        to each candidate based on the positivity of his/her tweets.  The score
+        is then displayed on a GIS web-map. In whatever project the end
+        objective is to meet project’s overall objectives as defined by the: 
+        Scope  Time  Cost  Quality The role of this scenario is to harmonize
+        the functions of planning, communicating, monitoring and control the
+        project in order to meet the project’s overall objectives. - Skills
+        Gained:  Team work  New programming language  How to make
+        documentation  How to make diagram  Work under pressure  Time
+        management
+      </p>
+      <h2 #References>References</h2>
+      <p>
+        1- MuleSoft | Integration Platform for Connecting SaaS and Enterprise
+        Applications<br />
+        2- (PDF) Modeling and Forecasting US Presidential Election Using
+        Learning Algorithms (researchgate.net)<br />
+        3- Modeling and forecasting US presidential election using learning
+        algorithms | SpringerLink<br />
+        4- Modeling and forecasting US presidential election using learning
+        algorithms (econstor.eu)<br />
+        5- What Is Node.js and Why You Should Use It (kinsta.com)<br />
+        6- Tonic - Integrations - MongoDB
+      </p>
+    </div>
+  </div>
+</section>
