@@ -3,28 +3,21 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CartComponent } from './carts/components/cart/cart.component';
-import { AllProductsComponent } from './products/components/all-products/all-products.component';
-import { ProductComponent } from './products/components/product/product.component';
-import { ProductsDetailsComponent } from './products/components/products-details/products-details.component';
-import { HeaderComponent } from './shared/components/header/header.component';
-import { SelectComponent } from './shared/components/select/select.component';
-import { SpinnerComponent } from './shared/components/spinner/spinner.component';
+import { CartsModule } from './carts/carts.module';
+import { ProductsModule } from './products/products.module';
+import { SharedModule } from './shared/shared.module';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    CartComponent,
-    AllProductsComponent,
-    ProductComponent,
-    ProductsDetailsComponent,
-    HeaderComponent,
-    SelectComponent,
-    SpinnerComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ProductsModule,
+    CartsModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]
