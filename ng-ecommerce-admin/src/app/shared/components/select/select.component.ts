@@ -5,9 +5,12 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   templateUrl: './select.component.html',
   styleUrls: ['./select.component.scss']
 })
-export class SelectComponent  {
+export class SelectComponent {
   @Input() title: string = ""
-  @Input() data: any[] = []
+  @Input() data: any[] = [];
+  @Input() select = ''
+  @Input() all: boolean = true;
+
   @Output() selectedValue = new EventEmitter()
   constructor() { }
 

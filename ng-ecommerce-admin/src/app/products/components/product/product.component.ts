@@ -6,7 +6,7 @@ import { Product } from '../../models/product';
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.scss']
 })
-export class ProductComponent  {
+export class ProductComponent {
   @Input() data!: Product
   @Output() item = new EventEmitter();
   addButton: boolean = false;
