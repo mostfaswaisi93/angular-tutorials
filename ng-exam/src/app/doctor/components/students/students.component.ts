@@ -7,15 +7,15 @@ import { AuthService } from 'src/app/auth/services/auth.service';
   styleUrls: ['./students.component.scss']
 })
 export class StudentsComponent implements OnInit {
-  dataSource: any
-  datatable: any
-  displayedColumns: any
+  dataSource: any;
+  datatable: any;
+  displayedColumns: any;
   constructor(private service: AuthService) {
     this.displayedColumns = ['position', 'name', 'subjectName', 'degree'];
   }
 
   ngOnInit(): void {
-    this.getStudents()
+    this.getStudents();
   }
 
   getStudents() {
@@ -37,7 +37,7 @@ export class StudentsComponent implements OnInit {
           }]
         }
       })
-      console.log(this.dataSource)
+      console.log(this.dataSource);
       this.datatable = [];
 
       this.dataSource.forEach((item: any) => {

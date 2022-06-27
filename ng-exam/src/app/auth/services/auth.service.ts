@@ -12,27 +12,27 @@ export class AuthService {
   user = new Subject();
 
   createUser(model: any) {
-    return this.http.post(environment.baseApi + 'students', model)
+    return this.http.post(environment.baseApi + 'students', model);
   }
 
   login(model: any) {
-    return this.http.put(environment.baseApi + 'login/1', model)
+    return this.http.put(environment.baseApi + 'login/1', model);
   }
 
   getUsers(type: string) {
-    return this.http.get(environment.baseApi + type)
+    return this.http.get(environment.baseApi + type);
   }
 
   getStudent(id: number) {
-    return this.http.get(environment.baseApi + "students/" + id)
+    return this.http.get(environment.baseApi + "students/" + id);
   }
 
   updateStudent(id: number, model: any) {
-    return this.http.put(environment.baseApi + "students/" + id, model)
+    return this.http.put(environment.baseApi + "students/" + id, model);
   }
 
   getRole() {
-    return this.http.get(environment.baseApi + 'login/1')
+    return this.http.get(environment.baseApi + 'login/1');
   }
 
 }

@@ -10,22 +10,22 @@ export class DoctorService {
   constructor(private http: HttpClient) { }
 
   createSubject(model: any) {
-    return this.http.post(environment.baseApi + 'subjects', model)
+    return this.http.post(environment.baseApi + 'subjects', model);
   }
 
   updateSubject(model: any, id: number) {
-    return this.http.put(environment.baseApi + 'subjects/' + id, model)
+    return this.http.put(environment.baseApi + 'subjects/' + id, model);
   }
 
   getAllSubjects() {
-    return this.http.get(environment.baseApi + 'subjects')
+    return this.http.get(environment.baseApi + 'subjects');
   }
   getSubject(id: number) {
-    return this.http.get(environment.baseApi + 'subjects/' + id)
+    return this.http.get(environment.baseApi + 'subjects/' + id);
   }
 
   deleteSubject(id: number) {
-    return this.http.delete(environment.baseApi + 'subjects/' + id)
+    return this.http.delete(environment.baseApi + 'subjects/' + id);
   }
 
 }

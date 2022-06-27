@@ -6,6 +6,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
@@ -18,7 +20,8 @@ import { BrowserModule } from '@angular/platform-browser';
     ReactiveFormsModule,
     CommonModule,
     HttpClientModule,
-    // ToastrModule.forRoot(),
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
     RouterModule,
     BrowserModule
   ],

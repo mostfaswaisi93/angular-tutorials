@@ -10,12 +10,13 @@ export class AppComponent implements OnInit {
   constructor(private service: AuthService) { }
 
   ngOnInit(): void {
-    this.getUserDate()
+    this.getUserDate();
   }
 
   getUserDate() {
     this.service.getRole().subscribe(res => {
-      this.service.user.next(res)
+      this.service.user.next(res);
     })
   }
+
 }
