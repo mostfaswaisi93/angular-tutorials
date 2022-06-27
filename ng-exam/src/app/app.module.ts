@@ -3,28 +3,24 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './auth/components/login/login.component';
-import { RegisterComponent } from './auth/components/register/register.component';
-import { NewExamComponent } from './doctor/components/new-exam/new-exam.component';
-import { StudentsComponent } from './doctor/components/students/students.component';
-import { SubjectsComponent } from './doctor/components/subjects/subjects.component';
-import { NavbarComponent } from './shared/components/navbar/navbar.component';
-import { ExamComponent } from './student/components/exam/exam.component';
+import { AuthModule } from './auth/auth.module';
+import { DoctorModule } from './doctor/doctor.module';
+import { SharedModule } from './shared/shared.module';
+import { StudentModule } from './student/student.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    RegisterComponent,
-    NewExamComponent,
-    StudentsComponent,
-    SubjectsComponent,
-    NavbarComponent,
-    ExamComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    AuthModule,
+    DoctorModule,
+    SharedModule,
+    StudentModule
   ],
   providers: [],
   bootstrap: [AppComponent]
