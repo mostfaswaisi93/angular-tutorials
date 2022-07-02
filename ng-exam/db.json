@@ -111,13 +111,27 @@
         }
       ],
       "id": 2
+    },
+    {
+      "name": "math",
+      "questions": [
+        {
+          "question": "جديد",
+          "answer1": "d",
+          "answer2": "d",
+          "answer3": "d",
+          "answer4": "d",
+          "correctAnswer": "d"
+        }
+      ],
+      "id": 3
     }
   ],
   "login": [
     {
-      "username": "mostfaswaisi93",
-      "role": "students",
-      "userId": 5,
+      "username": "admin",
+      "role": "doctor",
+      "userId": 1,
       "id": 1
     }
   ]
