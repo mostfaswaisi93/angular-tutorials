@@ -19,8 +19,8 @@ export class AppComponent implements OnInit {
     if (sliderLength > 5) {
       let limit = 5 - this.images.length;
       for (let x = 0; x < limit; x++) {
-        let file = files[x]
-        let reader = new FileReader()
+        let file = files[x];
+        let reader = new FileReader();
         reader.readAsDataURL(file)
         reader.onload = () => {
           this.images.push(reader.result);
@@ -30,7 +30,7 @@ export class AppComponent implements OnInit {
       for (let x = 0; x < files.length; x++) {
         let file = files[x];
         let reader = new FileReader();
-        reader.readAsDataURL(file)
+        reader.readAsDataURL(file);
         reader.onload = () => {
           this.images.push(reader.result);
         }
@@ -46,7 +46,7 @@ export class AppComponent implements OnInit {
   delete() {
     this.images.splice(this.imgIndex, 1);
     if (this.images.length == this.imgIndex) {
-      --this.imgIndex
+      --this.imgIndex;
       this.preview = this.images[this.imgIndex];
     } else {
       this.preview = this.images[this.imgIndex];
