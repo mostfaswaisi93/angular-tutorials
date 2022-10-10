@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiservicesService } from '../apiservices.service';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-home',
@@ -7,9 +9,48 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private service: ApiservicesService, private spinner: NgxSpinnerService) { }
+
+  categoryList: any = ['all', 'hosting', 'ecommerce', 'finance', 'course', 'product', 'travel'];
+  showAllData: any = [];
+  filterName: any;
+  filterData: any = [];
+  showData: any;
 
   ngOnInit(): void {
+    this.homeData();
+  }
+
+  homeData() {
+    this.spinner.show();
+    this.service.homeapi().subscribe((result) => {
+      console.log(result, 'result#');
+      if (result.length > 0) {
+        this.showAllData = result;
+        this.showData = true;
+        this.spinner.hide();
+      }
+
+    });
+  }
+
+  onChange(e: any) {
+    console.log(e.target.value, 'categoryvalue');
+    this.showData = false;
+    this.filterName = e.target.value;
+    this.filterData = [];
+    this.showAllData.filter((element: any) => {
+      if (this.filterName == 'All') {
+        this.filterData.push(element);
+      }
+      else {
+        if (element.category == this.filterName.toLowerCase()) {
+          this.filterData.push(element);
+        }
+      }
+    });
+
+    console.log(this.filterData, 'filterData##');
   }
 
 }
