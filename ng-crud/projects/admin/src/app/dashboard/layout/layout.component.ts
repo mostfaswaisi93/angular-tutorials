@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-layout',
@@ -7,9 +8,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LayoutComponent implements OnInit {
 
-  constructor() { }
+  lang: any = "en"
+  // constructor(private translate: TranslateService, private router: Router) {
+  constructor(private router: Router) {
+    // console.log(this.translate)
+    // this.lang = this.translate.currentLang
+  }
 
   ngOnInit(): void {
   }
 
+  changeLanguage() {
+    if (this.lang == "en") {
+      localStorage.setItem('language', 'ar')
+    } else {
+      localStorage.setItem('language', 'en')
+    }
+    window.location.reload()
+  }
+
+  logout() {
+    this.router.navigate(['/login'])
+    localStorage.removeItem('token')
+  }
 }
